@@ -2,6 +2,189 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="KreatuPágina — Tu presencia digital profesional">
-  <!-- Contenido próximamente -->
+<Layout
+  title="KreatuPágina — Tu presencia digital profesional"
+  description="Creamos tu sitio web profesional desde $999.99 MXN. Sin complicaciones, sin costos ocultos — solo resultados para tu empresa."
+>
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-inner">
+
+      <div class="hero-content">
+        <div class="badge">Diseño profesional · Precios accesibles</div>
+
+        <h1>
+          Tu negocio merece una<br />
+          <em>página web que vende</em>
+        </h1>
+
+        <p>
+          Creamos tu sitio web profesional desde $999.99 MXN.
+          Sin complicaciones, sin costos ocultos — solo resultados.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#contacto" class="btn-primary">Quiero mi página web →</a>
+          <a href="#precios"  class="btn-secondary">Ver precios</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
 </Layout>
+
+<style>
+  /* ── HERO ── */
+  .hero {
+    padding: 7rem 5% 6rem;
+    background: linear-gradient(160deg, #F0FBF6 0%, #ffffff 55%, #EEF4FF 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* decorative radial blob */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 80% 20%, rgba(29,158,117,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 300px at 10% 80%, rgba(59,130,246,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--teal-50);
+    color: var(--teal-600);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    border: 1px solid var(--teal-100);
+    margin-bottom: 1.5rem;
+  }
+
+  .badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--teal-400);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── HEADING ── */
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--gray-900);
+    letter-spacing: -1px;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--teal-500);
+  }
+
+  /* ── SUBTITLE ── */
+  .hero-content > p {
+    font-size: 1.1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 2.25rem;
+  }
+
+  /* ── CTA BUTTONS ── */
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--teal-400);
+    color: #fff;
+    padding: 0.875rem 2rem;
+    border-radius: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(29, 158, 117, 0.3);
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-600);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--gray-800);
+    padding: 0.875rem 2rem;
+    border-radius: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1.5px solid var(--gray-200);
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--teal-400);
+    color: var(--teal-500);
+  }
+
+  /* ── FADE-UP ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }  /* badge    */
+  .hero-content > *:nth-child(2) { animation-delay: 0.25s; } /* h1       */
+  .hero-content > *:nth-child(3) { animation-delay: 0.4s; }  /* subtitle */
+  .hero-content > *:nth-child(4) { animation-delay: 0.55s; } /* cta      */
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { padding: 5rem 5% 4rem; }
+
+    .hero-inner { text-align: center; }
+
+    .hero-content > p { margin-inline: auto; }
+
+    .hero-cta { justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 4rem 5% 3.5rem; }
+
+    .hero-cta { flex-direction: column; align-items: stretch; }
+
+    .btn-primary,
+    .btn-secondary { text-align: center; }
+  }
+</style>
