@@ -1,0 +1,343 @@
+---
+const plans = [
+  {
+    name: 'Starter',
+    price: '999.99',
+    featured: false,
+    features: [
+      'Página de 1 sección (landing)',
+      'Diseño responsivo',
+      'Formulario de contacto',
+      'Dominio + hosting desde $149/mes',
+      '1 revisión incluida',
+    ],
+  },
+  {
+    name: 'Pro',
+    price: '1,999.99',
+    featured: true,
+    badge: '⭐ Más popular',
+    features: [
+      'Hasta 5 secciones completas',
+      'Diseño 100% personalizado',
+      'Galería de productos/servicios',
+      'SEO básico optimizado',
+      'Botón de WhatsApp integrado',
+      'Certificado SSL gratis',
+      '3 revisiones incluidas',
+      'Soporte por 30 días',
+    ],
+  },
+  {
+    name: 'Pro Plus',
+    price: '3,499.99',
+    featured: false,
+    features: [
+      'Todo lo del Plan Pro',
+      'Blog o catálogo de productos',
+      'Panel de administración',
+      'Integración redes sociales',
+      'Google Analytics incluido',
+      'Revisiones ilimitadas',
+      'Soporte prioritario 60 días',
+    ],
+  },
+];
+---
+
+<section class="pricing" id="precios">
+  <div class="section-inner">
+
+    <div class="pricing-header">
+      <div class="section-label">Precios</div>
+      <h2 class="section-title">Inversión única, resultados permanentes</h2>
+      <p class="section-sub">
+        Precios claros, sin sorpresas. Elige el plan que mejor se adapta
+        a tu negocio.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+      {plans.map(({ name, price, featured, badge, features }) => (
+        <div class:list={['plan-card', { featured }]}>
+          {badge && <div class="featured-badge">{badge}</div>}
+
+          <div class="plan-name">{name}</div>
+
+          <div class="plan-price">
+            <sup>$</sup>{price}
+          </div>
+          <div class="plan-price-note">+ IVA · pago único de desarrollo</div>
+
+          <div class="plan-divider" />
+
+          <ul class="plan-features">
+            {features.map((f) => (
+              <li>
+                <span class="check" aria-hidden="true">✓</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          <a href="#contacto" class="btn-plan">
+            {featured ? 'Quiero este plan →' : 'Comenzar →'}
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <p class="pricing-note">
+      ¿Tienes un proyecto especial?&nbsp;
+      <a href="#contacto">Contáctanos para una cotización personalizada.</a>
+    </p>
+
+  </div>
+</section>
+
+<style>
+  .pricing {
+    padding: 5rem 5%;
+    background: var(--gray-900);
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal-100, #BFEAD9);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--gray-400, #9CA3AF);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+
+  /* ── GRID ── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  /* ── CARD BASE ── */
+  .plan-card {
+    position: relative;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.04);
+    transition: border-color 0.2s;
+  }
+
+  .plan-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* ── FEATURED CARD ── */
+  .plan-card.featured {
+    background: var(--teal-400, #1D9E75);
+    border-color: var(--teal-400, #1D9E75);
+    transform: scale(1.03);
+    box-shadow: 0 30px 80px rgba(29, 158, 117, 0.4);
+  }
+
+  /* ── BADGE ── */
+  .featured-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #F59E0B;
+    color: #111;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  /* ── PLAN NAME ── */
+  .plan-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gray-400, #9CA3AF);
+    margin-bottom: 0.5rem;
+  }
+
+  .featured .plan-name {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* ── PRICE ── */
+  .plan-price {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .plan-price sup {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    vertical-align: super;
+  }
+
+  .plan-price-note {
+    font-size: 0.78rem;
+    color: var(--gray-400, #9CA3AF);
+    margin-bottom: 1.5rem;
+  }
+
+  .featured .plan-price-note {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* ── DIVIDER ── */
+  .plan-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── FEATURES ── */
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.5;
+  }
+
+  .featured .plan-features li {
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.65rem;
+    margin-top: 1px;
+  }
+
+  .featured .check {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  /* ── BUTTON ── */
+  .btn-plan {
+    display: block;
+    text-align: center;
+    padding: 0.85rem;
+    border-radius: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    background: transparent;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .btn-plan:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .featured .btn-plan {
+    background: var(--gray-900, #111827);
+    border-color: var(--gray-900, #111827);
+  }
+
+  .featured .btn-plan:hover {
+    background: #1F2937;
+    border-color: #1F2937;
+  }
+
+  /* ── FOOTER NOTE ── */
+  .pricing-note {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--gray-500, #6B7280);
+  }
+
+  .pricing-note a {
+    color: var(--teal-400, #1D9E75);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .pricing-note a:hover {
+    text-decoration: underline;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .plan-card.featured {
+      transform: scale(1);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .pricing { padding: 3.5rem 5%; }
+  }
+</style>
