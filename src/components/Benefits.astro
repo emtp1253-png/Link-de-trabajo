@@ -1,0 +1,160 @@
+---
+const benefits = [
+  {
+    icon: '🚀',
+    title: 'Entrega en 7 días',
+    desc: 'Tu página lista y publicada en menos de una semana.',
+  },
+  {
+    icon: '📱',
+    title: '100% Responsiva',
+    desc: 'Perfecta en celular, tablet y computadora.',
+  },
+  {
+    icon: '🔍',
+    title: 'Optimizada para Google',
+    desc: 'SEO básico incluido para aparecer en búsquedas locales.',
+  },
+  {
+    icon: '🎨',
+    title: 'Diseño a tu medida',
+    desc: 'Colores y estilo alineados a tu marca, no plantillas genéricas.',
+  },
+  {
+    icon: '🔒',
+    title: 'Hosting + Dominio',
+    desc: 'Renta mensual accesible con SSL y dominio propio.',
+  },
+  {
+    icon: '💬',
+    title: 'Soporte personalizado',
+    desc: 'Asesoría directa por WhatsApp después de la entrega.',
+  },
+];
+---
+
+<section class="benefits" id="beneficios">
+  <div class="section-inner">
+
+    <div class="benefits-header">
+      <div class="section-label">Beneficios</div>
+      <h2 class="section-title">Todo lo que necesitas para destacar en línea</h2>
+      <p class="section-sub">
+        Nos encargamos de todo para que tú puedas enfocarte en lo que mejor
+        sabes hacer: dirigir tu negocio.
+      </p>
+    </div>
+
+    <div class="benefits-grid">
+      {benefits.map(({ icon, title, desc }) => (
+        <div class="benefit-card">
+          <div class="benefit-icon" aria-hidden="true">{icon}</div>
+          <h3>{title}</h3>
+          <p>{desc}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .benefits {
+    padding: 5rem 5%;
+    background: var(--gray-50, #F9FAFB);
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .benefits-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal-500);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--gray-900);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--gray-600);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
+
+  /* ── GRID ── */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* ── CARD ── */
+  .benefit-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid var(--gray-200);
+    padding: 1.75rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .benefit-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--teal-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .benefit-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-card p {
+    font-size: 0.88rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .benefits { padding: 3.5rem 5%; }
+    .benefits-grid { grid-template-columns: 1fr; }
+  }
+</style>
