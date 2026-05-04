@@ -1,4 +1,4 @@
-# Guía de Deploy — KreatuPágina en Hostinger
+# Guía de Deploy — KreatuSitioWeb en Hostinger
 
 Instrucciones para subir el sitio a tu hosting sin experiencia en servidores.
 
@@ -8,7 +8,7 @@ Instrucciones para subir el sitio a tu hosting sin experiencia en servidores.
 
 - Tener Node.js instalado en tu computadora → https://nodejs.org (descarga la versión LTS)
 - Tener acceso a tu cuenta de Hostinger
-- Tener el dominio `kreatupagina.com` registrado en Hostinger
+- Tener el dominio `kreatusitioweb.com` registrado en Hostinger
 
 ---
 
@@ -89,7 +89,7 @@ listos para subir al servidor (HTML, CSS, JS, imágenes, etc.).
 ---
 
 ## Paso 6 — Verificar que todo funciona
-
+ 
 Abre tu navegador y entra a:
 
 - `https://kreatupagina.com` → debe cargar la página
@@ -99,7 +99,7 @@ Abre tu navegador y entra a:
 ---
 
 ## Pendientes antes de publicar
-
+ 
 - [ ] Reemplazar `XXXXXXXX` en `src/components/Contact.astro`
       con tu ID real de Formspree → https://formspree.io
 - [ ] Reemplazar `52XXXXXXXXXX` en `src/layouts/Layout.astro`
@@ -112,7 +112,7 @@ Abre tu navegador y entra a:
 ---
 
 ## Actualizar el sitio en el futuro
-
+ 
 Cada vez que hagas cambios al proyecto:
 
 ```bash

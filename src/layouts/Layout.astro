@@ -5,11 +5,11 @@ interface Props {
 }
 
 const {
-  title       = 'KreatuPágina — Tu presencia digital profesional',
-  description = 'Creamos tu página web profesional desde $999.99 MXN. Diseño responsivo, SEO incluido y entrega en 7 días. KreatuPágina.',
+  title       = 'KreatuSitioWeb — Tu presencia digital profesional',
+  description = 'Creamos tu sitio web profesional desde $999.99 MXN. Diseño responsivo, SEO incluido y entrega en 7 días. KreatuSitioWeb.',
 } = Astro.props;
 
-const siteUrl = 'https://kreatupagina.com';
+const siteUrl = 'https://kreatusitioweb.com';
 
 const navLinks = [
   { href: '#beneficios', label: 'Beneficios' },
@@ -21,12 +21,12 @@ const navLinks = [
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'KreatuPágina',
+  name: 'KreatuSitioWeb',
   description,
   url: siteUrl,
-  email: 'hola@kreatupagina.com',
+  email: 'hola@kreatusitioweb.com',
   areaServed: 'MX',
-  priceRange: '$$ ',
+  priceRange: '$$',
   serviceType: 'Diseño y desarrollo de páginas web',
 };
 ---
@@ -37,27 +37,27 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ── SEO BÁSICO ── -->
+    <!-- SEO BÁSICO -->
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords"    content="diseño web, páginas web económicas, sitio web profesional México" />
     <link rel="canonical"    href={siteUrl} />
 
-    <!-- ── OPEN GRAPH ── -->
+    <!-- OPEN GRAPH -->
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content={siteUrl} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
 
-    <!-- ── TWITTER CARD ── -->
+    <!-- TWITTER CARD -->
     <meta name="twitter:card"        content="summary" />
     <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
 
-    <!-- ── JSON-LD ── -->
+    <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- ── FUENTES ── -->
+    <!-- FUENTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -71,7 +71,7 @@ const jsonLd = {
     <!-- NAV -->
     <nav>
       <div class="nav-inner">
-        <a href="#" class="logo">Kreatu<span>Página</span></a>
+        <a href="#" class="logo">Kreatu<span>SitioWeb</span></a>
 
         <ul class="nav-links">
           {navLinks.map(({ href, label }) => (
@@ -97,8 +97,8 @@ const jsonLd = {
     <!-- FOOTER -->
     <footer>
       <div class="footer-inner">
-        <a href="#" class="logo">Kreatu<span>Página</span></a>
-        <span class="footer-copy">© {new Date().getFullYear()} KreatuPágina · Todos los derechos reservados</span>
+        <a href="#" class="logo">Kreatu<span>SitioWeb</span></a>
+        <span class="footer-copy">© {new Date().getFullYear()} KreatuSitioWeb · Todos los derechos reservados</span>
         <ul class="footer-links">
           <li><a href="#">Aviso de privacidad</a></li>
           <li><a href="#">Términos</a></li>
@@ -108,7 +108,7 @@ const jsonLd = {
     </footer>
 
     <!-- WHATSAPP FLOTANTE -->
-    <!-- TODO: reemplazar número WhatsApp — cambia 52XXXXXXXXXX por tu número real -->
+    <!-- TODO: reemplazar 52XXXXXXXXXX por tu número real cuando lo tengas -->
     <a
       href="https://wa.me/52XXXXXXXXXX"
       class="whatsapp-fab"
@@ -116,7 +116,6 @@ const jsonLd = {
       rel="noopener noreferrer"
       aria-label="Contáctanos por WhatsApp"
     >
-      <!-- Ícono SVG oficial de WhatsApp -->
       <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
           d="M16 2C8.268 2 2 8.268 2 16c0 2.417.632 4.765 1.832 6.833L2 30l7.395-1.805A13.94 13.94 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z"
@@ -146,6 +145,26 @@ const jsonLd = {
       links.dataset.open = 'true';
     }
   }
+
+  // Lógica de Intersection Observer para animaciones al hacer scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  // Inicializar observación cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+  });
 </script>
 
 <style is:global>
@@ -165,6 +184,18 @@ const jsonLd = {
     --gray-900: #111827;
   }
 
+  /* Animaciones de entrada (fadeUp) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
@@ -180,7 +211,7 @@ const jsonLd = {
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: sticky;
     top: 0;
@@ -258,10 +289,10 @@ const jsonLd = {
     transition: all 0.3s;
   }
 
-  /* ── MAIN ── */
+  /* MAIN */
   main { min-height: 60vh; }
 
-  /* ── FOOTER ── */
+  /* FOOTER */
   footer {
     background: var(--gray-900);
     padding: 2.5rem 5%;
@@ -300,7 +331,7 @@ const jsonLd = {
 
   .footer-links a:hover { color: var(--teal-400); }
 
-  /* ── WHATSAPP FAB ── */
+  /* WHATSAPP FAB */
   @keyframes waBounceIn {
     0%   { opacity: 0; transform: scale(0.4) translateY(20px); }
     60%  { opacity: 1; transform: scale(1.12) translateY(-4px); }
@@ -335,7 +366,6 @@ const jsonLd = {
     height: 30px;
   }
 
-  /* ── TOOLTIP ── */
   .whatsapp-tooltip {
     position: absolute;
     right: calc(100% + 10px);
@@ -354,7 +384,6 @@ const jsonLd = {
     transition: opacity 0.2s;
   }
 
-  /* arrow */
   .whatsapp-tooltip::after {
     content: '';
     position: absolute;
@@ -369,7 +398,7 @@ const jsonLd = {
     opacity: 1;
   }
 
-  /* ── RESPONSIVE ── */
+  /* RESPONSIVE */
   @media (max-width: 768px) {
     .nav-links,
     .btn-nav { display: none; }

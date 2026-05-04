@@ -1,0 +1,114 @@
+---
+const steps = [
+  {
+    num: '1',
+    title: 'Nos contactas',
+    desc: 'Llenas el formulario y platicamos sobre tu negocio'
+  },
+  {
+    num: '2',
+    title: 'Diseñamos',
+    desc: 'Creamos una propuesta personalizada para tu marca'
+  },
+  {
+    num: '3',
+    title: 'Apruebas',
+    desc: 'Revisas y hacemos ajustes hasta que quedes feliz'
+  },
+  {
+    num: '4',
+    title: 'Publicamos',
+    desc: 'Tu página va en vivo y te entregamos los accesos'
+  }
+];
+---
+
+<section class="process reveal" id="proceso">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Proceso</div>
+      <h2>¿Cómo lo logramos?</h2>
+    </div>
+
+    <div class="steps-grid">
+      {steps.map((step) => (
+        <div class="step-card">
+          <div class="step-num">{step.num}</div>
+          <h3>{step.title}</h3>
+          <p>{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .process {
+    padding: 5rem 5%;
+    background: #fff;
+  }
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal-500);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    position: relative;
+  }
+  /* Línea conectora en desktop */
+  @media (min-width: 900px) {
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: var(--teal-100);
+      z-index: 0;
+    }
+  }
+  .step-card {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .step-num {
+    width: 60px;
+    height: 60px;
+    background: #1D9E75;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.25rem;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 0 0 8px #fff;
+  }
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  p {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+  }
+</style>

@@ -1,18 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Benefits from '../components/Benefits.astro';
-import Pricing  from '../components/Pricing.astro';
-import Contact  from '../components/Contact.astro';
+import Benefits     from '../components/Benefits.astro';
+import Process      from '../components/Process.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Pricing      from '../components/Pricing.astro';
+import Contact      from '../components/Contact.astro';
 ---
 
 <Layout
-  title="KreatuPágina — Tu presencia digital profesional"
+  title="KreatuSitioWeb — Tu presencia digital profesional"
   description="Creamos tu sitio web profesional desde $999.99 MXN. Sin complicaciones, sin costos ocultos — solo resultados para tu empresa."
 >
+
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-inner">
 
+      <!-- IZQUIERDA: Texto -->
       <div class="hero-content">
         <div class="badge">Diseño profesional · Precios accesibles</div>
 
@@ -32,24 +36,183 @@ import Contact  from '../components/Contact.astro';
         </div>
       </div>
 
+      <!-- DERECHA: Mockup animado -->
+      <div class="hero-visual">
+        <div class="browser-mockup">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="browser-url">kreatusitioweb.com</div>
+          </div>
+
+          <div class="browser-body">
+
+            <div class="step-slide" id="slide-1">
+              <div class="step-label">Paso 1 — Nos contactas</div>
+              <div class="fake-form">
+                <div class="fake-input">Nombre del negocio</div>
+                <div class="fake-input">correo@tunegocio.com</div>
+                <div class="fake-select">Selecciona un plan... ▾</div>
+                <div class="fake-btn">Enviar mensaje →</div>
+              </div>
+            </div>
+
+            <div class="step-slide hidden" id="slide-2">
+              <div class="step-label">Paso 2 — Diseñamos tu página</div>
+              <div class="fake-design">
+                <div class="design-header">
+                  <div class="design-bar long"></div>
+                  <div class="design-bar short"></div>
+                </div>
+                <div class="design-colors">
+                  <div class="color-chip teal"></div>
+                  <div class="color-chip blue"></div>
+                  <div class="color-chip dark"></div>
+                </div>
+                <div class="design-blocks">
+                  <div class="design-block" style="height:40px;width:100%"></div>
+                  <div class="design-block" style="height:24px;width:80%"></div>
+                  <div class="design-block" style="height:24px;width:60%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-slide hidden" id="slide-3">
+              <div class="step-label">Paso 3 — Apruebas los cambios</div>
+              <div class="fake-review">
+                <div class="review-item check">✅ Hero con tu logo</div>
+                <div class="review-item check">✅ Colores de tu marca</div>
+                <div class="review-item check">✅ Sección de servicios</div>
+                <div class="review-item pending">⏳ Ajuste en footer...</div>
+              </div>
+            </div>
+
+            <div class="step-slide hidden" id="slide-4">
+              <div class="step-label">Paso 4 — ¡Tu página está en vivo!</div>
+              <div class="fake-live">
+                <div class="live-icon">🚀</div>
+                <div class="live-url">https://tunegocio.com</div>
+                <div class="live-badge">✅ Publicada y funcionando</div>
+                <div class="live-stats">
+                  <div class="live-stat"><span>7</span>días</div>
+                  <div class="live-stat"><span>100%</span>móvil</div>
+                  <div class="live-stat"><span>SSL</span>activo</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="step-dots">
+            <span class="sdot active" data-step="1"></span>
+            <span class="sdot" data-step="2"></span>
+            <span class="sdot" data-step="3"></span>
+            <span class="sdot" data-step="4"></span>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+    <!-- CONTADORES -->
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-top">
+          <span class="stat-num" data-target="500">0</span>
+          <span class="stat-suffix">+</span>
+        </div>
+        <span class="stat-label">Clientes satisfechos</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-top">
+          <span class="stat-num" data-target="7">0</span>
+          <span class="stat-suffix"> días</span>
+        </div>
+        <span class="stat-label">Tiempo de entrega</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-top">
+          <span class="stat-num" data-target="100">0</span>
+          <span class="stat-suffix">%</span>
+        </div>
+        <span class="stat-label">Sitios responsivos</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-top">
+          <span class="stat-num" data-target="3">0</span>
+          <span class="stat-suffix"> planes</span>
+        </div>
+        <span class="stat-label">Para tu presupuesto</span>
+      </div>
+    </div>
+
   </section>
 
   <Benefits />
+  <Process />
+  <Testimonials />
   <Pricing />
   <Contact />
+
 </Layout>
 
+<script>
+  // Mockup: rotación de pasos
+  const slides = document.querySelectorAll('.step-slide');
+  const dots   = document.querySelectorAll('.sdot');
+  let current  = 0;
+
+  function goToSlide(n) {
+    slides[current].classList.add('hidden');
+    dots[current].classList.remove('active');
+    current = n % slides.length;
+    slides[current].classList.remove('hidden');
+    dots[current].classList.add('active');
+  }
+
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+  setInterval(() => goToSlide(current + 1), 3000);
+
+  // Contadores animados
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target || '0');
+    const duration = 1800;
+    const step = target / (duration / 16);
+    let val = 0;
+    const timer = setInterval(() => {
+      val += step;
+      if (val >= target) { val = target; clearInterval(timer); }
+      el.textContent = Math.floor(val).toString();
+    }, 16);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.stat-num').forEach(animateCount);
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const statsSection = document.querySelector('.hero-stats');
+  if (statsSection) statsObserver.observe(statsSection);
+</script>
+
 <style>
-  /* ── HERO ── */
   .hero {
-    padding: 7rem 5% 6rem;
+    padding: 6rem 5% 0;
     background: linear-gradient(160deg, #F0FBF6 0%, #ffffff 55%, #EEF4FF 100%);
     position: relative;
     overflow: hidden;
   }
 
-  /* decorative radial blob */
   .hero::before {
     content: '';
     position: absolute;
@@ -61,13 +224,17 @@ import Contact  from '../components/Contact.astro';
   }
 
   .hero-inner {
-    max-width: 680px;
+    max-width: 1100px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
     position: relative;
     z-index: 1;
+    padding-bottom: 4rem;
   }
 
-  /* ── BADGE ── */
   .badge {
     display: inline-flex;
     align-items: center;
@@ -85,16 +252,14 @@ import Contact  from '../components/Contact.astro';
 
   .badge::before {
     content: '';
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     background: var(--teal-400);
     border-radius: 50%;
     flex-shrink: 0;
   }
 
-  /* ── HEADING ── */
   h1 {
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 800;
     line-height: 1.15;
     color: var(--gray-900);
@@ -102,26 +267,16 @@ import Contact  from '../components/Contact.astro';
     margin-bottom: 1.25rem;
   }
 
-  h1 em {
-    font-style: normal;
-    color: var(--teal-500);
-  }
+  h1 em { font-style: normal; color: var(--teal-500); }
 
-  /* ── SUBTITLE ── */
   .hero-content > p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--gray-600);
     line-height: 1.75;
-    max-width: 520px;
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
   }
 
-  /* ── CTA BUTTONS ── */
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 
   .btn-primary {
     background: var(--teal-400);
@@ -132,14 +287,11 @@ import Contact  from '../components/Contact.astro';
     font-size: 0.95rem;
     font-weight: 700;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(29, 158, 117, 0.3);
+    box-shadow: 0 4px 20px rgba(29,158,117,0.3);
     transition: background 0.2s, transform 0.15s;
   }
 
-  .btn-primary:hover {
-    background: var(--teal-600);
-    transform: translateY(-1px);
-  }
+  .btn-primary:hover { background: var(--teal-600); transform: translateY(-1px); }
 
   .btn-secondary {
     background: transparent;
@@ -154,44 +306,200 @@ import Contact  from '../components/Contact.astro';
     transition: border-color 0.2s, color 0.2s;
   }
 
-  .btn-secondary:hover {
-    border-color: var(--teal-400);
-    color: var(--teal-500);
-  }
+  .btn-secondary:hover { border-color: var(--teal-400); color: var(--teal-500); }
 
-  /* ── FADE-UP ANIMATION ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .hero-content > * {
+  .hero-content > * { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+
+  /* BROWSER MOCKUP */
+  .hero-visual {
     opacity: 0;
-    animation: fadeUp 0.6s ease forwards;
+    animation: fadeUp 0.8s ease 0.3s forwards;
   }
 
-  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }  /* badge    */
-  .hero-content > *:nth-child(2) { animation-delay: 0.25s; } /* h1       */
-  .hero-content > *:nth-child(3) { animation-delay: 0.4s; }  /* subtitle */
-  .hero-content > *:nth-child(4) { animation-delay: 0.55s; } /* cta      */
+  .browser-mockup {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .hero { padding: 5rem 5% 4rem; }
+  .browser-bar {
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0.65rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
 
-    .hero-inner { text-align: center; }
+  .browser-dots { display: flex; gap: 6px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.red    { background: #FF5F57; }
+  .dot.yellow { background: #FEBC2E; }
+  .dot.green  { background: #28C840; }
 
-    .hero-content > p { margin-inline: auto; }
+  .browser-url {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 6px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.72rem;
+    color: var(--gray-500);
+    text-align: center;
+  }
 
+  .browser-body {
+    padding: 1.5rem;
+    min-height: 220px;
+  }
+
+  .step-slide { animation: fadeUp 0.4s ease; }
+  .step-slide.hidden { display: none; }
+
+  .step-label {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--teal-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  /* Slide 1 */
+  .fake-form { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .fake-input {
+    height: 32px;
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 6px;
+    font-size: 0.72rem;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+  }
+
+  .fake-select {
+    height: 32px;
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 6px;
+    font-size: 0.72rem;
+    color: var(--gray-400);
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+  }
+
+  .fake-btn {
+    background: var(--teal-400);
+    color: white;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-align: center;
+    margin-top: 0.25rem;
+  }
+
+  /* Slide 2 */
+  .design-header { margin-bottom: 1rem; display: flex; flex-direction: column; gap: 6px; }
+  .design-bar { height: 8px; background: var(--gray-200); border-radius: 4px; }
+  .design-bar.long  { width: 70%; }
+  .design-bar.short { width: 40%; }
+  .design-colors { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+  .color-chip { width: 28px; height: 28px; border-radius: 50%; }
+  .color-chip.teal { background: var(--teal-400); }
+  .color-chip.blue { background: #3B82F6; }
+  .color-chip.dark { background: var(--gray-800); }
+  .design-blocks { display: flex; flex-direction: column; gap: 6px; }
+  .design-block { background: var(--gray-100); border-radius: 4px; }
+
+  /* Slide 3 */
+  .fake-review { display: flex; flex-direction: column; gap: 0.6rem; }
+  .review-item { padding: 0.5rem 0.75rem; border-radius: 8px; font-size: 0.82rem; font-weight: 500; }
+  .review-item.check   { background: #F0FBF6; color: var(--teal-600); }
+  .review-item.pending { background: #FFFBEB; color: #92400E; }
+
+  /* Slide 4 */
+  .fake-live { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; text-align: center; }
+  .live-icon { font-size: 2rem; }
+  .live-url { font-size: 0.8rem; color: var(--teal-600); font-weight: 600; background: var(--teal-50); padding: 0.3rem 0.75rem; border-radius: 100px; }
+  .live-badge { font-size: 0.8rem; font-weight: 600; color: #065F46; background: #D1FAE5; padding: 0.3rem 0.75rem; border-radius: 100px; }
+  .live-stats { display: flex; gap: 1rem; margin-top: 0.25rem; }
+  .live-stat { font-size: 0.75rem; color: var(--gray-600); text-align: center; }
+  .live-stat span { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 800; color: var(--gray-900); }
+
+  /* Dots */
+  .step-dots { display: flex; justify-content: center; gap: 6px; padding: 0.75rem; background: var(--gray-50); border-top: 1px solid var(--gray-100); }
+  .sdot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-300); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+  .sdot.active { background: var(--teal-400); transform: scale(1.3); }
+
+  /* CONTADORES */
+  .hero-stats {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    padding: 1.75rem 2rem;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .stat-item { flex: 1; min-width: 120px; text-align: center; }
+
+  .stat-top { display: flex; align-items: baseline; justify-content: center; gap: 2px; }
+
+  .stat-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--teal-500);
+    line-height: 1;
+  }
+
+  .stat-suffix {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--teal-400);
+  }
+
+  .stat-label { font-size: 0.78rem; color: var(--gray-500); font-weight: 500; margin-top: 0.25rem; display: block; }
+
+  .stat-divider { width: 1px; height: 40px; background: var(--gray-200); flex-shrink: 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+    .hero-content > p { margin: 0 auto 2rem; }
     .hero-cta { justify-content: center; }
+    .hero-visual { max-width: 480px; margin: 0 auto; }
   }
 
-  @media (max-width: 480px) {
-    .hero { padding: 4rem 5% 3.5rem; }
-
-    .hero-cta { flex-direction: column; align-items: stretch; }
-
-    .btn-primary,
-    .btn-secondary { text-align: center; }
+  @media (max-width: 600px) {
+    .hero { padding: 4rem 5% 0; }
+    .stat-divider { display: none; }
+    .hero-stats { gap: 1.5rem; padding: 1.5rem; }
   }
 </style>

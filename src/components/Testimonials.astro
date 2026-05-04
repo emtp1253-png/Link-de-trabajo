@@ -1,0 +1,158 @@
+---
+const testimonials = [
+  {
+    name: 'María G.',
+    business: 'Restaurante El Sabor',
+    text: 'En 7 días tenía mi página lista. Mis clientes ya pueden vernos en Google. ¡100% recomendado!',
+    initials: 'MG'
+  },
+  {
+    name: 'Carlos M.',
+    business: 'Taller Mecánico Express',
+    text: 'Pensé que sería complicado pero fue muy fácil. El diseño quedó exactamente como lo quería.',
+    initials: 'CM'
+  },
+  {
+    name: 'Ana L.',
+    business: 'Boutique Mía',
+    text: 'Excelente servicio y precio justo. Ya empecé a recibir clientes por internet gracias a mi página.',
+    initials: 'AL'
+  }
+];
+---
+
+<section class="testimonials reveal" id="testimonios">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Opiniones</div>
+      <h2>Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map((t) => (
+        <div class="testimonial-card reveal">
+          <div class="stars" aria-label="5 estrellas">★★★★★</div>
+          <p class="testimonial-text">"{t.text}"</p>
+          <div class="testimonial-user">
+            <div class="avatar" aria-hidden="true">{t.initials}</div>
+            <div class="user-meta">
+              <span class="user-name">{t.name}</span>
+              <span class="user-business">{t.business}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    padding: 5rem 5%;
+    background: var(--gray-50);
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal-500);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--gray-900);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .testimonial-card {
+    background: #fff;
+    padding: 2.25rem;
+    border-radius: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--gray-100);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .stars {
+    color: #FBBF24;
+    font-size: 1.1rem;
+  }
+
+  .testimonial-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--gray-600);
+    font-style: italic;
+    flex: 1;
+  }
+
+  .testimonial-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    background: var(--teal-50);
+    color: var(--teal-600);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .user-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .user-name {
+    font-weight: 700;
+    color: var(--gray-900);
+    font-size: 0.95rem;
+  }
+
+  .user-business {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+  }
+
+  @media (max-width: 560px) {
+    .testimonials { padding: 3.5rem 5%; }
+  }
+</style>
