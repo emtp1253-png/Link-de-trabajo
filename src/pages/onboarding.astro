@@ -1,0 +1,316 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="¡Bienvenido a KreatuSitioWeb! — Tu proyecto está en marcha"
+  description="Agenda tu videollamada de levantamiento y comenzamos a crear tu página web profesional."
+>
+
+<section class="onboarding">
+  <div class="section-inner">
+
+    <!-- HEADER -->
+    <div class="ob-header">
+      <div class="success-icon">🎉</div>
+      <div class="badge">Pago confirmado</div>
+      <h1>¡Tu proyecto está en marcha, <em>bienvenido!</em></h1>
+      <p>
+        Hemos recibido tu pago exitosamente. El siguiente paso es agendar
+        tu videollamada de levantamiento con nuestro equipo para conocer
+        tu negocio y arrancar el diseño de tu página web.
+      </p>
+    </div>
+
+    <!-- PASOS -->
+    <div class="steps">
+      <div class="step done">
+        <div class="step-icon">✅</div>
+        <div class="step-info">
+          <h3>Paso 1 — Pago completado</h3>
+          <p>Tu inversión está confirmada y segura.</p>
+        </div>
+      </div>
+
+      <div class="step active">
+        <div class="step-icon">📅</div>
+        <div class="step-info">
+          <h3>Paso 2 — Agenda tu videollamada</h3>
+          <p>Elige el día y hora que mejor te convenga para tu llamada de levantamiento con Victor.</p>
+        </div>
+      </div>
+
+      <div class="step pending">
+        <div class="step-icon">🎨</div>
+        <div class="step-info">
+          <h3>Paso 3 — Diseñamos tu página</h3>
+          <p>En 7 días tu sitio web estará listo y publicado.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CALENDLY -->
+    <div class="calendly-wrap">
+      <div class="calendly-header">
+        <h2>📅 Agenda tu videollamada ahora</h2>
+        <p>Sesión de 30 minutos vía Google Meet con Victor Rubio — Project Manager</p>
+      </div>
+      <div
+        class="calendly-inline-widget"
+        data-url="https://calendly.com/projectmannager-kreatusitioweb/levantamiento-de-proyecto-kreatusitioweb"
+        style="min-width:320px;height:700px;"
+      ></div>
+    </div>
+
+    <!-- INFO ADICIONAL -->
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-icon">💬</div>
+        <h3>¿Qué pasará en la videollamada?</h3>
+        <p>Victor te hará preguntas sobre tu negocio, tus colores, tu estilo y lo que necesitas en tu página. Solo platica con nosotros.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">⏱️</div>
+        <h3>¿Cuánto tiempo toma?</h3>
+        <p>La sesión dura 30 minutos. Al terminar ya tendremos todo lo necesario para arrancar el diseño.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🚀</div>
+        <h3>¿Cuándo estará lista mi página?</h3>
+        <p>Entrega garantizada en 7 días hábiles a partir de tu videollamada de levantamiento.</p>
+      </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div class="ob-contact">
+      <p>¿Tienes alguna duda? Escríbenos directamente:</p>
+      <a href="mailto:projectmannager@kreatusitioweb.com" class="btn-contact">
+        📧 projectmannager@kreatusitioweb.com
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</Layout>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+<style>
+  .onboarding {
+    padding: 5rem 5%;
+    background: linear-gradient(160deg, #F0FBF6 0%, #ffffff 55%, #EEF4FF 100%);
+    min-height: 100vh;
+  }
+
+  .section-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .ob-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .success-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s ease infinite alternate;
+  }
+
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-8px); }
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--teal-50);
+    color: var(--teal-600);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    border: 1px solid var(--teal-100);
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .ob-header h1 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--gray-900);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .ob-header h1 em {
+    font-style: normal;
+    color: var(--teal-500);
+  }
+
+  .ob-header p {
+    font-size: 1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* PASOS */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 16px;
+    border: 1.5px solid var(--gray-200);
+    background: white;
+  }
+
+  .step.done {
+    border-color: var(--teal-100);
+    background: var(--teal-50);
+  }
+
+  .step.active {
+    border-color: var(--teal-400);
+    background: white;
+    box-shadow: 0 4px 20px rgba(29,158,117,0.1);
+  }
+
+  .step.pending {
+    opacity: 0.5;
+  }
+
+  .step-icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+  }
+
+  .step-info h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.2rem;
+  }
+
+  .step-info p {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+  }
+
+  /* CALENDLY */
+  .calendly-wrap {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+  }
+
+  .calendly-header {
+    padding: 1.75rem 2rem;
+    border-bottom: 1px solid var(--gray-100);
+    text-align: center;
+  }
+
+  .calendly-header h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 0.4rem;
+  }
+
+  .calendly-header p {
+    font-size: 0.88rem;
+    color: var(--gray-500);
+  }
+
+  /* INFO CARDS */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .info-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--gray-200);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .info-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .info-card h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+  }
+
+  .info-card p {
+    font-size: 0.82rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* CONTACTO */
+  .ob-contact {
+    text-align: center;
+    padding: 2rem;
+    background: var(--gray-50);
+    border-radius: 16px;
+    border: 1px solid var(--gray-200);
+  }
+
+  .ob-contact p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    margin-bottom: 1rem;
+  }
+
+  .btn-contact {
+    display: inline-block;
+    background: var(--teal-400);
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-contact:hover { background: var(--teal-600); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .info-cards { grid-template-columns: 1fr; }
+    .ob-header h1 { font-size: 1.75rem; }
+  }
+</style>
