@@ -3,21 +3,21 @@ interface Props {
   title?: string;
   description?: string;
 }
- 
+
 const {
   title       = 'KreatuSitioWeb — Tu presencia digital profesional',
   description = 'Creamos tu sitio web profesional desde $999.99 MXN. Diseño responsivo, SEO incluido y entrega en 7 días. KreatuSitioWeb.',
 } = Astro.props;
- 
+
 const siteUrl = 'https://kreatusitioweb.com';
- 
+
 const navLinks = [
   { href: '#beneficios', label: 'Beneficios' },
   { href: '#proceso',    label: 'Cómo funciona' },
   { href: '#precios',    label: 'Precios' },
   { href: '#contacto',   label: 'Contacto' },
 ];
- 
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
@@ -30,36 +30,39 @@ const jsonLd = {
   serviceType: 'Diseño y desarrollo de páginas web',
 };
 ---
- 
+
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- 
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <!-- SEO BÁSICO -->
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords"    content="diseño web, páginas web económicas, sitio web profesional México" />
     <link rel="canonical"    href={siteUrl} />
- 
+
     <!-- GOOGLE SEARCH CONSOLE -->
     <meta name="google-site-verification" content="Zx7xJA_eWDfVg2U-RfloA7B_87rW-SXGD0SpiI99tO4" />
- 
+
     <!-- OPEN GRAPH -->
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content={siteUrl} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
- 
+
     <!-- TWITTER CARD -->
     <meta name="twitter:card"        content="summary" />
     <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
- 
+
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
- 
+
     <!-- FUENTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -68,22 +71,22 @@ const jsonLd = {
       rel="stylesheet"
     />
   </head>
- 
+
   <body>
- 
+
     <!-- NAV -->
     <nav>
       <div class="nav-inner">
         <a href="/" class="logo">Kreatu<span>SitioWeb</span></a>
- 
+
         <ul class="nav-links">
           {navLinks.map(({ href, label }) => (
             <li><a href={href}>{label}</a></li>
           ))}
         </ul>
- 
+
         <a href="#contacto" class="btn-nav">Empezar ahora</a>
- 
+
         <button class="hamburger" aria-label="Abrir menú" onclick="toggleMenu()">
           <span></span>
           <span></span>
@@ -91,12 +94,12 @@ const jsonLd = {
         </button>
       </div>
     </nav>
- 
+
     <!-- CONTENIDO DE PÁGINA -->
     <main>
       <slot />
     </main>
- 
+
     <!-- FOOTER -->
     <footer>
       <div class="footer-inner">
@@ -109,7 +112,7 @@ const jsonLd = {
         </ul>
       </div>
     </footer>
- 
+
     <!-- WHATSAPP FLOTANTE -->
     <!-- TODO: reemplazar 52XXXXXXXXXX por tu número real cuando lo tengas -->
     <a
@@ -131,10 +134,10 @@ const jsonLd = {
       </svg>
       <span class="whatsapp-tooltip">¡Escríbenos!</span>
     </a>
- 
+
   </body>
 </html>
- 
+
 <script>
   function toggleMenu() {
     const links = document.querySelector('.nav-links') as HTMLElement | null;
@@ -148,12 +151,12 @@ const jsonLd = {
       links.dataset.open = 'true';
     }
   }
- 
+
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
   };
- 
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -161,13 +164,13 @@ const jsonLd = {
       }
     });
   }, observerOptions);
- 
+
   document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach(el => observer.observe(el));
   });
 </script>
- 
+
 <style is:global>
   :root {
     --teal-50:  #E6F7F2;
@@ -184,33 +187,33 @@ const jsonLd = {
     --gray-800: #1F2937;
     --gray-900: #111827;
   }
- 
+
   .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
- 
+
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
- 
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   html { scroll-behavior: smooth; }
- 
+
   body {
     font-family: 'DM Sans', sans-serif;
     color: var(--gray-800);
     background: #fff;
     line-height: 1.6;
   }
- 
+
   h1, h2, h3, h4, .logo, .btn-nav {
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
- 
+
   nav {
     position: sticky;
     top: 0;
@@ -220,7 +223,7 @@ const jsonLd = {
     border-bottom: 1px solid var(--gray-200);
     padding: 0 5%;
   }
- 
+
   .nav-inner {
     max-width: 1100px;
     margin: 0 auto;
@@ -229,7 +232,7 @@ const jsonLd = {
     justify-content: space-between;
     height: 64px;
   }
- 
+
   .logo {
     font-size: 1.35rem;
     font-weight: 800;
@@ -237,15 +240,15 @@ const jsonLd = {
     text-decoration: none;
     letter-spacing: -0.5px;
   }
- 
+
   .logo span { color: var(--gray-900); }
- 
+
   .nav-links {
     display: flex;
     gap: 2rem;
     list-style: none;
   }
- 
+
   .nav-links a {
     font-size: 0.9rem;
     font-weight: 500;
@@ -253,9 +256,9 @@ const jsonLd = {
     text-decoration: none;
     transition: color 0.2s;
   }
- 
+
   .nav-links a:hover { color: var(--teal-500); }
- 
+
   .btn-nav {
     background: var(--teal-400);
     color: #fff;
@@ -267,9 +270,9 @@ const jsonLd = {
     transition: background 0.2s;
     white-space: nowrap;
   }
- 
+
   .btn-nav:hover { background: var(--teal-600); }
- 
+
   .hamburger {
     display: none;
     flex-direction: column;
@@ -279,7 +282,7 @@ const jsonLd = {
     cursor: pointer;
     padding: 4px;
   }
- 
+
   .hamburger span {
     width: 24px;
     height: 2px;
@@ -287,14 +290,14 @@ const jsonLd = {
     border-radius: 2px;
     transition: all 0.3s;
   }
- 
+
   main { min-height: 60vh; }
- 
+
   footer {
     background: var(--gray-900);
     padding: 2.5rem 5%;
   }
- 
+
   .footer-inner {
     max-width: 1100px;
     margin: 0 auto;
@@ -304,37 +307,37 @@ const jsonLd = {
     flex-wrap: wrap;
     gap: 1rem;
   }
- 
+
   footer .logo { color: var(--teal-400); }
   footer .logo span { color: #fff; }
- 
+
   .footer-copy {
     font-size: 0.85rem;
     color: var(--gray-400);
   }
- 
+
   .footer-links {
     display: flex;
     gap: 1.5rem;
     list-style: none;
   }
- 
+
   .footer-links a {
     font-size: 0.85rem;
     color: var(--gray-400);
     text-decoration: none;
     transition: color 0.2s;
   }
- 
+
   .footer-links a:hover { color: var(--teal-400); }
- 
+
   @keyframes waBounceIn {
     0%   { opacity: 0; transform: scale(0.4) translateY(20px); }
     60%  { opacity: 1; transform: scale(1.12) translateY(-4px); }
     80%  { transform: scale(0.95) translateY(2px); }
     100% { transform: scale(1) translateY(0); }
   }
- 
+
   .whatsapp-fab {
     position: fixed;
     bottom: 1.75rem;
@@ -351,14 +354,14 @@ const jsonLd = {
     animation: waBounceIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s both;
     transition: transform 0.2s, box-shadow 0.2s;
   }
- 
+
   .whatsapp-fab:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
   }
- 
+
   .whatsapp-fab svg { width: 30px; height: 30px; }
- 
+
   .whatsapp-tooltip {
     position: absolute;
     right: calc(100% + 10px);
@@ -376,7 +379,7 @@ const jsonLd = {
     opacity: 0;
     transition: opacity 0.2s;
   }
- 
+
   .whatsapp-tooltip::after {
     content: '';
     position: absolute;
@@ -386,9 +389,9 @@ const jsonLd = {
     border: 5px solid transparent;
     border-left-color: var(--gray-900);
   }
- 
+
   .whatsapp-fab:hover .whatsapp-tooltip { opacity: 1; }
- 
+
   @media (max-width: 768px) {
     .nav-links,
     .btn-nav { display: none; }
