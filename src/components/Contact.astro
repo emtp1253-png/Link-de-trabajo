@@ -1,6 +1,6 @@
 ---
 const contactItems = [
-  { icon: '📧', text: 'hola@kreatusitioweb.com', href: 'mailto:hola@kreatusitioweb.com' },
+  { icon: '📧', text: 'projectmannager@kreatusitioweb.com', href: 'mailto:projectmannager@kreatusitioweb.com' },
   { icon: '⏰', text: 'Lun–Vie de 9:00 a 18:00 hrs', href: null },
   { icon: '🇲🇽', text: 'Toda la República Mexicana', href: null },
 ];
@@ -34,11 +34,10 @@ const contactItems = [
       </div>
 
       <!-- COLUMNA DERECHA — FORMULARIO -->
-      <!-- action: reemplaza XXXXXXXX con tu ID real de Formspree -->
       <div class="contact-form-wrap">
         <form
           id="contact-form"
-          action="https://formspree.io/f/XXXXXXXX"
+          action="https://formspree.io/f/maqvjbeg"
           method="POST"
         >
           <div class="form-row">
@@ -104,7 +103,6 @@ const contactItems = [
             ></textarea>
           </div>
 
-          <!-- honeypot anti-spam requerido por Formspree -->
           <input type="text" name="_gotcha" style="display:none" />
 
           <button type="submit" class="btn-submit">Enviar mensaje →</button>
@@ -154,7 +152,7 @@ const contactItems = [
 
 <style>
   .contact {
-    padding: 2rem 5% 5rem; /* Reducido el padding superior para eliminar el espacio en blanco */
+    padding: 2rem 5% 5rem;
   }
 
   .section-inner {
@@ -162,7 +160,6 @@ const contactItems = [
     margin: 0 auto;
   }
 
-  /* ── GRID ── */
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -170,7 +167,6 @@ const contactItems = [
     align-items: start;
   }
 
-  /* ── LEFT COLUMN ── */
   .section-label {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.78rem;
@@ -218,9 +214,7 @@ const contactItems = [
     transition: color 0.2s;
   }
 
-  .contact-item a:hover {
-    color: var(--teal-500);
-  }
+  .contact-item a:hover { color: var(--teal-500); }
 
   .contact-icon {
     width: 36px;
@@ -234,7 +228,6 @@ const contactItems = [
     flex-shrink: 0;
   }
 
-  /* ── RIGHT COLUMN ── */
   .contact-form-wrap {
     background: var(--gray-50, #F9FAFB);
     border-radius: 20px;
@@ -242,7 +235,6 @@ const contactItems = [
     padding: 2.25rem;
   }
 
-  /* ── FORM FIELDS ── */
   .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -279,15 +271,10 @@ const contactItems = [
 
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: var(--teal-400);
-  }
+  .form-group textarea:focus { border-color: var(--teal-400); }
 
-  .form-group textarea {
-    min-height: 100px;
-  }
+  .form-group textarea { min-height: 100px; }
 
-  /* ── SUBMIT ── */
   .btn-submit {
     width: 100%;
     padding: 0.9rem;
@@ -302,16 +289,9 @@ const contactItems = [
     transition: background 0.2s;
   }
 
-  .btn-submit:hover:not(:disabled) {
-    background: var(--teal-600);
-  }
+  .btn-submit:hover:not(:disabled) { background: var(--teal-600); }
+  .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; }
 
-  .btn-submit:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-  }
-
-  /* ── SUCCESS MESSAGE ── */
   .success-msg {
     display: none;
     text-align: center;
@@ -323,16 +303,10 @@ const contactItems = [
     line-height: 1.6;
   }
 
-  .success-msg.visible {
-    display: block;
-  }
+  .success-msg.visible { display: block; }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    .contact-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   }
 
   @media (max-width: 560px) {
