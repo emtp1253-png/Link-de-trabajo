@@ -5,8 +5,8 @@ interface Props {
 }
 
 const {
-  title       = 'KreatuSitioWeb — Tu presencia digital profesional',
-  description = 'Creamos tu sitio web profesional desde $999.99 MXN. Diseño responsivo, SEO incluido y entrega en 7 días. KreatuSitioWeb.',
+  title       = 'Diseño de Página Web Profesional y Económica en México | KreatuSitioWeb',
+  description = 'Crea tu sitio web profesional desde $999.99 MXN. Diseño de página web económico, responsivo y con SEO incluido. Entrega en 7 días. Crear sitio web nunca fue tan fácil.',
 } = Astro.props;
 
 const siteUrl = 'https://kreatusitioweb.com';
@@ -20,14 +20,41 @@ const navLinks = [
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': 'ProfessionalService',
   name: 'KreatuSitioWeb',
-  description,
+  description: 'Diseño de páginas web profesionales y económicas en México. Creamos tu sitio web en 7 días desde $999.99 MXN.',
   url: siteUrl,
   email: 'projectmannager@kreatusitioweb.com',
   areaServed: 'MX',
-  priceRange: '$$',
+  priceRange: '$',
   serviceType: 'Diseño y desarrollo de páginas web',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Planes de diseño web',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        name: 'Plan Starter',
+        price: '999.99',
+        priceCurrency: 'MXN',
+        description: 'Página web de 1 sección, diseño responsivo, formulario de contacto'
+      },
+      {
+        '@type': 'Offer',
+        name: 'Plan Pro',
+        price: '1999.99',
+        priceCurrency: 'MXN',
+        description: 'Hasta 5 secciones, SEO optimizado, botón WhatsApp, SSL gratis'
+      },
+      {
+        '@type': 'Offer',
+        name: 'Plan Pro Plus',
+        price: '3499.99',
+        priceCurrency: 'MXN',
+        description: 'Blog, panel de administración, Google Analytics, soporte 60 días'
+      }
+    ]
+  }
 };
 ---
 
@@ -40,11 +67,16 @@ const jsonLd = {
     <!-- FAVICON -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- SEO BÁSICO -->
+    <!-- SEO OPTIMIZADO PARA POSICIONAMIENTO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords"    content="diseño web, páginas web económicas, sitio web profesional México" />
-    <link rel="canonical"    href={siteUrl} />
+    <meta name="keywords" content="diseño de página web, diseño de pagina web profesional, diseño de pagina web economico, crear sitio web, crear sitio web gratis, pagina web, sitio web, diseño web México, crear página web económica, página web profesional México, diseño web económico, hacer página web, crear sitio web México, página web para negocios, diseño web barato México" />
+    <meta name="author" content="KreatuSitioWeb" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Spanish" />
+    <meta name="geo.region" content="MX" />
+    <meta name="geo.country" content="Mexico" />
+    <link rel="canonical" href={siteUrl} />
 
     <!-- GOOGLE SEARCH CONSOLE -->
     <meta name="google-site-verification" content="Zx7xJA_eWDfVg2U-RfloA7B_87rW-SXGD0SpiI99tO4" />
@@ -54,13 +86,15 @@ const jsonLd = {
     <meta property="og:url"         content={siteUrl} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:site_name"   content="KreatuSitioWeb" />
+    <meta property="og:locale"      content="es_MX" />
 
     <!-- TWITTER CARD -->
-    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
 
-    <!-- JSON-LD -->
+    <!-- JSON-LD SCHEMA RICO -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- FUENTES -->
@@ -100,16 +134,20 @@ const jsonLd = {
       <slot />
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER SEO -->
     <footer>
       <div class="footer-inner">
         <a href="/" class="logo">Kreatu<span>SitioWeb</span></a>
-        <span class="footer-copy">© {new Date().getFullYear()} KreatuSitioWeb · Todos los derechos reservados</span>
+        <span class="footer-copy">© {new Date().getFullYear()} KreatuSitioWeb · Diseño de páginas web profesionales en México · Todos los derechos reservados</span>
         <ul class="footer-links">
           <li><a href="#">Aviso de privacidad</a></li>
           <li><a href="#">Términos</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
+      </div>
+      <!-- Links SEO ocultos visualmente pero visibles para Google -->
+      <div class="seo-links">
+        <p>Servicios: <a href="#precios">Diseño de página web económico</a> · <a href="#precios">Crear sitio web profesional</a> · <a href="#precios">Páginas web para negocios en México</a></p>
       </div>
     </footer>
 
@@ -120,7 +158,7 @@ const jsonLd = {
       class="whatsapp-fab"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Contáctanos por WhatsApp"
+      aria-label="Contáctanos por WhatsApp para diseño de página web"
     >
       <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
@@ -295,7 +333,7 @@ const jsonLd = {
 
   footer {
     background: var(--gray-900);
-    padding: 2.5rem 5%;
+    padding: 2.5rem 5% 1.5rem;
   }
 
   .footer-inner {
@@ -306,13 +344,15 @@ const jsonLd = {
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
   footer .logo { color: var(--teal-400); }
   footer .logo span { color: #fff; }
 
   .footer-copy {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--gray-400);
   }
 
@@ -330,6 +370,18 @@ const jsonLd = {
   }
 
   .footer-links a:hover { color: var(--teal-400); }
+
+  .seo-links {
+    max-width: 1100px;
+    margin: 1rem auto 0;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  .seo-links a {
+    color: rgba(255,255,255,0.2);
+    text-decoration: none;
+  }
 
   @keyframes waBounceIn {
     0%   { opacity: 0; transform: scale(0.4) translateY(20px); }
