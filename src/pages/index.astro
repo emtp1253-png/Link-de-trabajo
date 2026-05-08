@@ -1,505 +1,667 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Benefits     from '../components/Benefits.astro';
-import Process      from '../components/Process.astro';
-import Testimonials from '../components/Testimonials.astro';
-import Pricing      from '../components/Pricing.astro';
-import Contact      from '../components/Contact.astro';
+import Pricing from '../components/Pricing.astro';
+import Contact from '../components/Contact.astro';
+
+const NICHES = [
+  {
+    id: "medico",
+    label: "Médicos",
+    name: "Dra. Marina Vega",
+    sub: "Cardiología · CDMX",
+    bg: "#F4F7FB", primary: "#0E5BA8", soft: "#E2ECFA", ink: "#0B2447",
+    headline: "Cuidamos tu corazón con la ciencia más actual.",
+    cta: "Agendar consulta",
+    services: ["Ecocardiograma", "Holter 24h", "Prueba de esfuerzo", "Consulta general"],
+    badge: "Cédula 4582901",
+  },
+  {
+    id: "dental",
+    label: "Dentistas",
+    name: "Sonrisa Clínica",
+    sub: "Odontología integral",
+    bg: "#F2F8F8", primary: "#0E9E96", soft: "#DDEEEC", ink: "#0A3F3D",
+    headline: "Sonrisas que cambian la manera en que ves el mundo.",
+    cta: "Reservar limpieza",
+    services: ["Blanqueamiento", "Ortodoncia", "Implantes", "Diseño de sonrisa"],
+    badge: "Tecnología 3D",
+  },
+  {
+    id: "legal",
+    label: "Abogados",
+    name: "Herrera & Asociados",
+    sub: "Derecho corporativo",
+    bg: "#F6F4EE", primary: "#1B2236", soft: "#E8E2D2", ink: "#10162A",
+    headline: "Defendemos tu negocio como si fuera el nuestro.",
+    cta: "Solicitar consulta",
+    services: ["Mercantil", "Familiar", "Penal", "Migratorio"],
+    badge: "20 años de práctica",
+  },
+  {
+    id: "shop",
+    label: "Ecommerce",
+    name: "Botanique Tienda",
+    sub: "Belleza natural",
+    bg: "#FAF4EC", primary: "#7A4B2A", soft: "#F0E2CC", ink: "#3A2614",
+    headline: "Cosmética artesanal para sentirte como tú.",
+    cta: "Comprar ahora",
+    services: ["Skincare", "Aromaterapia", "Cabello", "Cuerpo"],
+    badge: "Envío gratis $899",
+  },
+];
+
+const PASOS = [
+  { n: "01", t: "Te escuchamos", b: "Una llamada de 30 minutos. Nos cuentas tu negocio, tu cliente y a dónde quieres llegar.", icon: "💬" },
+  { n: "02", t: "Diseñamos la idea", b: "Recibes un primer concepto en 48 horas. Lo ajustamos juntos hasta que sientas que es tuyo.", icon: "✶" },
+  { n: "03", t: "Construimos rápido", b: "Programamos tu sitio con código limpio, optimizado para Google y listo para escalar.", icon: "⚙" },
+  { n: "04", t: "Publicamos y cuidamos", b: "Lo lanzamos en tu dominio, te enseñamos a editarlo y seguimos contigo el primer mes sin costo.", icon: "✓" },
+];
+
+const TESTIMONIOS = [
+  { q: "Pasé de no aparecer en Google a recibir 3 pacientes nuevos por semana. Mi clínica creció sin que yo gastara en publicidad cada mes.", a: "Dra. Marina V.", r: "Cardióloga · CDMX" },
+  { q: "Antes peleaba con plantillas que no entendían lo que vendo. Kreatu se sentó conmigo, entendió mi marca y la página quedó tal cual la imaginé.", a: "Carla M.", r: "Botanique Tienda" },
+  { q: "Levantamos el sitio de la firma en 8 días. Profesional, limpio, y nuestros clientes corporativos lo notaron de inmediato.", a: "Lic. Ricardo H.", r: "Herrera & Asociados" },
+  { q: "El soporte por WhatsApp es lo que más valoro. Cualquier ajuste lo resuelven el mismo día.", a: "Dr. Ángel S.", r: "Sonrisa Clínica" },
+];
+
+const FAQ = [
+  { q: "¿En cuánto tiempo entregan mi página?", a: "Entre 5 y 10 días para Starter y Pro. Pro Plus normalmente toma 2 a 3 semanas, dependiendo de la cantidad de productos y métodos de pago." },
+  { q: "¿Puedo editar el sitio yo después?", a: "Sí. Te dejamos un editor visual y una guía corta en video. Si prefieres, nosotros lo seguimos manteniendo." },
+  { q: "¿El precio incluye dominio y hosting?", a: "Incluimos el dominio el primer año y SSL. El hosting tiene un costo desde $149/mes según el tipo de sitio. Te explicamos antes de empezar." },
+  { q: "¿Qué pasa si no me gusta el primer diseño?", a: "Está incluido: ajustamos hasta que sientas que es tuyo. La mayoría de nuestros clientes lo aprueba en la segunda revisión." },
+  { q: "¿Hacen sitios solo para estos 4 nichos?", a: "Estos son los más frecuentes, pero también trabajamos con estética, restaurantes, coaches, inmobiliarias y más. Si tu industria no está aquí, escríbenos." },
+  { q: "¿Pueden migrar mi página actual?", a: "Sí. Auditamos lo que tienes, conservamos lo que sirve y rediseñamos lo demás. El SEO no se pierde — lo cuidamos." },
+];
 ---
 
 <Layout
-  title="KreatuSitioWeb — Tu presencia digital profesional"
-  description="Creamos tu sitio web profesional desde $999.99 MXN. Sin complicaciones, sin costos ocultos — solo resultados para tu empresa."
+  title="Diseño de Página Web Profesional y Económica en México | KreatuSitioWeb"
+  description="Diseñamos páginas web profesionales para médicos, dentistas, abogados y tiendas en México. Desde $999.99 MXN, entrega en 7 días, SSL incluido."
 >
 
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="hero-inner">
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════ -->
+<section class="kt-hero" id="top">
+  <div class="kt-hero__bg" aria-hidden="true">
+    <div class="kt-hero__grid"></div>
+    <div class="kt-hero__glow"></div>
+  </div>
 
-      <!-- IZQUIERDA: Texto -->
-      <div class="hero-content">
-        <div class="badge">Diseño profesional · Precios accesibles</div>
+  <div class="kt-shell kt-hero__inner">
 
-        <h1>
-          Tu negocio merece una<br />
-          <em>página web que vende</em>
-        </h1>
+    <!-- Copy -->
+    <div class="kt-hero__copy">
+      <div class="kt-eyebrow">
+        <span class="kt-eyebrow__dot"></span>
+        <span>Estudio de páginas web · MX</span>
+        <span class="kt-eyebrow__sep">/</span>
+        <span class="kt-mono">desde $999.99</span>
+      </div>
+      <h1 class="kt-hero__title">
+        Páginas web<br/>
+        que <em class="kt-italic">trabajan</em><br/>
+        por ti, <span class="kt-underline">no al revés.</span>
+      </h1>
+      <p class="kt-hero__lede">
+        Diseñamos sitios profesionales para <em>doctores, dentistas, abogados</em> y <em>tiendas en línea</em>.
+        Escuchamos tu negocio, lo entendemos y lo convertimos en una página que vende — sin plantillas, sin complicaciones.
+      </p>
+      <div class="kt-hero__ctas">
+        <a href="#contacto" class="kt-btn kt-btn--primary kt-btn--lg">
+          Quiero mi página
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#precios" class="kt-btn kt-btn--ghost kt-btn--lg">Ver precios</a>
+      </div>
+      <ul class="kt-hero__proof">
+        <li><strong>+120</strong> sitios entregados</li>
+        <li><strong>7 días</strong> en promedio</li>
+        <li><strong>100%</strong> responsive</li>
+        <li><strong>SSL</strong> incluido</li>
+      </ul>
+    </div>
 
-        <p>
-          Creamos tu sitio web profesional desde $999.99 MXN.
-          Sin complicaciones, sin costos ocultos — solo resultados.
-        </p>
-
-        <div class="hero-cta">
-          <a href="#contacto" class="btn-primary">Quiero mi página web →</a>
-          <a href="#precios"  class="btn-secondary">Ver precios</a>
+    <!-- Demo frame -->
+    <div class="kt-hero__demo">
+      <div class="kt-demoFrame">
+        <div class="kt-demoFrame__chrome">
+          <div class="kt-demoFrame__dots"><i></i><i></i><i></i></div>
+          <div class="kt-demoFrame__url">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z" fill="currentColor"/></svg>
+            <span id="demo-url">medico.kreatusitioweb.com</span>
+          </div>
+          <div class="kt-demoFrame__live">
+            <span class="kt-pulse"></span> en vivo
+          </div>
+        </div>
+        <div class="kt-demoFrame__viewport" id="demo-viewport">
+          <!-- Rendered by JS -->
         </div>
       </div>
 
-      <!-- DERECHA: Mockup animado -->
-      <div class="hero-visual">
-        <div class="browser-mockup">
-          <div class="browser-bar">
-            <div class="browser-dots">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-            </div>
-            <div class="browser-url">kreatusitioweb.com</div>
+      <div class="kt-demoSwitcher" role="tablist" aria-label="Cambiar nicho">
+        {NICHES.map((n, i) => (
+          <button
+            role="tab"
+            data-niche={i}
+            class:list={["kt-demoSwitcher__tab", { "is-on": i === 0 }]}
+          >
+            <span class="kt-demoSwitcher__bar"></span>
+            {n.label}
+          </button>
+        ))}
+      </div>
+      <div class="kt-demoCaption">
+        <span class="kt-mono">// el mismo equipo · 4 industrias · 4 mundos visuales</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Marquee -->
+  <div class="kt-marquee" aria-hidden="true">
+    <div class="kt-marquee__track">
+      {["Doctores","Dentistas","Abogados","Ecommerce","Estética","Restaurantes","Coaches","Inmobiliarias","Veterinarias","Contadores","Doctores","Dentistas","Abogados","Ecommerce","Estética","Restaurantes","Coaches","Inmobiliarias","Veterinarias","Contadores"].map(it => (
+        <span class="kt-marquee__item">
+          <span class="kt-marquee__star">✦</span>
+          {it}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     NICHOS
+═══════════════════════════════════════════════════════════════ -->
+<section class="kt-nichos" id="nichos">
+  <div class="kt-shell">
+    <div class="kt-section__head">
+      <div class="kt-eyebrow"><span class="kt-eyebrow__dot"></span><span class="kt-mono">01 / Nichos</span></div>
+      <h2 class="kt-section__title">
+        Una página <em class="kt-italic">hecha para tu industria</em>,
+        no una plantilla genérica.
+      </h2>
+      <p class="kt-section__lede">
+        Cada profesión vende distinto. Por eso adaptamos estructura, copy y diseño al lenguaje
+        que tus pacientes, clientes o compradores ya conocen.
+      </p>
+    </div>
+    <div class="kt-nichos__grid">
+      {[
+        { emoji: "🩺", title: "Para médicos",   body: "Agenda en línea, perfil profesional, blog de salud y página de servicios optimizada para búsqueda local.", tag: "Cardiología, dermatología, pediatría…" },
+        { emoji: "🦷", title: "Para dentistas", body: "Antes y después, planes de tratamiento, facilidades de pago y reservas integradas a WhatsApp.", tag: "Ortodoncia, estética, integral…" },
+        { emoji: "⚖️", title: "Para abogados",  body: "Casos de éxito, áreas de práctica, primer contacto confidencial y formularios con encriptación.", tag: "Mercantil, familiar, penal…" },
+        { emoji: "🛍",  title: "Para tu tienda", body: "Catálogo, carrito, métodos de pago en MXN, envíos y panel para subir productos sin programar.", tag: "Belleza, moda, comida, joyería…" },
+      ].map(c => (
+        <article class="kt-nicho">
+          <div class="kt-nicho__num">{c.emoji}</div>
+          <h3 class="kt-nicho__title">{c.title}</h3>
+          <p class="kt-nicho__body">{c.body}</p>
+          <div class="kt-nicho__tag kt-mono">{c.tag}</div>
+          <div class="kt-nicho__arrow">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
 
-          <div class="browser-body">
 
-            <div class="step-slide" id="slide-1">
-              <div class="step-label">Paso 1 — Nos contactas</div>
-              <div class="fake-form">
-                <div class="fake-input">Nombre del negocio</div>
-                <div class="fake-input">correo@tunegocio.com</div>
-                <div class="fake-select">Selecciona un plan... ▾</div>
-                <div class="fake-btn">Enviar mensaje →</div>
-              </div>
-            </div>
+<!-- ═══════════════════════════════════════════════════════════════
+     BENEFICIOS BENTO
+═══════════════════════════════════════════════════════════════ -->
+<section class="kt-bento" id="beneficios">
+  <div class="kt-shell">
+    <div class="kt-section__head kt-section__head--row">
+      <div>
+        <div class="kt-eyebrow"><span class="kt-eyebrow__dot"></span><span class="kt-mono">02 / Beneficios</span></div>
+        <h2 class="kt-section__title">
+          Profesional sin ser <em class="kt-italic">complicado</em>.
+        </h2>
+      </div>
+      <p class="kt-section__lede kt-section__lede--side">
+        Diseño que se ve serio, código que carga rápido, copy que vende.
+        Y un equipo humano que entiende lo que haces.
+      </p>
+    </div>
 
-            <div class="step-slide hidden" id="slide-2">
-              <div class="step-label">Paso 2 — Diseñamos tu página</div>
-              <div class="fake-design">
-                <div class="design-header">
-                  <div class="design-bar long"></div>
-                  <div class="design-bar short"></div>
-                </div>
-                <div class="design-colors">
-                  <div class="color-chip teal"></div>
-                  <div class="color-chip blue"></div>
-                  <div class="color-chip dark"></div>
-                </div>
-                <div class="design-blocks">
-                  <div class="design-block" style="height:40px;width:100%"></div>
-                  <div class="design-block" style="height:24px;width:80%"></div>
-                  <div class="design-block" style="height:24px;width:60%"></div>
-                </div>
-              </div>
-            </div>
+    <div class="kt-bento__grid">
 
-            <div class="step-slide hidden" id="slide-3">
-              <div class="step-label">Paso 3 — Apruebas los cambios</div>
-              <div class="fake-review">
-                <div class="review-item check">✅ Hero con tu logo</div>
-                <div class="review-item check">✅ Colores de tu marca</div>
-                <div class="review-item check">✅ Sección de servicios</div>
-                <div class="review-item pending">⏳ Ajuste en footer...</div>
-              </div>
-            </div>
+      <!-- Rendimiento -->
+      <div class="kt-bento__cell kt-bento__cell--big">
+        <div class="kt-bento__head">
+          <span class="kt-mono">// rendimiento</span>
+          <h3>Carga en menos de <em>2 segundos</em>.</h3>
+        </div>
+        <div class="kt-perf">
+          <div class="kt-perf__row"><span>LCP</span><div class="kt-perf__bar"><i style="width:22%"></i></div><span class="kt-mono">1.4s</span></div>
+          <div class="kt-perf__row"><span>CLS</span><div class="kt-perf__bar"><i style="width:6%"></i></div><span class="kt-mono">0.02</span></div>
+          <div class="kt-perf__row"><span>FID</span><div class="kt-perf__bar"><i style="width:12%"></i></div><span class="kt-mono">12ms</span></div>
+          <div class="kt-perf__row"><span>SEO</span><div class="kt-perf__bar"><i style="width:96%"></i></div><span class="kt-mono">98 / 100</span></div>
+        </div>
+      </div>
 
-            <div class="step-slide hidden" id="slide-4">
-              <div class="step-label">Paso 4 — ¡Tu página está en vivo!</div>
-              <div class="fake-live">
-                <div class="live-icon">🚀</div>
-                <div class="live-url">https://tunegocio.com</div>
-                <div class="live-badge">✅ Publicada y funcionando</div>
-                <div class="live-stats">
-                  <div class="live-stat"><span>7</span>días</div>
-                  <div class="live-stat"><span>100%</span>móvil</div>
-                  <div class="live-stat"><span>SSL</span>activo</div>
-                </div>
-              </div>
-            </div>
+      <!-- SEO -->
+      <div class="kt-bento__cell">
+        <span class="kt-mono">// SEO</span>
+        <h3>Te encuentran en Google.</h3>
+        <p>Estructura, metadatos y velocidad pensados para que aparezcas cuando alguien busca tu servicio cerca.</p>
+        <div class="kt-search">
+          <div class="kt-search__bar">🔍 dentista en guadalajara</div>
+          <div class="kt-search__result"><strong>Sonrisa Clínica</strong><span> · kreatu</span></div>
+        </div>
+      </div>
 
-          </div>
+      <!-- Móvil -->
+      <div class="kt-bento__cell">
+        <span class="kt-mono">// móvil</span>
+        <h3>Se ve perfecto en cualquier pantalla.</h3>
+        <div class="kt-devices">
+          <div class="kt-devices__phone"><div></div><div class="kt-devices__line"></div><div class="kt-devices__line short"></div></div>
+          <div class="kt-devices__tablet"><div></div><div></div><div></div></div>
+        </div>
+      </div>
 
-          <div class="step-dots">
-            <span class="sdot active" data-step="1"></span>
-            <span class="sdot" data-step="2"></span>
-            <span class="sdot" data-step="3"></span>
-            <span class="sdot" data-step="4"></span>
-          </div>
+      <!-- Soporte -->
+      <div class="kt-bento__cell kt-bento__cell--accent">
+        <span class="kt-mono">// soporte</span>
+        <h3>Hablamos contigo, no con un bot.</h3>
+        <p>Acompañamiento por WhatsApp y reuniones cuando lo necesites. Cambios incluidos los primeros 30 días.</p>
+        <div class="kt-chat">
+          <div class="kt-chat__msg kt-chat__msg--in">¿Puedo cambiar la foto del banner?</div>
+          <div class="kt-chat__msg kt-chat__msg--out">Claro 👋 mándame la nueva y queda hoy mismo.</div>
+        </div>
+      </div>
+
+      <!-- Resultados -->
+      <div class="kt-bento__cell kt-bento__cell--wide">
+        <div class="kt-bento__head">
+          <span class="kt-mono">// resultados</span>
+          <h3>Más visitas, más llamadas, más ventas.</h3>
+        </div>
+        <div class="kt-stats">
+          <div class="kt-stat"><div class="kt-stat__num">3.4×</div><div class="kt-stat__lbl">más leads en 60 días</div></div>
+          <div class="kt-stat"><div class="kt-stat__num">68%</div><div class="kt-stat__lbl">tráfico desde móvil</div></div>
+          <div class="kt-stat"><div class="kt-stat__num">7d</div><div class="kt-stat__lbl">tu sitio publicado</div></div>
+          <div class="kt-stat"><div class="kt-stat__num">$0</div><div class="kt-stat__lbl">costos ocultos</div></div>
         </div>
       </div>
 
     </div>
+  </div>
+</section>
 
-    <!-- CONTADORES -->
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-top">
-          <span class="stat-num" data-target="500">0</span>
-          <span class="stat-suffix">+</span>
-        </div>
-        <span class="stat-label">Clientes satisfechos</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-top">
-          <span class="stat-num" data-target="7">0</span>
-          <span class="stat-suffix"> días</span>
-        </div>
-        <span class="stat-label">Tiempo de entrega</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-top">
-          <span class="stat-num" data-target="100">0</span>
-          <span class="stat-suffix">%</span>
-        </div>
-        <span class="stat-label">Sitios responsivos</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-top">
-          <span class="stat-num" data-target="3">0</span>
-          <span class="stat-suffix"> planes</span>
-        </div>
-        <span class="stat-label">Para tu presupuesto</span>
-      </div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PROCESO
+═══════════════════════════════════════════════════════════════ -->
+<section class="kt-proc" id="proceso">
+  <div class="kt-shell">
+    <div class="kt-section__head">
+      <div class="kt-eyebrow"><span class="kt-eyebrow__dot"></span><span class="kt-mono">03 / Proceso</span></div>
+      <h2 class="kt-section__title">
+        De la idea a <em class="kt-italic">tu primer cliente</em> en internet,
+        en 4 pasos.
+      </h2>
     </div>
+    <div class="kt-proc__rail">
+      <div class="kt-proc__line"></div>
+      {PASOS.map(p => (
+        <div class="kt-procStep">
+          <div class="kt-procStep__node">
+            <span class="kt-procStep__icon">{p.icon}</span>
+          </div>
+          <div class="kt-procStep__num kt-mono">{p.n}</div>
+          <h3 class="kt-procStep__title">{p.t}</h3>
+          <p class="kt-procStep__body">{p.b}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
-  </section>
 
-  <Benefits />
-  <Process />
-  <Testimonials />
-  <Pricing />
-  <Contact />
+<!-- ═══════════════════════════════════════════════════════════════
+     PRECIOS — Pricing.astro intacto con MercadoPago
+═══════════════════════════════════════════════════════════════ -->
+<Pricing />
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TESTIMONIOS
+═══════════════════════════════════════════════════════════════ -->
+<section class="kt-test" id="testimonios">
+  <div class="kt-shell">
+    <div class="kt-section__head">
+      <div class="kt-eyebrow"><span class="kt-eyebrow__dot"></span><span class="kt-mono">04 / Testimonios</span></div>
+      <h2 class="kt-section__title">Lo que dicen quienes <em class="kt-italic">ya están en línea</em>.</h2>
+    </div>
+    <div class="kt-test__grid">
+      {TESTIMONIOS.map((t, i) => (
+        <figure class:list={["kt-quote", `kt-quote--${i % 3}`]}>
+          <div class="kt-quote__mark">"</div>
+          <blockquote>{t.q}</blockquote>
+          <figcaption>
+            <span class="kt-quote__avatar"></span>
+            <span><strong>{t.a}</strong><br/>{t.r}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════════════════════ -->
+<section class="kt-faq" id="faq">
+  <div class="kt-shell kt-faq__shell">
+    <div class="kt-faq__intro">
+      <div class="kt-eyebrow"><span class="kt-eyebrow__dot"></span><span class="kt-mono">05 / FAQ</span></div>
+      <h2 class="kt-section__title">Lo que <em class="kt-italic">siempre nos preguntan</em>.</h2>
+      <p class="kt-section__lede">¿No ves tu duda? Escríbenos por WhatsApp y te respondemos en minutos.</p>
+      <a href="#contacto" class="kt-btn kt-btn--ghost kt-btn--lg" style="margin-top:16px">Hablar con un humano →</a>
+    </div>
+    <div class="kt-faq__list">
+      {FAQ.map((it, i) => (
+        <button class="kt-faqItem" data-faq={i}>
+          <span class="kt-faqItem__num kt-mono">{String(i+1).padStart(2,"0")}</span>
+          <span class="kt-faqItem__q">{it.q}</span>
+          <span class="kt-faqItem__icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="kt-faqItem__a">{it.a}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CONTACTO — Contact.astro intacto con Formspree
+═══════════════════════════════════════════════════════════════ -->
+<Contact />
+
 
 </Layout>
 
-<script>
-  // Mockup: rotación de pasos
-  const slides = document.querySelectorAll('.step-slide');
-  const dots   = document.querySelectorAll('.sdot');
-  let current  = 0;
 
-  function goToSlide(n) {
-    slides[current].classList.add('hidden');
-    dots[current].classList.remove('active');
-    current = n % slides.length;
-    slides[current].classList.remove('hidden');
-    dots[current].classList.add('active');
+<!-- ─── SCRIPTS ─── -->
+<script define:vars={{ NICHES }}>
+
+  /* ── Demo switcher ── */
+  function renderNiche(n) {
+    return `
+      <div style="width:100%;height:100%;background:${n.bg};color:${n.ink};display:flex;flex-direction:column;font-family:sans-serif">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid rgba(0,0,0,0.06)">
+          <div style="display:flex;align-items:center;gap:8px;font-weight:600;font-size:13px">
+            <div style="width:18px;height:18px;border-radius:4px;background:${n.primary}"></div>
+            ${n.name}
+          </div>
+          <div style="display:flex;gap:18px;font-size:12px;opacity:0.6">
+            <span>Inicio</span><span>Servicios</span><span>Contacto</span>
+          </div>
+          <div style="background:${n.primary};color:#fff;padding:6px 12px;border-radius:999px;font-size:11px;font-weight:500">${n.cta}</div>
+        </div>
+        <div style="padding:28px 22px 14px">
+          <div style="font-size:10px;color:${n.primary};text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">${n.sub}</div>
+          <div style="font-size:24px;line-height:1.1;max-width:90%;margin-bottom:14px">${n.headline}</div>
+          <div style="display:flex;gap:8px">
+            <div style="background:${n.primary};color:#fff;padding:7px 14px;border-radius:999px;font-size:11px">${n.cta}</div>
+            <div style="background:#fff;border:1px solid rgba(0,0,0,0.1);padding:7px 14px;border-radius:999px;font-size:11px">Ver más</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 22px">
+          ${n.services.map(s => `
+            <div style="background:#fff;border-radius:10px;padding:10px;border:1px solid rgba(0,0,0,0.05)">
+              <div style="height:36px;border-radius:6px;background:${n.soft};margin-bottom:8px"></div>
+              <div style="font-size:11px;font-weight:600;margin-bottom:4px">${s}</div>
+              <div style="height:4px;background:rgba(0,0,0,0.06);border-radius:2px;margin-bottom:3px"></div>
+              <div style="height:4px;width:60%;background:rgba(0,0,0,0.06);border-radius:2px"></div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="position:absolute;bottom:14px;right:16px;background:#fff;padding:6px 10px;border-radius:999px;font-size:10px;color:${n.primary};border:1px solid rgba(0,0,0,0.06)">${n.badge}</div>
+      </div>
+    `;
   }
 
-  dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
-  setInterval(() => goToSlide(current + 1), 3000);
+  let activeNiche = 0;
+  let paused = false;
 
-  // Contadores animados
-  function animateCount(el) {
-    const target = parseInt(el.dataset.target || '0');
-    const duration = 1800;
-    const step = target / (duration / 16);
-    let val = 0;
-    const timer = setInterval(() => {
-      val += step;
-      if (val >= target) { val = target; clearInterval(timer); }
-      el.textContent = Math.floor(val).toString();
-    }, 16);
+  const viewport = document.getElementById('demo-viewport');
+  const urlEl    = document.getElementById('demo-url');
+  const tabs     = document.querySelectorAll('.kt-demoSwitcher__tab');
+
+  function setNiche(i) {
+    activeNiche = i;
+    if (viewport) viewport.innerHTML = renderNiche(NICHES[i]);
+    if (urlEl) urlEl.textContent = NICHES[i].id + '.kreatusitioweb.com';
+    tabs.forEach((t, idx) => t.classList.toggle('is-on', idx === i));
   }
 
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll('.stat-num').forEach(animateCount);
-        statsObserver.unobserve(entry.target);
-      }
+  setNiche(0);
+
+  tabs.forEach((t, i) => t.addEventListener('click', () => { setNiche(i); paused = true; }));
+
+  setInterval(() => {
+    if (!paused) setNiche((activeNiche + 1) % NICHES.length);
+  }, 4200);
+
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.kt-faqItem').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.classList.contains('is-open');
+      document.querySelectorAll('.kt-faqItem').forEach(b => b.classList.remove('is-open'));
+      if (!isOpen) btn.classList.add('is-open');
     });
-  }, { threshold: 0.5 });
+  });
 
-  const statsSection = document.querySelector('.hero-stats');
-  if (statsSection) statsObserver.observe(statsSection);
 </script>
 
-<style>
-  .hero {
-    padding: 6rem 5% 0;
-    background: linear-gradient(160deg, #F0FBF6 0%, #ffffff 55%, #EEF4FF 100%);
-    position: relative;
-    overflow: hidden;
+
+<!-- ─── ESTILOS ─── -->
+<style is:global>
+  /* ── Variables nuevas (complementan las del Layout) ── */
+  :root {
+    --kt-brand:      var(--teal-400, #1D9E75);
+    --kt-brand-deep: var(--teal-600, #0F6E56);
+    --kt-brand-soft: var(--teal-50,  #E6F7F2);
+    --kt-brand-ink:  #0F2C24;
+    --kt-accent:     oklch(0.78 0.13 75);
+    --kt-bg:         #faf9f5;
+    --kt-bg-warm:    #f4f3ef;
+    --kt-card:       #fff;
+    --kt-ink:        #181917;
+    --kt-ink-2:      #3a3d38;
+    --kt-muted:      #7a7d78;
+    --kt-line:       #e6e4df;
+    --kt-line-strong:#cdc9c2;
+    --kt-display:    "Plus Jakarta Sans", system-ui, sans-serif;
+    --kt-mono:       "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+    --kt-shell:      1280px;
+    --kt-radius:     18px;
+    --kt-shadow:     0 1px 2px rgba(20,30,28,.04), 0 14px 40px -10px rgba(20,30,28,.10);
+    --kt-shadow-lg:  0 30px 80px -20px rgba(20,30,28,.18);
   }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 600px 400px at 80% 20%, rgba(29,158,117,0.07) 0%, transparent 70%),
-      radial-gradient(ellipse 400px 300px at 10% 80%, rgba(59,130,246,0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
+  /* ── Utils ── */
+  .kt-shell   { max-width: var(--kt-shell); margin: 0 auto; padding: 0 28px; }
+  .kt-mono    { font-family: var(--kt-mono); font-size: 12px; letter-spacing: .02em; }
+  .kt-italic  { font-family: var(--kt-display); font-style: italic; font-weight: 400; color: var(--kt-brand-deep); }
+  .kt-underline { background: linear-gradient(180deg,transparent 64%,color-mix(in srgb,var(--kt-brand) 32%,transparent) 64% 92%,transparent 92%); padding: 0 .12em; }
 
-  .hero-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    padding-bottom: 4rem;
-  }
+  /* ── Buttons ── */
+  .kt-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 18px; border-radius:999px; border:1px solid transparent; font-weight:500; text-decoration:none; font-size:14.5px; transition:transform .15s,background .2s,color .2s,border .2s; white-space:nowrap; }
+  .kt-btn--lg { padding:14px 22px; font-size:15px; }
+  .kt-btn--primary { background:var(--kt-brand); color:#fff; }
+  .kt-btn--primary:hover { background:var(--kt-brand-deep); transform:translateY(-1px); }
+  .kt-btn--ghost { background:transparent; color:var(--kt-ink); border-color:var(--kt-line-strong); }
+  .kt-btn--ghost:hover { background:var(--kt-bg-warm); }
 
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: var(--teal-50);
-    color: var(--teal-600);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.35rem 0.9rem;
-    border-radius: 100px;
-    border: 1px solid var(--teal-100);
-    margin-bottom: 1.5rem;
-  }
+  /* ── Eyebrow ── */
+  .kt-eyebrow { display:inline-flex; align-items:center; gap:10px; font-family:var(--kt-mono); font-size:12px; color:var(--kt-muted); text-transform:uppercase; letter-spacing:.06em; }
+  .kt-eyebrow__dot { width:7px; height:7px; border-radius:999px; background:var(--kt-brand); box-shadow:0 0 0 4px color-mix(in srgb,var(--kt-brand) 18%,transparent); }
+  .kt-eyebrow__sep { color:var(--kt-line-strong); }
 
-  .badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--teal-400);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+  /* ── Section heads ── */
+  .kt-section__head { max-width:760px; margin:0 0 48px; }
+  .kt-section__head--row { display:flex; align-items:end; justify-content:space-between; gap:40px; max-width:none; }
+  .kt-section__head--row > div { max-width:720px; }
+  .kt-section__title { font-family:var(--kt-display); font-weight:700; font-size:clamp(32px,4vw,56px); line-height:1.05; letter-spacing:-.02em; margin:12px 0 16px; color:var(--kt-ink); }
+  .kt-section__lede  { font-size:17px; color:var(--kt-ink-2); max-width:580px; margin:0; }
+  .kt-section__lede--side { max-width:360px; align-self:end; }
 
-  h1 {
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 800;
-    line-height: 1.15;
-    color: var(--gray-900);
-    letter-spacing: -1px;
-    margin-bottom: 1.25rem;
-  }
+  /* ════════ HERO ════════ */
+  .kt-hero { position:relative; padding:80px 0 0; overflow:hidden; background:var(--kt-bg); }
+  .kt-hero__bg { position:absolute; inset:0; z-index:0; pointer-events:none; }
+  .kt-hero__grid { position:absolute; inset:0; background-image:linear-gradient(to right,color-mix(in srgb,var(--kt-line) 70%,transparent) 1px,transparent 1px),linear-gradient(to bottom,color-mix(in srgb,var(--kt-line) 70%,transparent) 1px,transparent 1px); background-size:64px 64px; mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,black,transparent 70%); opacity:.5; }
+  .kt-hero__glow { position:absolute; left:50%; top:-10%; transform:translateX(-50%); width:1100px; height:800px; background:radial-gradient(ellipse at center,color-mix(in srgb,var(--kt-brand) 18%,transparent),transparent 60%); filter:blur(50px); }
+  .kt-hero__inner { position:relative; z-index:1; display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:center; padding-bottom:80px; }
+  @media(max-width:1020px){ .kt-hero__inner { grid-template-columns:1fr; gap:56px; } }
+  .kt-hero__copy { max-width:600px; }
+  .kt-hero__title { font-family:var(--kt-display); font-weight:700; font-size:clamp(44px,6vw,88px); line-height:.97; letter-spacing:-.02em; margin:18px 0 22px; color:var(--kt-ink); }
+  .kt-hero__lede { font-size:18px; line-height:1.55; max-width:540px; color:var(--kt-ink-2); margin:0 0 28px; }
+  .kt-hero__lede em { font-family:var(--kt-display); font-style:italic; font-weight:400; color:var(--kt-brand-deep); font-size:1.1em; }
+  .kt-hero__ctas { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:32px; }
+  .kt-hero__proof { list-style:none; padding:0; margin:0; display:flex; gap:28px; flex-wrap:wrap; }
+  .kt-hero__proof li { font-size:13px; color:var(--kt-muted); }
+  .kt-hero__proof strong { display:block; font-size:26px; color:var(--kt-ink); line-height:1; margin-bottom:4px; font-weight:700; }
 
-  h1 em { font-style: normal; color: var(--teal-500); }
+  /* Demo frame */
+  .kt-hero__demo { position:relative; }
+  .kt-demoCaption { margin-top:16px; text-align:center; color:var(--kt-muted); }
+  .kt-demoFrame { background:#fff; border-radius:18px; overflow:hidden; box-shadow:var(--kt-shadow-lg); border:1px solid var(--kt-line); }
+  .kt-demoFrame__chrome { display:flex; align-items:center; gap:14px; padding:12px 16px; background:#f5f4f0; border-bottom:1px solid var(--kt-line); }
+  .kt-demoFrame__dots { display:flex; gap:6px; }
+  .kt-demoFrame__dots i { width:11px; height:11px; border-radius:999px; display:inline-block; }
+  .kt-demoFrame__dots i:nth-child(1){ background:#ff5f57; }
+  .kt-demoFrame__dots i:nth-child(2){ background:#febc2e; }
+  .kt-demoFrame__dots i:nth-child(3){ background:#28c840; }
+  .kt-demoFrame__url { flex:1; display:flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--kt-line); border-radius:8px; padding:6px 12px; font-family:var(--kt-mono); font-size:12px; color:var(--kt-ink-2); }
+  .kt-demoFrame__live { display:inline-flex; align-items:center; gap:6px; font-family:var(--kt-mono); font-size:11px; color:var(--kt-brand-deep); text-transform:uppercase; letter-spacing:.05em; }
+  .kt-demoFrame__viewport { height:420px; overflow:hidden; background:#fff; position:relative; }
+  .kt-pulse { width:7px; height:7px; border-radius:999px; background:var(--kt-brand); animation:kt-pulse 1.6s infinite; }
+  @keyframes kt-pulse { 0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--kt-brand) 60%,transparent)} 70%{box-shadow:0 0 0 8px transparent} 100%{box-shadow:0 0 0 0 transparent} }
+  .kt-demoSwitcher { display:flex; gap:4px; margin-top:14px; background:color-mix(in srgb,var(--kt-bg-warm) 60%,#fff); padding:4px; border-radius:999px; border:1px solid var(--kt-line); }
+  .kt-demoSwitcher__tab { flex:1; background:transparent; border:0; padding:9px 12px; border-radius:999px; font-size:13px; font-weight:500; color:var(--kt-ink-2); position:relative; transition:all .2s; cursor:pointer; }
+  .kt-demoSwitcher__tab.is-on { background:#fff; color:var(--kt-brand-deep); box-shadow:0 1px 4px rgba(20,30,28,.08); }
+  .kt-demoSwitcher__bar { position:absolute; left:12px; right:12px; bottom:4px; height:2px; background:var(--kt-brand); border-radius:2px; transform:scaleX(0); transform-origin:left; transition:transform .2s; }
+  .kt-demoSwitcher__tab.is-on .kt-demoSwitcher__bar { transform:scaleX(1); }
 
-  .hero-content > p {
-    font-size: 1.05rem;
-    color: var(--gray-600);
-    line-height: 1.75;
-    margin-bottom: 2rem;
-  }
+  /* Marquee */
+  .kt-marquee { border-top:1px solid var(--kt-line); border-bottom:1px solid var(--kt-line); background:var(--kt-bg-warm); overflow:hidden; padding:16px 0; }
+  .kt-marquee__track { display:flex; gap:44px; white-space:nowrap; animation:kt-marquee 40s linear infinite; }
+  .kt-marquee__item { font-size:22px; color:var(--kt-ink); display:inline-flex; gap:18px; align-items:center; font-weight:600; }
+  .kt-marquee__star { color:var(--kt-brand); font-size:16px; }
+  @keyframes kt-marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  /* ════════ NICHOS ════════ */
+  .kt-nichos { padding:120px 0; background:var(--kt-bg); }
+  .kt-nichos__grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  @media(max-width:1020px){ .kt-nichos__grid { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:600px) { .kt-nichos__grid { grid-template-columns:1fr; } }
+  .kt-nicho { background:var(--kt-card); border:1px solid var(--kt-line); border-radius:var(--kt-radius); padding:28px 24px; position:relative; overflow:hidden; transition:transform .25s,border-color .25s,box-shadow .25s; }
+  .kt-nicho:hover { transform:translateY(-4px); border-color:var(--kt-brand); box-shadow:var(--kt-shadow); }
+  .kt-nicho__num { font-size:28px; margin-bottom:24px; }
+  .kt-nicho__title { font-family:var(--kt-display); font-weight:700; font-size:24px; margin:0 0 12px; }
+  .kt-nicho__body { font-size:14.5px; color:var(--kt-ink-2); margin:0 0 18px; }
+  .kt-nicho__tag { color:var(--kt-muted); }
+  .kt-nicho__arrow { position:absolute; top:24px; right:24px; width:36px; height:36px; border-radius:999px; background:var(--kt-brand-soft); color:var(--kt-brand-deep); display:flex; align-items:center; justify-content:center; transition:transform .25s,background .25s; }
+  .kt-nicho:hover .kt-nicho__arrow { background:var(--kt-brand); color:#fff; }
 
-  .btn-primary {
-    background: var(--teal-400);
-    color: #fff;
-    padding: 0.875rem 2rem;
-    border-radius: 10px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(29,158,117,0.3);
-    transition: background 0.2s, transform 0.15s;
-  }
+  /* ════════ BENTO ════════ */
+  .kt-bento { padding:60px 0 120px; background:var(--kt-bg); }
+  .kt-bento__grid { display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:minmax(180px,auto); gap:16px; }
+  .kt-bento__cell { background:var(--kt-card); border:1px solid var(--kt-line); border-radius:var(--kt-radius); padding:28px; display:flex; flex-direction:column; gap:14px; }
+  .kt-bento__cell--big { grid-column:span 3; grid-row:span 2; background:linear-gradient(180deg,var(--kt-card),var(--kt-brand-soft)); }
+  .kt-bento__cell:nth-child(2){ grid-column:span 3; }
+  .kt-bento__cell:nth-child(3){ grid-column:span 2; }
+  .kt-bento__cell:nth-child(4){ grid-column:span 4; background:var(--kt-brand-deep); color:#fff; border-color:var(--kt-brand-deep); }
+  .kt-bento__cell--wide { grid-column:span 6; }
+  .kt-bento__cell h3 { font-family:var(--kt-display); font-weight:700; font-size:28px; line-height:1.05; margin:0; }
+  .kt-bento__cell h3 em { font-style:italic; color:var(--kt-brand-deep); }
+  .kt-bento__cell:nth-child(4) h3 em { color:var(--kt-accent); }
+  .kt-bento__cell p { font-size:14.5px; color:var(--kt-ink-2); margin:0; }
+  .kt-bento__cell:nth-child(4) p { color:rgba(255,255,255,.75); }
+  .kt-bento__head { display:flex; flex-direction:column; gap:8px; }
+  .kt-bento__cell .kt-mono { color:var(--kt-muted); }
+  .kt-bento__cell:nth-child(4) .kt-mono { color:rgba(255,255,255,.55); }
+  @media(max-width:1020px){ .kt-bento__grid { grid-template-columns:repeat(2,1fr); } .kt-bento__cell,.kt-bento__cell--big,.kt-bento__cell--wide { grid-column:span 2!important; grid-row:auto!important; } }
 
-  .btn-primary:hover { background: var(--teal-600); transform: translateY(-1px); }
+  /* Perf bars */
+  .kt-perf { display:flex; flex-direction:column; gap:12px; margin-top:auto; }
+  .kt-perf__row { display:grid; grid-template-columns:50px 1fr 70px; align-items:center; gap:12px; font-size:12px; color:var(--kt-ink-2); }
+  .kt-perf__bar { height:6px; background:color-mix(in srgb,var(--kt-line) 70%,transparent); border-radius:999px; overflow:hidden; }
+  .kt-perf__bar i { display:block; height:100%; background:var(--kt-brand); border-radius:999px; }
+  .kt-search { margin-top:auto; }
+  .kt-search__bar { background:var(--kt-bg-warm); padding:10px 14px; border-radius:10px; font-size:13px; color:var(--kt-ink-2); border:1px solid var(--kt-line); }
+  .kt-search__result { background:var(--kt-card); padding:10px 14px; border-radius:10px; font-size:13px; margin-top:6px; border:1px solid var(--kt-line); }
+  .kt-search__result strong { color:var(--kt-brand-deep); }
+  .kt-search__result span { color:var(--kt-muted); }
+  .kt-devices { display:flex; gap:12px; align-items:flex-end; margin-top:auto; }
+  .kt-devices__phone { width:56px; height:100px; border:2px solid var(--kt-line-strong); border-radius:10px; padding:6px; background:var(--kt-bg-warm); }
+  .kt-devices__phone > div:first-child { height:30px; background:var(--kt-brand-soft); border-radius:4px; margin-bottom:6px; }
+  .kt-devices__line { height:4px; background:var(--kt-line-strong); border-radius:2px; margin-bottom:4px; }
+  .kt-devices__line.short { width:60%; }
+  .kt-devices__tablet { width:100px; height:80px; border:2px solid var(--kt-line-strong); border-radius:8px; padding:8px; background:var(--kt-bg-warm); display:flex; flex-direction:column; gap:4px; }
+  .kt-devices__tablet > div { height:14px; background:var(--kt-brand-soft); border-radius:3px; }
+  .kt-devices__tablet > div:nth-child(2){ background:var(--kt-line-strong); }
+  .kt-devices__tablet > div:nth-child(3){ background:var(--kt-line-strong); width:70%; }
+  .kt-chat { margin-top:auto; display:flex; flex-direction:column; gap:6px; }
+  .kt-chat__msg { padding:8px 12px; border-radius:14px; font-size:13px; max-width:85%; }
+  .kt-chat__msg--in  { background:rgba(255,255,255,.12); color:#fff; align-self:flex-start; border-top-left-radius:4px; }
+  .kt-chat__msg--out { background:var(--kt-accent); color:var(--kt-brand-deep); align-self:flex-end; border-top-right-radius:4px; font-weight:500; }
+  .kt-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:8px; }
+  .kt-stat { padding:18px 0; border-top:1px solid var(--kt-line); }
+  .kt-stat__num { font-family:var(--kt-display); font-size:52px; line-height:1; color:var(--kt-brand-deep); font-weight:700; letter-spacing:-.02em; }
+  .kt-stat__lbl { font-size:13px; color:var(--kt-muted); margin-top:8px; }
+  @media(max-width:720px){ .kt-stats { grid-template-columns:repeat(2,1fr); } }
 
-  .btn-secondary {
-    background: transparent;
-    color: var(--gray-800);
-    padding: 0.875rem 2rem;
-    border-radius: 10px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-decoration: none;
-    border: 1.5px solid var(--gray-200);
-    transition: border-color 0.2s, color 0.2s;
-  }
+  /* ════════ PROCESO ════════ */
+  .kt-proc { padding:120px 0; background:var(--kt-bg-warm); border-top:1px solid var(--kt-line); border-bottom:1px solid var(--kt-line); }
+  .kt-proc__rail { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; position:relative; padding-top:70px; }
+  .kt-proc__line { position:absolute; top:90px; left:0; right:0; height:1px; background:linear-gradient(to right,transparent,var(--kt-line-strong) 8%,var(--kt-line-strong) 92%,transparent); }
+  .kt-procStep { position:relative; padding:0 8px; }
+  .kt-procStep__node { position:absolute; top:-56px; left:8px; width:44px; height:44px; border-radius:999px; background:var(--kt-brand); color:#fff; display:flex; align-items:center; justify-content:center; font-size:18px; box-shadow:0 0 0 6px var(--kt-bg-warm),0 0 0 7px var(--kt-line); }
+  .kt-procStep__num { color:var(--kt-brand-deep); margin-bottom:12px; }
+  .kt-procStep__title { font-family:var(--kt-display); font-weight:700; font-size:26px; margin:0 0 10px; }
+  .kt-procStep__body { font-size:14.5px; color:var(--kt-ink-2); margin:0; }
+  @media(max-width:1020px){ .kt-proc__rail { grid-template-columns:repeat(2,1fr); row-gap:60px; } .kt-proc__line { display:none; } }
+  @media(max-width:600px) { .kt-proc__rail { grid-template-columns:1fr; } }
 
-  .btn-secondary:hover { border-color: var(--teal-400); color: var(--teal-500); }
+  /* ════════ TESTIMONIOS ════════ */
+  .kt-test { padding:120px 0; background:var(--kt-bg-warm); border-top:1px solid var(--kt-line); }
+  .kt-test__grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  @media(max-width:720px){ .kt-test__grid { grid-template-columns:1fr; } }
+  .kt-quote { background:var(--kt-card); border:1px solid var(--kt-line); border-radius:var(--kt-radius); padding:32px; margin:0; position:relative; }
+  .kt-quote--1 { background:var(--kt-brand-soft); border-color:transparent; }
+  .kt-quote--2 { background:var(--kt-brand-deep); color:#fff; border-color:var(--kt-brand-deep); }
+  .kt-quote__mark { font-size:80px; line-height:.5; color:var(--kt-brand); position:absolute; top:32px; right:24px; opacity:.5; }
+  .kt-quote--2 .kt-quote__mark { color:var(--kt-accent); opacity:1; }
+  .kt-quote blockquote { font-family:var(--kt-display); font-size:22px; line-height:1.25; margin:0 0 24px; max-width:90%; }
+  .kt-quote figcaption { display:flex; align-items:center; gap:12px; font-size:14px; }
+  .kt-quote__avatar { width:40px; height:40px; border-radius:999px; background:linear-gradient(135deg,var(--kt-brand),var(--kt-accent)); flex-shrink:0; }
+  .kt-quote--2 figcaption { color:rgba(255,255,255,.85); }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-content > * { opacity: 0; animation: fadeUp 0.6s ease forwards; }
-  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-  .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
-  .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
-  .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
-
-  /* BROWSER MOCKUP */
-  .hero-visual {
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.3s forwards;
-  }
-
-  .browser-mockup {
-    background: white;
-    border-radius: 16px;
-    border: 1px solid var(--gray-200);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.12);
-    overflow: hidden;
-  }
-
-  .browser-bar {
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-200);
-    padding: 0.65rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .browser-dots { display: flex; gap: 6px; }
-  .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dot.red    { background: #FF5F57; }
-  .dot.yellow { background: #FEBC2E; }
-  .dot.green  { background: #28C840; }
-
-  .browser-url {
-    flex: 1;
-    background: white;
-    border: 1px solid var(--gray-200);
-    border-radius: 6px;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.72rem;
-    color: var(--gray-500);
-    text-align: center;
-  }
-
-  .browser-body {
-    padding: 1.5rem;
-    min-height: 220px;
-  }
-
-  .step-slide { animation: fadeUp 0.4s ease; }
-  .step-slide.hidden { display: none; }
-
-  .step-label {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--teal-500);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-  }
-
-  /* Slide 1 */
-  .fake-form { display: flex; flex-direction: column; gap: 0.6rem; }
-
-  .fake-input {
-    height: 32px;
-    background: var(--gray-50);
-    border: 1.5px solid var(--gray-200);
-    border-radius: 6px;
-    font-size: 0.72rem;
-    color: var(--gray-500);
-    display: flex;
-    align-items: center;
-    padding: 0 0.75rem;
-  }
-
-  .fake-select {
-    height: 32px;
-    background: var(--gray-50);
-    border: 1.5px solid var(--gray-200);
-    border-radius: 6px;
-    font-size: 0.72rem;
-    color: var(--gray-400);
-    display: flex;
-    align-items: center;
-    padding: 0 0.75rem;
-  }
-
-  .fake-btn {
-    background: var(--teal-400);
-    color: white;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    text-align: center;
-    margin-top: 0.25rem;
-  }
-
-  /* Slide 2 */
-  .design-header { margin-bottom: 1rem; display: flex; flex-direction: column; gap: 6px; }
-  .design-bar { height: 8px; background: var(--gray-200); border-radius: 4px; }
-  .design-bar.long  { width: 70%; }
-  .design-bar.short { width: 40%; }
-  .design-colors { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-  .color-chip { width: 28px; height: 28px; border-radius: 50%; }
-  .color-chip.teal { background: var(--teal-400); }
-  .color-chip.blue { background: #3B82F6; }
-  .color-chip.dark { background: var(--gray-800); }
-  .design-blocks { display: flex; flex-direction: column; gap: 6px; }
-  .design-block { background: var(--gray-100); border-radius: 4px; }
-
-  /* Slide 3 */
-  .fake-review { display: flex; flex-direction: column; gap: 0.6rem; }
-  .review-item { padding: 0.5rem 0.75rem; border-radius: 8px; font-size: 0.82rem; font-weight: 500; }
-  .review-item.check   { background: #F0FBF6; color: var(--teal-600); }
-  .review-item.pending { background: #FFFBEB; color: #92400E; }
-
-  /* Slide 4 */
-  .fake-live { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; text-align: center; }
-  .live-icon { font-size: 2rem; }
-  .live-url { font-size: 0.8rem; color: var(--teal-600); font-weight: 600; background: var(--teal-50); padding: 0.3rem 0.75rem; border-radius: 100px; }
-  .live-badge { font-size: 0.8rem; font-weight: 600; color: #065F46; background: #D1FAE5; padding: 0.3rem 0.75rem; border-radius: 100px; }
-  .live-stats { display: flex; gap: 1rem; margin-top: 0.25rem; }
-  .live-stat { font-size: 0.75rem; color: var(--gray-600); text-align: center; }
-  .live-stat span { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 800; color: var(--gray-900); }
-
-  /* Dots */
-  .step-dots { display: flex; justify-content: center; gap: 6px; padding: 0.75rem; background: var(--gray-50); border-top: 1px solid var(--gray-100); }
-  .sdot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-300); cursor: pointer; transition: background 0.2s, transform 0.2s; }
-  .sdot.active { background: var(--teal-400); transform: scale(1.3); }
-
-  /* CONTADORES */
-  .hero-stats {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    border: 1px solid var(--gray-200);
-    border-top: none;
-    border-radius: 0 0 16px 16px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-    padding: 1.75rem 2rem;
-    flex-wrap: wrap;
-    gap: 0;
-  }
-
-  .stat-item { flex: 1; min-width: 120px; text-align: center; }
-
-  .stat-top { display: flex; align-items: baseline; justify-content: center; gap: 2px; }
-
-  .stat-num {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 2.25rem;
-    font-weight: 800;
-    color: var(--teal-500);
-    line-height: 1;
-  }
-
-  .stat-suffix {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--teal-400);
-  }
-
-  .stat-label { font-size: 0.78rem; color: var(--gray-500); font-weight: 500; margin-top: 0.25rem; display: block; }
-
-  .stat-divider { width: 1px; height: 40px; background: var(--gray-200); flex-shrink: 0; }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
-    .hero-content > p { margin: 0 auto 2rem; }
-    .hero-cta { justify-content: center; }
-    .hero-visual { max-width: 480px; margin: 0 auto; }
-  }
-
-  @media (max-width: 600px) {
-    .hero { padding: 4rem 5% 0; }
-    .stat-divider { display: none; }
-    .hero-stats { gap: 1.5rem; padding: 1.5rem; }
-  }
+  /* ════════ FAQ ════════ */
+  .kt-faq { padding:120px 0; background:var(--kt-bg); }
+  .kt-faq__shell { display:grid; grid-template-columns:1fr 1.4fr; gap:60px; align-items:start; }
+  @media(max-width:1020px){ .kt-faq__shell { grid-template-columns:1fr; gap:40px; } }
+  .kt-faq__intro { position:sticky; top:100px; }
+  .kt-faq__list { display:flex; flex-direction:column; }
+  .kt-faqItem { display:grid; grid-template-columns:40px 1fr 24px; gap:14px; align-items:start; background:transparent; border:0; border-top:1px solid var(--kt-line); padding:24px 0; text-align:left; width:100%; cursor:pointer; }
+  .kt-faqItem:last-child { border-bottom:1px solid var(--kt-line); }
+  .kt-faqItem__num { color:var(--kt-muted); padding-top:4px; font-family:var(--kt-mono); font-size:12px; }
+  .kt-faqItem__q { font-family:var(--kt-display); font-size:20px; line-height:1.2; color:var(--kt-ink); font-weight:600; }
+  .kt-faqItem__icon { color:var(--kt-ink-2); transition:transform .2s; padding-top:4px; }
+  .kt-faqItem.is-open .kt-faqItem__icon { transform:rotate(180deg); color:var(--kt-brand); }
+  .kt-faqItem__a { grid-column:2; font-size:15px; color:var(--kt-ink-2); line-height:1.6; max-height:0; overflow:hidden; opacity:0; transition:max-height .3s ease,opacity .25s ease,margin-top .3s ease; margin-top:0; }
+  .kt-faqItem.is-open .kt-faqItem__a { max-height:200px; opacity:1; margin-top:12px; }
 </style>
