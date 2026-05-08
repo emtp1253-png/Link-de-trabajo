@@ -1,9 +1,9 @@
 ---
 // Pricing.astro — 4 planes, dominio incluido en todos, MercadoPago intacto
 // Más vendido: Pro Plus $3,499.99
-
+ 
 const API_URL = 'https://kreatu-api-1tdb.vercel.app/api/create_preference';
-
+ 
 const planes = [
   {
     id:       'starter',
@@ -11,7 +11,7 @@ const planes = [
     tag:      'Una sola página, lista para conectar.',
     price:    '$999',
     cents:    '.99',
-    pago:     'MXN · pago único',
+    pago:     'MXN + IVA · pago único',
     featured: false,
     cta:      'Empezar con Esencial',
     features: [
@@ -31,7 +31,7 @@ const planes = [
     tag:      'El sitio completo de tu consultorio o despacho.',
     price:    '$1,999',
     cents:    '.99',
-    pago:     'MXN · pago único',
+    pago:     'MXN + IVA · pago único',
     featured: false,
     cta:      'Quiero Profesional',
     features: [
@@ -51,7 +51,7 @@ const planes = [
     tag:      'Sitio completo con tienda y panel de admin.',
     price:    '$3,499',
     cents:    '.99',
-    pago:     'MXN · pago único',
+    pago:     'MXN + IVA · pago único',
     featured: true,
     cta:      'Quiero Pro Plus',
     features: [
@@ -71,7 +71,7 @@ const planes = [
     tag:      'Tu tienda en línea completa, lista para vender.',
     price:    '$7,499',
     cents:    '.99',
-    pago:     'MXN · pago único',
+    pago:     'MXN + IVA · pago único',
     featured: false,
     cta:      'Lanzar mi tienda',
     features: [
@@ -87,7 +87,7 @@ const planes = [
   },
 ];
 ---
-
+ 
 <section class="kt-precios" id="precios">
   <div class="kt-shell">
     <div class="kt-section__head">
@@ -103,25 +103,25 @@ const planes = [
         Pagas una vez. Dominio incluido el primer año en todos los planes. Si más adelante necesitas mantenimiento, desde $349/mes.
       </p>
     </div>
-
+ 
     <div class="kt-planes__grid">
       {planes.map(p => (
         <article class:list={["kt-plan2", { "kt-plan2--hi": p.featured }]}>
           {p.featured && (
             <div class="kt-plan2__ribbon kt-mono">★ Más vendido</div>
           )}
-
+ 
           <div class="kt-plan2__head">
             <h3>{p.name}</h3>
             <p>{p.tag}</p>
           </div>
-
+ 
           <div class="kt-plan2__price">
             <span class="kt-plan2__big">{p.price}</span>
             <span class="kt-plan2__cents">{p.cents}</span>
           </div>
           <div class="kt-plan2__pago kt-mono">{p.pago}</div>
-
+ 
           <ul class="kt-plan2__feats">
             {p.features.map(f => (
               <li>
@@ -132,7 +132,7 @@ const planes = [
               </li>
             ))}
           </ul>
-
+ 
           <button
             class:list={["btn-plan", { "btn-plan--hi": p.featured }]}
             data-title={p.mpTitle}
@@ -143,13 +143,13 @@ const planes = [
         </article>
       ))}
     </div>
-
+ 
     <div class="kt-precios__foot">
       <span class="kt-mono">// ¿Necesitas algo a medida? Hablemos. Cotizamos sin compromiso.</span>
     </div>
   </div>
 </section>
-
+ 
 <!-- MercadoPago integration — NO TOCAR -->
 <script define:vars={{ API_URL }}>
   // Espera a que el DOM esté listo antes de buscar los botones
@@ -159,21 +159,21 @@ const planes = [
         const title  = btn.dataset.title;
         const amount = parseFloat(btn.dataset.amount);
         const orig   = btn.textContent;
-
+ 
         btn.textContent = 'Procesando…';
         btn.disabled = true;
-
+ 
         try {
           const res = await fetch(API_URL, {
             method:  'POST',
             headers: { 'Content-Type': 'application/json' },
             body:    JSON.stringify({ title, unit_price: amount, quantity: 1 }),
           });
-
+ 
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
+ 
           const data = await res.json();
-
+ 
           if (data.init_point) {
             window.location.href = data.init_point;
           } else {
@@ -189,7 +189,7 @@ const planes = [
     });
   });
 </script>
-
+ 
 <style>
   .kt-shell   { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
   .kt-mono    { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .02em; }
@@ -199,9 +199,9 @@ const planes = [
   .kt-section__head { max-width: 820px; margin: 0 0 52px; }
   .kt-section__title { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(32px,4vw,54px); line-height: 1.05; letter-spacing: -.02em; margin: 12px 0 16px; color: #181917; }
   .kt-section__lede  { font-size: 17px; color: #3a3d38; max-width: 620px; margin: 0; line-height: 1.6; }
-
+ 
   .kt-precios { padding: 120px 0; background: #faf9f5; border-top: 1px solid #e6e4df; }
-
+ 
   /* Grid de 4 columnas */
   .kt-planes__grid {
     display: grid;
@@ -211,7 +211,7 @@ const planes = [
   }
   @media (max-width: 1200px) { .kt-planes__grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px)  { .kt-planes__grid { grid-template-columns: 1fr; } }
-
+ 
   /* Tarjeta base */
   .kt-plan2 {
     background: #fff;
@@ -225,7 +225,7 @@ const planes = [
     transition: box-shadow .25s, transform .25s;
   }
   .kt-plan2:hover { box-shadow: 0 14px 40px rgba(20,30,28,.10); transform: translateY(-2px); }
-
+ 
   /* Tarjeta destacada */
   .kt-plan2--hi {
     background: #0F6E56;
@@ -237,7 +237,7 @@ const planes = [
     padding-top: 40px;
   }
   .kt-plan2--hi:hover { transform: translateY(-4px); }
-
+ 
   /* Ribbon */
   .kt-plan2__ribbon {
     position: absolute; top: -14px; left: 20px;
@@ -246,12 +246,12 @@ const planes = [
     font-size: 11px; font-weight: 700; letter-spacing: .05em;
     white-space: nowrap;
   }
-
+ 
   /* Encabezado */
   .kt-plan2__head h3 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 26px; margin: 0 0 6px; letter-spacing: -.01em; }
   .kt-plan2__head p  { font-size: 13.5px; color: #7a7d78; margin: 0; line-height: 1.4; }
   .kt-plan2--hi .kt-plan2__head p { color: rgba(255,255,255,.7); }
-
+ 
   /* Precio */
   .kt-plan2__price { display: flex; align-items: baseline; }
   .kt-plan2__big   { font-family: 'Instrument Serif', serif; font-size: 52px; line-height: 1; letter-spacing: -.02em; font-weight: 400; }
@@ -259,14 +259,14 @@ const planes = [
   .kt-plan2--hi .kt-plan2__cents { color: rgba(255,255,255,.55); }
   .kt-plan2__pago  { color: #7a7d78; }
   .kt-plan2--hi .kt-plan2__pago { color: rgba(255,255,255,.6); }
-
+ 
   /* Features */
   .kt-plan2__feats { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; flex: 1; }
   .kt-plan2__feats li { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: #3a3d38; line-height: 1.4; }
   .kt-plan2--hi .kt-plan2__feats li { color: rgba(255,255,255,.9); }
   .kt-plan2__feats svg { color: #1D9E75; margin-top: 2px; flex-shrink: 0; }
   .kt-plan2--hi .kt-plan2__feats svg { color: #c9a84c; }
-
+ 
   /* Botones */
   .btn-plan {
     display: block; width: 100%; padding: 13px;
@@ -278,10 +278,10 @@ const planes = [
   }
   .btn-plan:hover { background: #f4f3ef; border-color: #0F6E56; color: #0F6E56; transform: translateY(-1px); }
   .btn-plan:disabled { opacity: .6; cursor: not-allowed; transform: none; }
-
+ 
   .btn-plan--hi { background: #1D9E75; color: #fff; border-color: #1D9E75; }
   .btn-plan--hi:hover { background: #178A63; border-color: #178A63; color: #fff; }
-
+ 
   /* Pie */
   .kt-precios__foot { text-align: center; margin-top: 36px; color: #7a7d78; }
 </style>
