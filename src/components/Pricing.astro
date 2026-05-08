@@ -1,368 +1,259 @@
+
+Copiar
+
 ---
-const plans = [
+// Pricing.astro — Diseño nuevo (claro + elegante) con MercadoPago intacto
+// Los botones hacen fetch POST a la API de Vercel y redirigen a MP Checkout
+ 
+const API_URL = 'https://kreatu-api-1tdb.vercel.app/api/create_preference';
+ 
+const planes = [
   {
-    name: 'Starter',
-    price: '999.99',
-    priceNum: 999.99,
+    id:       'starter',
+    name:     'Esencial',
+    tag:      'Una sola página, lista para conectar.',
+    price:    '$999',
+    cents:    '.99',
+    pago:     'MXN · pago único',
     featured: false,
+    cta:      'Empezar con Esencial',
     features: [
-      'Página de 1 sección (landing)',
-      'Diseño responsivo',
-      'Formulario de contacto',
-      'Dominio + hosting desde $149/mes',
-      '1 revisión incluida',
+      'Landing de una página',
+      'Diseño a tu marca',
+      'Formulario + WhatsApp',
+      'Dominio el primer año',
+      'SSL incluido',
+      'Entrega en 7 días',
     ],
+    mpTitle:  'Plan Starter KreatuSitioWeb',
+    mpAmount: 999.99,
   },
   {
-    name: 'Pro',
-    price: '1,999.99',
-    priceNum: 1999.99,
+    id:       'pro',
+    name:     'Profesional',
+    tag:      'El sitio completo de tu consultorio o despacho.',
+    price:    '$1,999',
+    cents:    '.99',
+    pago:     'MXN · pago único',
     featured: true,
-    badge: '⭐ Más popular',
+    cta:      'Quiero Profesional',
     features: [
       'Hasta 5 secciones completas',
-      'Diseño 100% personalizado',
-      'Galería de productos/servicios',
-      'SEO básico optimizado',
-      'Botón de WhatsApp integrado',
-      'Certificado SSL gratis',
-      '3 revisiones incluidas',
-      'Soporte por 30 días',
+      'Servicios, blog y contacto',
+      'SEO local optimizado',
+      'Agenda en línea (Calendly)',
+      'Editor para tu equipo',
+      'Soporte 30 días',
     ],
+    mpTitle:  'Plan Pro KreatuSitioWeb',
+    mpAmount: 1999.99,
   },
   {
-    name: 'Pro Plus',
-    price: '3,499.99',
-    priceNum: 3499.99,
+    id:       'proplus',
+    name:     'Ecommerce',
+    tag:      'Tu tienda en línea, lista para vender.',
+    price:    '$3,499',
+    cents:    '.99',
+    pago:     'MXN · pago único',
     featured: false,
+    cta:      'Lanzar mi tienda',
     features: [
-      'Todo lo del Plan Pro',
-      'Blog o catálogo de productos',
-      'Panel de administración',
-      'Integración redes sociales',
-      'Google Analytics incluido',
-      'Revisiones ilimitadas',
+      'Hasta 50 productos',
+      'Pagos en MXN (MercadoPago)',
+      'Envíos y cupones',
+      'Panel para subir stock',
+      'Integración WhatsApp',
       'Soporte prioritario 60 días',
     ],
+    mpTitle:  'Plan Pro Plus KreatuSitioWeb',
+    mpAmount: 3499.99,
   },
 ];
 ---
-
-<section class="pricing" id="precios">
-  <div class="section-inner">
-
-    <div class="pricing-header">
-      <div class="section-label">Precios</div>
-      <h2 class="section-title">Inversión única, resultados permanentes</h2>
-      <p class="section-sub">
-        Precios claros, sin sorpresas. Elige el plan que mejor se adapta
-        a tu negocio.
+ 
+<section class="kt-precios" id="precios">
+  <div class="kt-shell">
+    <div class="kt-section__head">
+      <div class="kt-eyebrow">
+        <span class="kt-eyebrow__dot"></span>
+        <span class="kt-mono">05 / Precios</span>
+      </div>
+      <h2 class="kt-section__title">
+        Precios <em class="kt-italic">claros</em>.
+        Sin renta mensual escondida.
+      </h2>
+      <p class="kt-section__lede">
+        Pagas una vez. Si más adelante necesitas mantenimiento, te ofrecemos un plan opcional desde $349/mes.
       </p>
     </div>
-
-    <div class="pricing-grid">
-      {plans.map(({ name, price, priceNum, featured, badge, features }) => (
-        <div class:list={['plan-card', { featured }]}>
-          {badge && <div class="featured-badge">{badge}</div>}
-          <div class="plan-name">{name}</div>
-          <div class="plan-price"><sup>$</sup>{price}</div>
-          <div class="plan-price-note">+ IVA · pago único de desarrollo</div>
-          <div class="plan-divider" />
-          <ul class="plan-features">
-            {features.map((f) => (
+ 
+    <div class="kt-planes__grid">
+      {planes.map(p => (
+        <article class:list={["kt-plan2", { "kt-plan2--hi": p.featured }]}>
+          {p.featured && (
+            <div class="kt-plan2__ribbon kt-mono">★ Más elegido</div>
+          )}
+ 
+          <div class="kt-plan2__head">
+            <h3>{p.name}</h3>
+            <p>{p.tag}</p>
+          </div>
+ 
+          <div class="kt-plan2__price">
+            <span class="kt-plan2__big">{p.price}</span>
+            <span class="kt-plan2__cents">{p.cents}</span>
+          </div>
+          <div class="kt-plan2__pago kt-mono">{p.pago}</div>
+ 
+          <ul class="kt-plan2__feats">
+            {p.features.map(f => (
               <li>
-                <span class="check" aria-hidden="true">✓</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
                 {f}
               </li>
             ))}
           </ul>
-          <button class="btn-plan" data-plan={name} data-price={priceNum}>
-            {featured ? 'Quiero este plan →' : 'Comenzar →'}
+ 
+          <button
+            class:list={["btn-plan", { "btn-plan--hi": p.featured }]}
+            data-title={p.mpTitle}
+            data-amount={p.mpAmount}
+          >
+            {p.cta}
           </button>
-        </div>
+        </article>
       ))}
     </div>
-
-    <p class="pricing-note">
-      ¿Tienes un proyecto especial?&nbsp;
-      <a href="#contacto">Contáctanos para una cotización personalizada.</a>
-    </p>
-
+ 
+    <div class="kt-precios__foot">
+      <span class="kt-mono">// ¿Necesitas algo a medida? Hablemos. Cotizamos sin compromiso.</span>
+    </div>
   </div>
 </section>
-
-<div id="pay-loading" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;align-items:center;justify-content:center;flex-direction:column;gap:1rem;">
-  <div class="spinner"></div>
-  <p style="color:white;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;">Redirigiendo a MercadoPago...</p>
-</div>
-
-<script>
-  const API_URL = 'https://kreatu-api.vercel.app/api/create_preference';
-
+ 
+<!-- MercadoPago integration — NO TOCAR -->
+<script define:vars={{ API_URL }}>
   document.querySelectorAll('.btn-plan').forEach(btn => {
     btn.addEventListener('click', async () => {
-      const plan = btn.dataset.plan;
-      const price = parseFloat(btn.dataset.price);
-      const loading = document.getElementById('pay-loading');
-
-      loading.style.display = 'flex';
-
+      const title  = btn.dataset.title;
+      const amount = parseFloat(btn.dataset.amount);
+      const orig   = btn.textContent;
+ 
+      btn.textContent = 'Procesando…';
+      btn.disabled = true;
+ 
       try {
-        const res = await fetch(API_URL, {
-          method: 'POST',
+        const res  = await fetch(API_URL, {
+          method:  'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            title: `Plan ${plan} - KreatuSitioWeb`,
-            price: price,
-            quantity: 1,
-          }),
+          body:    JSON.stringify({ title, unit_price: amount, quantity: 1 }),
         });
-
         const data = await res.json();
-
         if (data.init_point) {
           window.location.href = data.init_point;
         } else {
-          throw new Error('No se recibio URL de pago');
+          throw new Error('Sin init_point');
         }
       } catch (err) {
-        loading.style.display = 'none';
-        alert('Error al procesar el pago. Por favor intenta de nuevo.');
         console.error(err);
+        btn.textContent = orig;
+        btn.disabled = false;
+        alert('Hubo un problema al procesar el pago. Por favor intenta de nuevo.');
       }
     });
   });
 </script>
-
+ 
 <style>
-  .pricing {
-    padding: 5rem 5%;
-    background: var(--gray-900);
-  }
-
-  .section-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .pricing-header {
-    text-align: center;
-    margin-bottom: 3.5rem;
-  }
-
-  .section-label {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--teal-100, #BFEAD9);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-
-  .section-sub {
-    font-size: 1rem;
-    color: var(--gray-400, #9CA3AF);
-    max-width: 520px;
-    margin: 0 auto;
-    line-height: 1.75;
-  }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    align-items: start;
-  }
-
-  .plan-card {
-    position: relative;
+  /* ── Shell y utilidades compartidas ── */
+  .kt-shell   { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+  .kt-mono    { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .02em; }
+  .kt-italic  { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #0F6E56; }
+  .kt-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #7a7d78; text-transform: uppercase; letter-spacing: .06em; }
+  .kt-eyebrow__dot { width: 7px; height: 7px; border-radius: 999px; background: #1D9E75; box-shadow: 0 0 0 4px rgba(29,158,117,.18); }
+  .kt-section__head { max-width: 760px; margin: 0 0 52px; }
+  .kt-section__title { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(32px,4vw,54px); line-height: 1.05; letter-spacing: -.02em; margin: 12px 0 16px; color: #181917; }
+  .kt-section__lede  { font-size: 17px; color: #3a3d38; max-width: 580px; margin: 0; line-height: 1.6; }
+ 
+  /* ── Sección ── */
+  .kt-precios { padding: 120px 0; background: #faf9f5; border-top: 1px solid #e6e4df; }
+ 
+  /* ── Grid ── */
+  .kt-planes__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 1020px) { .kt-planes__grid { grid-template-columns: 1fr; max-width: 520px; } }
+ 
+  /* ── Tarjeta ── */
+  .kt-plan2 {
+    background: #fff;
+    border: 1px solid #e6e4df;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.04);
-    transition: border-color 0.2s;
-  }
-
-  .plan-card:hover { border-color: rgba(255, 255, 255, 0.2); }
-
-  .plan-card.featured {
-    background: var(--teal-400, #1D9E75);
-    border-color: var(--teal-400, #1D9E75);
-    transform: scale(1.03);
-    box-shadow: 0 30px 80px rgba(29, 158, 117, 0.4);
-  }
-
-  .featured-badge {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #F59E0B;
-    color: #111;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 800;
-    padding: 0.3rem 1rem;
-    border-radius: 100px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    white-space: nowrap;
-  }
-
-  .plan-name {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--gray-400, #9CA3AF);
-    margin-bottom: 0.5rem;
-  }
-
-  .featured .plan-name { color: rgba(255, 255, 255, 0.8); }
-
-  .plan-price {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 3rem;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -2px;
-    line-height: 1;
-    margin-bottom: 0.25rem;
-  }
-
-  .plan-price sup {
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: 0;
-    vertical-align: super;
-  }
-
-  .plan-price-note {
-    font-size: 0.78rem;
-    color: var(--gray-400, #9CA3AF);
-    margin-bottom: 1.5rem;
-  }
-
-  .featured .plan-price-note { color: rgba(255, 255, 255, 0.75); }
-
-  .plan-divider {
-    height: 1px;
-    background: rgba(255, 255, 255, 0.12);
-    margin-bottom: 1.5rem;
-  }
-
-  .plan-features {
-    list-style: none;
+    padding: 32px;
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
+    gap: 20px;
+    transition: box-shadow .25s, transform .25s;
   }
-
-  .plan-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-    font-size: 0.88rem;
-    color: rgba(255, 255, 255, 0.75);
-    line-height: 1.5;
+  .kt-plan2:hover { box-shadow: 0 14px 40px rgba(20,30,28,.10); transform: translateY(-2px); }
+ 
+  /* Featured */
+  .kt-plan2--hi {
+    background: #0F6E56;
+    color: white;
+    border-color: #0F6E56;
+    transform: none;
+    box-shadow: 0 30px 80px rgba(15,110,86,.28);
   }
-
-  .featured .plan-features li { color: rgba(255, 255, 255, 0.95); }
-
-  .check {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 0.65rem;
-    margin-top: 1px;
+  .kt-plan2--hi:hover { transform: translateY(-3px); }
+ 
+  /* Ribbon */
+  .kt-plan2__ribbon {
+    position: absolute; top: -14px; left: 28px;
+    background: #c9a84c; color: #3a2a00;
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; letter-spacing: .04em;
   }
-
-  .featured .check { background: rgba(255, 255, 255, 0.25); }
-
+ 
+  /* Head */
+  .kt-plan2__head h3 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 30px; margin: 0 0 6px; letter-spacing: -.01em; }
+  .kt-plan2__head p  { font-size: 14px; color: #7a7d78; margin: 0; line-height: 1.4; }
+  .kt-plan2--hi .kt-plan2__head p { color: rgba(255,255,255,.7); }
+ 
+  /* Price */
+  .kt-plan2__price { display: flex; align-items: baseline; }
+  .kt-plan2__big   { font-family: 'Instrument Serif', serif; font-size: 58px; line-height: 1; letter-spacing: -.02em; font-weight: 400; }
+  .kt-plan2__cents { font-family: 'Instrument Serif', serif; font-size: 22px; color: #7a7d78; margin-left: 2px; }
+  .kt-plan2--hi .kt-plan2__cents { color: rgba(255,255,255,.55); }
+  .kt-plan2__pago  { color: #7a7d78; }
+  .kt-plan2--hi .kt-plan2__pago { color: rgba(255,255,255,.6); }
+ 
+  /* Features */
+  .kt-plan2__feats { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .kt-plan2__feats li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: #3a3d38; }
+  .kt-plan2--hi .kt-plan2__feats li { color: rgba(255,255,255,.88); }
+  .kt-plan2__feats svg { color: #1D9E75; margin-top: 3px; flex-shrink: 0; }
+  .kt-plan2--hi .kt-plan2__feats svg { color: #c9a84c; }
+ 
+  /* Button */
   .btn-plan {
-    display: block;
-    width: 100%;
+    display: block; width: 100%; padding: 14px;
+    border-radius: 999px; border: 1.5px solid #cdc9c2;
+    background: transparent; color: #181917;
+    font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: background .2s, border-color .2s, color .2s, transform .15s;
     text-align: center;
-    padding: 0.85rem;
-    border-radius: 10px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    background: transparent;
-    transition: background 0.2s, border-color 0.2s, transform 0.15s;
   }
-
-  .btn-plan:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-1px);
+  .btn-plan:hover { background: #f4f3ef; border-color: #0F6E56; color: #0F6E56; transform: translateY(-1px); }
+  .btn-plan:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+ 
+  .btn-plan--hi {
+    background: #1D9E75; color: #fff; border-color: #1D9E75;
   }
-
-  .featured .btn-plan {
-    background: var(--gray-900, #111827);
-    border-color: var(--gray-900, #111827);
-  }
-
-  .featured .btn-plan:hover {
-    background: #1F2937;
-    border-color: #1F2937;
-  }
-
-  .pricing-note {
-    text-align: center;
-    margin-top: 2.5rem;
-    font-size: 0.85rem;
-    color: var(--gray-500, #6B7280);
-  }
-
-  .pricing-note a {
-    color: var(--teal-400, #1D9E75);
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .pricing-note a:hover { text-decoration: underline; }
-
-  .spinner {
-    width: 48px;
-    height: 48px;
-    border: 4px solid rgba(255,255,255,0.2);
-    border-top-color: #1D9E75;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
-
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  @media (max-width: 900px) {
-    .pricing-grid {
-      grid-template-columns: 1fr;
-      max-width: 420px;
-      margin: 0 auto;
-    }
-    .plan-card.featured { transform: scale(1); }
-  }
-
-  @media (max-width: 560px) {
-    .pricing { padding: 3.5rem 5%; }
-  }
+  .btn-plan--hi:hover { background: #178A63; border-color: #178A63; color: #fff; }
+ 
+  /* Foot */
+  .kt-precios__foot { text-align: center; margin-top: 32px; color: #7a7d78; }
 </style>
+ 
