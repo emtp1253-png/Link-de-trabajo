@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Pricing from '../components/Pricing.astro';
 import Contact from '../components/Contact.astro';
- 
+
 const NICHES = [
   {
     id: "medico", label: "Médicos", name: "Dra. Marina Vega", sub: "Cardiología · CDMX",
@@ -37,21 +37,21 @@ const NICHES = [
     badge: "Envío gratis $899",
   },
 ];
- 
+
 const PASOS = [
   { n: "01", t: "Te escuchamos",     b: "Una llamada de 30 minutos. Nos cuentas tu negocio, tu cliente y a dónde quieres llegar.", icon: "💬" },
   { n: "02", t: "Diseñamos la idea", b: "Recibes un primer concepto en 48 horas. Lo ajustamos juntos hasta que sientas que es tuyo.", icon: "✶" },
   { n: "03", t: "Construimos rápido", b: "Programamos tu sitio con código limpio, optimizado para Google y listo para escalar.", icon: "⚙" },
   { n: "04", t: "Publicamos y cuidamos", b: "Lo lanzamos en tu dominio, te enseñamos a editarlo y seguimos contigo el primer mes sin costo.", icon: "✓" },
 ];
- 
+
 const TESTIMONIOS = [
   { q: "Pasé de no aparecer en Google a recibir 3 pacientes nuevos por semana. Mi clínica creció sin que yo gastara en publicidad cada mes.", a: "Dra. Marina V.", r: "Cardióloga · CDMX" },
   { q: "Antes peleaba con plantillas que no entendían lo que vendo. Kreatu se sentó conmigo, entendió mi marca y la página quedó tal cual la imaginé.", a: "Carla M.", r: "Botanique Tienda" },
   { q: "Levantamos el sitio de la firma en 8 días. Profesional, limpio, y nuestros clientes corporativos lo notaron de inmediato.", a: "Lic. Ricardo H.", r: "Herrera & Asociados" },
   { q: "El soporte por WhatsApp es lo que más valoro. Cualquier ajuste lo resuelven el mismo día.", a: "Dr. Ángel S.", r: "Sonrisa Clínica" },
 ];
- 
+
 const FAQ_ITEMS = [
   { q: "¿En cuánto tiempo entregan mi página?", a: "Entre 5 y 10 días para Starter y Pro. Pro Plus normalmente toma 2 a 3 semanas, dependiendo de los productos y métodos de pago." },
   { q: "¿Puedo editar el sitio yo después?", a: "Sí. Te dejamos un editor visual y una guía corta en video. Si prefieres, nosotros lo seguimos manteniendo." },
@@ -61,19 +61,19 @@ const FAQ_ITEMS = [
   { q: "¿Pueden migrar mi página actual?", a: "Sí. Auditamos lo que tienes, conservamos lo que sirve y rediseñamos lo demás. El SEO no se pierde — lo cuidamos." },
 ];
 ---
- 
+
 <Layout
   title="Diseño de Página Web Profesional y Económica en México | KreatuSitioWeb"
   description="Diseñamos páginas web profesionales para médicos, dentistas, abogados y tiendas en México. Desde $999.99 MXN, entrega en 7 días, SSL incluido."
 >
- 
+
 <!-- ═══════════════════ HERO ═══════════════════ -->
 <section class="kt-hero" id="top">
   <div class="kt-hero__bg" aria-hidden="true">
     <div class="kt-hero__grid"></div>
     <div class="kt-hero__glow"></div>
   </div>
- 
+
   <div class="kt-shell kt-hero__inner">
     <div class="kt-hero__copy">
       <div class="kt-eyebrow">
@@ -105,7 +105,7 @@ const FAQ_ITEMS = [
         <li><strong>SSL</strong> incluido</li>
       </ul>
     </div>
- 
+
     <div class="kt-hero__demo">
       <div class="kt-demoFrame">
         <div class="kt-demoFrame__chrome">
@@ -131,7 +131,7 @@ const FAQ_ITEMS = [
       </div>
     </div>
   </div>
- 
+
   <!-- Marquee -->
   <div class="kt-marquee" aria-hidden="true">
     <div class="kt-marquee__track">
@@ -141,8 +141,8 @@ const FAQ_ITEMS = [
     </div>
   </div>
 </section>
- 
- 
+
+
 <!-- ═══════════════════ NICHOS ═══════════════════ -->
 <section class="kt-nichos" id="nichos">
   <div class="kt-shell">
@@ -158,7 +158,7 @@ const FAQ_ITEMS = [
         { emoji:"⚖️", title:"Para abogados",  body:"Casos de éxito, áreas de práctica, primer contacto confidencial y formularios con encriptación.", tag:"Mercantil, familiar, penal…" },
         { emoji:"🛍",  title:"Para tu tienda", body:"Catálogo, carrito, métodos de pago en MXN, envíos y panel para subir productos sin programar.", tag:"Belleza, moda, comida, joyería…" },
       ].map(c => (
-        <article class="kt-nicho">
+        <a href="#demo" class="kt-nicho">
           <div class="kt-nicho__num">{c.emoji}</div>
           <h3 class="kt-nicho__title">{c.title}</h3>
           <p class="kt-nicho__body">{c.body}</p>
@@ -166,13 +166,13 @@ const FAQ_ITEMS = [
           <div class="kt-nicho__arrow">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </div>
 </section>
- 
- 
+
+
 <!-- ═══════════════════ BENEFICIOS BENTO ═══════════════════ -->
 <section class="kt-bento" id="beneficios">
   <div class="kt-shell">
@@ -231,8 +231,8 @@ const FAQ_ITEMS = [
     </div>
   </div>
 </section>
- 
- 
+
+
 <!-- ═══════════════════ PROCESO ═══════════════════ -->
 <section class="kt-proc" id="proceso">
   <div class="kt-shell">
@@ -253,8 +253,8 @@ const FAQ_ITEMS = [
     </div>
   </div>
 </section>
- 
- 
+
+
 <!-- ═══════════════════ DEMO INTERACTIVA ═══════════════════ -->
 <section class="kt-demo" id="demo">
   <div class="kt-shell">
@@ -301,12 +301,12 @@ const FAQ_ITEMS = [
     </div>
   </div>
 </section>
- 
- 
+
+
 <!-- ═══════════════════ PRECIOS (MercadoPago intacto) ═══════════════════ -->
 <Pricing />
- 
- 
+
+
 <!-- ═══════════════════ TESTIMONIOS ═══════════════════ -->
 <section class="kt-test" id="testimonios">
   <div class="kt-shell">
@@ -328,8 +328,8 @@ const FAQ_ITEMS = [
     </div>
   </div>
 </section>
- 
- 
+
+
 <!-- ═══════════════════ FAQ ═══════════════════ -->
 <section class="kt-faq" id="faq">
   <div class="kt-shell kt-faq__shell">
@@ -353,17 +353,17 @@ const FAQ_ITEMS = [
     </div>
   </div>
 </section>
- 
- 
+
+
 <!-- ═══════════════════ CONTACTO (Formspree intacto) ═══════════════════ -->
 <Contact />
- 
+
 </Layout>
- 
- 
+
+
 <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
 <script define:vars={{ NICHES }}>
- 
+
   /* ── Render niche preview ── */
   function renderNiche(n) {
     return `<div style="width:100%;height:100%;background:${n.bg};color:${n.ink};display:flex;flex-direction:column;font-family:sans-serif;position:relative">
@@ -393,14 +393,14 @@ const FAQ_ITEMS = [
       <div style="position:absolute;bottom:14px;right:16px;background:#fff;padding:6px 10px;border-radius:999px;font-size:10px;color:${n.primary};border:1px solid rgba(0,0,0,0.06)">${n.badge}</div>
     </div>`;
   }
- 
+
   /* ── Hero demo switcher ── */
   let activeNiche = 0;
   let paused = false;
   const viewport  = document.getElementById('demo-viewport');
   const urlEl     = document.getElementById('demo-url');
   const tabs      = document.querySelectorAll('.kt-demoSwitcher__tab');
- 
+
   function setNiche(i) {
     activeNiche = i;
     if (viewport) viewport.innerHTML = renderNiche(NICHES[i]);
@@ -410,7 +410,7 @@ const FAQ_ITEMS = [
   setNiche(0);
   tabs.forEach((t, i) => t.addEventListener('click', () => { setNiche(i); paused = true; }));
   setInterval(() => { if (!paused) setNiche((activeNiche + 1) % NICHES.length); }, 4200);
- 
+
   /* ── Demo Lab ── */
   const labName     = document.getElementById('lab-name');
   const labTag      = document.getElementById('lab-tag');
@@ -418,7 +418,7 @@ const FAQ_ITEMS = [
   const labUrl      = document.getElementById('lab-url');
   const labSeg      = document.getElementById('lab-seg');
   let labNiche = 0;
- 
+
   function updateLab() {
     const n    = NICHES[labNiche];
     const name = labName?.value || 'Tu Negocio';
@@ -426,7 +426,7 @@ const FAQ_ITEMS = [
     if (labUrl) labUrl.textContent = name.toLowerCase().replace(/\s+/g, '') + '.kreatusitioweb.com';
     if (labViewport) labViewport.innerHTML = renderNiche({ ...n, name, headline: tag });
   }
- 
+
   labName?.addEventListener('input', updateLab);
   labTag?.addEventListener('input', updateLab);
   labSeg?.querySelectorAll('.kt-segmented__btn').forEach(btn => {
@@ -438,7 +438,7 @@ const FAQ_ITEMS = [
     });
   });
   updateLab();
- 
+
   /* ── FAQ accordion ── */
   document.querySelectorAll('.kt-faqItem').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -447,10 +447,10 @@ const FAQ_ITEMS = [
       if (!isOpen) btn.classList.add('is-open');
     });
   });
- 
+
 </script>
- 
- 
+
+
 <!-- ═══════════════════ ESTILOS ═══════════════════ -->
 <style is:global>
   :root {
@@ -475,13 +475,13 @@ const FAQ_ITEMS = [
     --kt-shadow:     0 1px 2px rgba(20,30,28,.04), 0 14px 40px -10px rgba(20,30,28,.10);
     --kt-shadow-lg:  0 30px 80px -20px rgba(20,30,28,.18);
   }
- 
+
   /* Utils */
   .kt-shell    { max-width:var(--kt-shell); margin:0 auto; padding:0 28px; }
   .kt-mono     { font-family:var(--kt-mono); font-size:12px; letter-spacing:.02em; }
   .kt-italic   { font-family:var(--kt-display); font-style:italic; font-weight:400; color:var(--kt-brand-deep); }
   .kt-underline{ background:linear-gradient(180deg,transparent 64%,rgba(29,158,117,.28) 64% 92%,transparent 92%); padding:0 .12em; }
- 
+
   /* Buttons */
   .kt-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 18px; border-radius:999px; border:1px solid transparent; font-family:var(--kt-sans); font-weight:500; text-decoration:none; font-size:14.5px; transition:transform .15s,background .2s,color .2s,border .2s; white-space:nowrap; cursor:pointer; }
   .kt-btn--lg { padding:14px 22px; font-size:15px; }
@@ -489,12 +489,12 @@ const FAQ_ITEMS = [
   .kt-btn--primary:hover { background:var(--kt-brand-deep); transform:translateY(-1px); }
   .kt-btn--ghost { background:transparent; color:var(--kt-ink); border-color:var(--kt-line-strong); }
   .kt-btn--ghost:hover { background:var(--kt-bg-warm); }
- 
+
   /* Eyebrow */
   .kt-eyebrow { display:inline-flex; align-items:center; gap:10px; font-family:var(--kt-mono); font-size:12px; color:var(--kt-muted); text-transform:uppercase; letter-spacing:.06em; }
   .kt-eyebrow__dot { width:7px; height:7px; border-radius:999px; background:var(--kt-brand); box-shadow:0 0 0 4px rgba(29,158,117,.18); }
   .kt-eyebrow__sep { color:var(--kt-line-strong); }
- 
+
   /* Section heads */
   .kt-section__head { max-width:760px; margin:0 0 48px; }
   .kt-section__head--row { display:flex; align-items:end; justify-content:space-between; gap:40px; max-width:none; }
@@ -502,7 +502,7 @@ const FAQ_ITEMS = [
   .kt-section__title { font-family:var(--kt-display); font-weight:400; font-size:clamp(32px,4vw,56px); line-height:1.05; letter-spacing:-.02em; margin:12px 0 16px; color:var(--kt-ink); }
   .kt-section__lede  { font-size:17px; color:var(--kt-ink-2); max-width:580px; margin:0; line-height:1.6; }
   .kt-section__lede--side { max-width:360px; align-self:end; }
- 
+
   /* ── HERO ── */
   .kt-hero { position:relative; padding:80px 0 0; overflow:hidden; background:var(--kt-bg); }
   .kt-hero__bg { position:absolute; inset:0; z-index:0; pointer-events:none; }
@@ -520,7 +520,7 @@ const FAQ_ITEMS = [
   .kt-hero__proof strong { display:block; font-size:26px; color:var(--kt-ink); line-height:1; margin-bottom:4px; font-weight:400; font-family:var(--kt-display); }
   .kt-hero__demo { position:relative; }
   .kt-demoCaption { margin-top:16px; text-align:center; color:var(--kt-muted); }
- 
+
   /* Demo frame */
   .kt-demoFrame { background:#fff; border-radius:18px; overflow:hidden; box-shadow:var(--kt-shadow-lg); border:1px solid var(--kt-line); }
   .kt-demoFrame__chrome { display:flex; align-items:center; gap:14px; padding:12px 16px; background:#f5f4f0; border-bottom:1px solid var(--kt-line); }
@@ -539,20 +539,20 @@ const FAQ_ITEMS = [
   .kt-demoSwitcher__tab.is-on { background:#fff; color:var(--kt-brand-deep); box-shadow:0 1px 4px rgba(20,30,28,.08); }
   .kt-demoSwitcher__bar { position:absolute; left:12px; right:12px; bottom:4px; height:2px; background:var(--kt-brand); border-radius:2px; transform:scaleX(0); transform-origin:left; transition:transform .2s; }
   .kt-demoSwitcher__tab.is-on .kt-demoSwitcher__bar { transform:scaleX(1); }
- 
+
   /* Marquee */
   .kt-marquee { border-top:1px solid var(--kt-line); border-bottom:1px solid var(--kt-line); background:var(--kt-bg-warm); overflow:hidden; padding:16px 0; }
   .kt-marquee__track { display:flex; gap:44px; white-space:nowrap; animation:kt-marquee 40s linear infinite; }
   .kt-marquee__item { font-family:var(--kt-display); font-size:22px; color:var(--kt-ink); display:inline-flex; gap:18px; align-items:center; }
   .kt-marquee__star { color:var(--kt-brand); font-size:16px; }
   @keyframes kt-marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
- 
+
   /* ── NICHOS ── */
   .kt-nichos { padding:120px 0; background:var(--kt-bg); }
   .kt-nichos__grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
   @media(max-width:1020px){ .kt-nichos__grid { grid-template-columns:repeat(2,1fr); } }
   @media(max-width:600px) { .kt-nichos__grid { grid-template-columns:1fr; } }
-  .kt-nicho { background:var(--kt-card); border:1px solid var(--kt-line); border-radius:var(--kt-radius); padding:28px 24px; position:relative; overflow:hidden; transition:transform .25s,border-color .25s,box-shadow .25s; }
+  .kt-nicho { background:var(--kt-card); border:1px solid var(--kt-line); border-radius:var(--kt-radius); padding:28px 24px; position:relative; overflow:hidden; transition:transform .25s,border-color .25s,box-shadow .25s; display:block; text-decoration:none; color:inherit; cursor:pointer; }
   .kt-nicho:hover { transform:translateY(-4px); border-color:var(--kt-brand); box-shadow:var(--kt-shadow); }
   .kt-nicho__num { font-size:28px; margin-bottom:24px; }
   .kt-nicho__title { font-family:var(--kt-display); font-weight:400; font-size:24px; margin:0 0 12px; }
@@ -560,7 +560,7 @@ const FAQ_ITEMS = [
   .kt-nicho__tag { color:var(--kt-muted); }
   .kt-nicho__arrow { position:absolute; top:24px; right:24px; width:36px; height:36px; border-radius:999px; background:var(--kt-brand-soft); color:var(--kt-brand-deep); display:flex; align-items:center; justify-content:center; transition:transform .25s,background .25s; }
   .kt-nicho:hover .kt-nicho__arrow { background:var(--kt-brand); color:#fff; }
- 
+
   /* ── BENTO ── */
   .kt-bento { padding:60px 0 120px; background:var(--kt-bg); }
   .kt-bento__grid { display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:minmax(180px,auto); gap:16px; }
@@ -606,7 +606,7 @@ const FAQ_ITEMS = [
   .kt-stat__num { font-family:var(--kt-display); font-size:52px; line-height:1; color:var(--kt-brand-deep); font-weight:400; letter-spacing:-.02em; }
   .kt-stat__lbl { font-size:13px; color:var(--kt-muted); margin-top:8px; }
   @media(max-width:720px){ .kt-stats { grid-template-columns:repeat(2,1fr); } }
- 
+
   /* ── PROCESO ── */
   .kt-proc { padding:120px 0; background:var(--kt-bg-warm); border-top:1px solid var(--kt-line); border-bottom:1px solid var(--kt-line); }
   .kt-proc__rail { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; position:relative; padding-top:70px; }
@@ -618,7 +618,7 @@ const FAQ_ITEMS = [
   .kt-procStep__body { font-size:14.5px; color:var(--kt-ink-2); margin:0; line-height:1.55; }
   @media(max-width:1020px){ .kt-proc__rail { grid-template-columns:repeat(2,1fr); row-gap:60px; } .kt-proc__line { display:none; } }
   @media(max-width:600px) { .kt-proc__rail { grid-template-columns:1fr; } }
- 
+
   /* ── DEMO LAB ── */
   .kt-demo { padding:120px 0; background:var(--kt-bg-warm); border-top:1px solid var(--kt-line); border-bottom:1px solid var(--kt-line); }
   .kt-demoLab { display:grid; grid-template-columns:380px 1fr; gap:32px; align-items:start; }
@@ -633,7 +633,7 @@ const FAQ_ITEMS = [
   .kt-segmented__btn.is-on { background:#fff; color:var(--kt-brand-deep); box-shadow:0 1px 4px rgba(20,30,28,.08); font-weight:600; }
   .kt-demoLab__hint { display:flex; flex-direction:column; gap:4px; color:var(--kt-muted); font-size:13px; padding:12px 0; border-top:1px dashed var(--kt-line); border-bottom:1px dashed var(--kt-line); }
   .kt-demoLab__preview .kt-demoFrame__url { font-size:11px; }
- 
+
   /* ── TESTIMONIOS ── */
   .kt-test { padding:120px 0; background:var(--kt-bg-warm); border-top:1px solid var(--kt-line); }
   .kt-test__grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
@@ -647,7 +647,7 @@ const FAQ_ITEMS = [
   .kt-quote figcaption { display:flex; align-items:center; gap:12px; font-size:14px; }
   .kt-quote__avatar { width:40px; height:40px; border-radius:999px; background:linear-gradient(135deg,var(--kt-brand),var(--kt-accent)); flex-shrink:0; }
   .kt-quote--2 figcaption { color:rgba(255,255,255,.85); }
- 
+
   /* ── FAQ ── */
   .kt-faq { padding:120px 0; background:var(--kt-bg); }
   .kt-faq__shell { display:grid; grid-template-columns:1fr 1.4fr; gap:60px; align-items:start; }
@@ -663,4 +663,3 @@ const FAQ_ITEMS = [
   .kt-faqItem__a { grid-column:2; font-size:15px; color:var(--kt-ink-2); line-height:1.6; max-height:0; overflow:hidden; opacity:0; transition:max-height .3s ease,opacity .25s ease,margin-top .3s ease; margin-top:0; }
   .kt-faqItem.is-open .kt-faqItem__a { max-height:200px; opacity:1; margin-top:12px; }
 </style>
- 
