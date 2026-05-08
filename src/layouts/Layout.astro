@@ -6,7 +6,7 @@ interface Props {
 
 const {
   title       = 'Diseño de Página Web Profesional y Económica en México | KreatuSitioWeb',
-  description = 'Crea tu sitio web profesional desde $999.99 MXN. Diseño de página web económico, responsivo y con SEO incluido. Entrega en 7 días. Crear sitio web nunca fue tan fácil.',
+  description = 'Crea tu sitio web profesional desde $999.99 MXN. Diseño de página web económico, responsivo y con SEO incluido. Entrega en 7 días.',
 } = Astro.props;
 
 const siteUrl = 'https://kreatusitioweb.com';
@@ -22,7 +22,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   name: 'KreatuSitioWeb',
-  description: 'Diseño de páginas web profesionales y económicas en México. Creamos tu sitio web en 7 días desde $999.99 MXN.',
+  description: 'Diseño de páginas web profesionales y económicas en México.',
   url: siteUrl,
   email: 'projectmannager@kreatusitioweb.com',
   areaServed: 'MX',
@@ -32,27 +32,9 @@ const jsonLd = {
     '@type': 'OfferCatalog',
     name: 'Planes de diseño web',
     itemListElement: [
-      {
-        '@type': 'Offer',
-        name: 'Plan Starter',
-        price: '999.99',
-        priceCurrency: 'MXN',
-        description: 'Página web de 1 sección, diseño responsivo, formulario de contacto'
-      },
-      {
-        '@type': 'Offer',
-        name: 'Plan Pro',
-        price: '1999.99',
-        priceCurrency: 'MXN',
-        description: 'Hasta 5 secciones, SEO optimizado, botón WhatsApp, SSL gratis'
-      },
-      {
-        '@type': 'Offer',
-        name: 'Plan Pro Plus',
-        price: '3499.99',
-        priceCurrency: 'MXN',
-        description: 'Blog, panel de administración, Google Analytics, soporte 60 días'
-      }
+      { '@type': 'Offer', name: 'Plan Starter',  price: '999.99',  priceCurrency: 'MXN' },
+      { '@type': 'Offer', name: 'Plan Pro',       price: '1999.99', priceCurrency: 'MXN' },
+      { '@type': 'Offer', name: 'Plan Pro Plus',  price: '3499.99', priceCurrency: 'MXN' },
     ]
   }
 };
@@ -63,45 +45,30 @@ const jsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- FAVICON -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- SEO OPTIMIZADO PARA POSICIONAMIENTO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="diseño de página web, diseño de pagina web profesional, diseño de pagina web economico, crear sitio web, crear sitio web gratis, pagina web, sitio web, diseño web México, crear página web económica, página web profesional México, diseño web económico, hacer página web, crear sitio web México, página web para negocios, diseño web barato México" />
-    <meta name="author" content="KreatuSitioWeb" />
+    <meta name="keywords" content="diseño de página web, diseño web México, página web profesional, sitio web económico, crear página web México" />
     <meta name="robots" content="index, follow" />
-    <meta name="language" content="Spanish" />
     <meta name="geo.region" content="MX" />
-    <meta name="geo.country" content="Mexico" />
     <link rel="canonical" href={siteUrl} />
-
-    <!-- GOOGLE SEARCH CONSOLE -->
     <meta name="google-site-verification" content="Zx7xJA_eWDfVg2U-RfloA7B_87rW-SXGD0SpiI99tO4" />
 
-    <!-- OPEN GRAPH -->
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content={siteUrl} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name"   content="KreatuSitioWeb" />
     <meta property="og:locale"      content="es_MX" />
+    <meta name="twitter:card"       content="summary_large_image" />
 
-    <!-- TWITTER CARD -->
-    <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content={title} />
-    <meta name="twitter:description" content={description} />
-
-    <!-- JSON-LD SCHEMA RICO -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- FUENTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -112,65 +79,45 @@ const jsonLd = {
     <nav>
       <div class="nav-inner">
         <a href="/" class="logo">Kreatu<span>SitioWeb</span></a>
-
         <ul class="nav-links">
           {navLinks.map(({ href, label }) => (
             <li><a href={href}>{label}</a></li>
           ))}
         </ul>
-
         <a href="#contacto" class="btn-nav">Empezar ahora</a>
-
         <button class="hamburger" aria-label="Abrir menú" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
       </div>
     </nav>
 
-    <!-- CONTENIDO DE PÁGINA -->
-    <main>
-      <slot />
-    </main>
+    <main><slot /></main>
 
-    <!-- FOOTER SEO -->
+    <!-- FOOTER -->
     <footer>
       <div class="footer-inner">
         <a href="/" class="logo">Kreatu<span>SitioWeb</span></a>
-        <span class="footer-copy">© {new Date().getFullYear()} KreatuSitioWeb · Diseño de páginas web profesionales en México · Todos los derechos reservados</span>
+        <span class="footer-copy">© {new Date().getFullYear()} KreatuSitioWeb · Diseño de páginas web profesionales en México</span>
         <ul class="footer-links">
           <li><a href="#">Aviso de privacidad</a></li>
           <li><a href="#">Términos</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </div>
-      <!-- Links SEO ocultos visualmente pero visibles para Google -->
-      <div class="seo-links">
-        <p>Servicios: <a href="#precios">Diseño de página web económico</a> · <a href="#precios">Crear sitio web profesional</a> · <a href="#precios">Páginas web para negocios en México</a></p>
-      </div>
     </footer>
 
     <!-- WHATSAPP FLOTANTE -->
-    <!-- TODO: reemplazar 52XXXXXXXXXX por tu número real cuando lo tengas -->
     <a
       href="https://wa.me/52XXXXXXXXXX"
-      class="whatsapp-fab"
+      class="kt-fab"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Contáctanos por WhatsApp para diseño de página web"
+      aria-label="Hablar por WhatsApp"
     >
-      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path
-          d="M16 2C8.268 2 2 8.268 2 16c0 2.417.632 4.765 1.832 6.833L2 30l7.395-1.805A13.94 13.94 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z"
-          fill="#25D366"
-        />
-        <path
-          d="M22.5 19.375c-.308-.154-1.82-.897-2.102-.999-.282-.103-.487-.154-.692.154-.205.308-.795.999-.974 1.204-.18.205-.359.23-.667.077-.308-.154-1.3-.479-2.476-1.527-.915-.816-1.533-1.823-1.712-2.131-.18-.308-.019-.474.135-.627.138-.138.308-.359.462-.538.154-.18.205-.308.308-.513.103-.205.051-.385-.026-.538-.077-.154-.692-1.667-.948-2.283-.25-.6-.503-.518-.692-.528l-.59-.01c-.205 0-.538.077-.82.385-.282.308-1.077 1.052-1.077 2.565 0 1.513 1.103 2.975 1.257 3.18.154.205 2.17 3.312 5.258 4.643.735.317 1.308.507 1.756.649.738.235 1.41.202 1.941.122.592-.088 1.82-.744 2.077-1.462.257-.718.257-1.333.18-1.462-.077-.128-.282-.205-.59-.359Z"
-          fill="#fff"
-        />
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.5 3.5A11.7 11.7 0 0012 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6A12 12 0 0012 24c6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.5zM12 22a9.9 9.9 0 01-5.1-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.9 9.9 0 012 12C2 6.5 6.5 2 12 2s10 4.5 10 10-4.5 10-10 10zm5.5-7.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.4.2-.7.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2.1 3.2 5.2 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2.1-1.4.2-.7.2-1.3.1-1.5z"/>
       </svg>
-      <span class="whatsapp-tooltip">¡Escríbenos!</span>
+      <span>Hablar ahora</span>
     </a>
 
   </body>
@@ -178,35 +125,17 @@ const jsonLd = {
 
 <script>
   function toggleMenu() {
-    const links = document.querySelector('.nav-links') as HTMLElement | null;
+    const links = document.querySelector('.nav-links');
     const isOpen = links?.dataset.open === 'true';
     if (!links) return;
     if (isOpen) {
       links.removeAttribute('style');
       links.dataset.open = 'false';
     } else {
-      links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;padding:1rem 5%;border-bottom:1px solid #E5E7EB;z-index:99;gap:1.25rem;';
+      links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#faf9f5;padding:1rem 5%;border-bottom:1px solid #e6e4df;z-index:99;gap:1.25rem;';
       links.dataset.open = 'true';
     }
   }
-
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach(el => observer.observe(el));
-  });
 </script>
 
 <style is:global>
@@ -226,230 +155,69 @@ const jsonLd = {
     --gray-900: #111827;
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
-    font-family: 'DM Sans', sans-serif;
-    color: var(--gray-800);
-    background: #fff;
+    font-family: 'Geist', system-ui, sans-serif;
+    color: #181917;
+    background: #faf9f5;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4, .logo, .btn-nav {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
+  img, svg { display: block; max-width: 100%; }
+  button { font: inherit; color: inherit; cursor: pointer; }
 
+  /* NAV */
   nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--gray-200);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,245,0.92);
+    backdrop-filter: saturate(140%) blur(12px);
+    border-bottom: 1px solid #e6e4df;
     padding: 0 5%;
   }
+  .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: 'Geist', sans-serif; font-size: 1.25rem; font-weight: 700; color: #0F6E56; text-decoration: none; letter-spacing: -0.5px; }
+  .logo span { color: #181917; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.9rem; font-weight: 500; color: #3a3d38; text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: #1D9E75; }
+  .btn-nav { background: #1D9E75; color: #fff; padding: 0.5rem 1.25rem; border-radius: 999px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: background 0.2s; border: none; white-space: nowrap; }
+  .btn-nav:hover { background: #0F6E56; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: #181917; border-radius: 2px; }
 
-  .nav-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-  }
-
-  .logo {
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: var(--teal-600);
-    text-decoration: none;
-    letter-spacing: -0.5px;
-  }
-
-  .logo span { color: var(--gray-900); }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--gray-600);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--teal-500); }
-
-  .btn-nav {
-    background: var(--teal-400);
-    color: #fff;
-    padding: 0.5rem 1.25rem;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.2s;
-    white-space: nowrap;
-  }
-
-  .btn-nav:hover { background: var(--teal-600); }
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-  }
-
-  .hamburger span {
-    width: 24px;
-    height: 2px;
-    background: var(--gray-800);
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
-
-  main { min-height: 60vh; }
-
-  footer {
-    background: var(--gray-900);
-    padding: 2.5rem 5% 1.5rem;
-  }
-
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-
-  footer .logo { color: var(--teal-400); }
+  /* FOOTER */
+  footer { background: #181917; padding: 2.5rem 5%; }
+  .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  footer .logo { color: #1D9E75; }
   footer .logo span { color: #fff; }
+  .footer-copy { font-size: 0.8rem; color: #7a7d78; }
+  .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+  .footer-links a { font-size: 0.85rem; color: #7a7d78; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: #1D9E75; }
 
-  .footer-copy {
-    font-size: 0.8rem;
-    color: var(--gray-400);
+  /* WHATSAPP FAB */
+  .kt-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 200;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #25D366; color: white; padding: 14px 20px;
+    border-radius: 999px; text-decoration: none;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px; font-weight: 600;
+    box-shadow: 0 12px 30px rgba(37,211,102,0.4);
+    transition: transform .2s, box-shadow .2s;
   }
+  .kt-fab:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 40px rgba(37,211,102,0.5); }
+  @media (max-width: 600px) { .kt-fab span { display: none; } .kt-fab { padding: 14px; } }
 
-  .footer-links {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-  }
-
-  .footer-links a {
-    font-size: 0.85rem;
-    color: var(--gray-400);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--teal-400); }
-
-  .seo-links {
-    max-width: 1100px;
-    margin: 1rem auto 0;
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.2);
-  }
-
-  .seo-links a {
-    color: rgba(255,255,255,0.2);
-    text-decoration: none;
-  }
-
-  @keyframes waBounceIn {
-    0%   { opacity: 0; transform: scale(0.4) translateY(20px); }
-    60%  { opacity: 1; transform: scale(1.12) translateY(-4px); }
-    80%  { transform: scale(0.95) translateY(2px); }
-    100% { transform: scale(1) translateY(0); }
-  }
-
-  .whatsapp-fab {
-    position: fixed;
-    bottom: 1.75rem;
-    right: 1.75rem;
-    z-index: 200;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: #25D366;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
-    animation: waBounceIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s both;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .whatsapp-fab:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
-  }
-
-  .whatsapp-fab svg { width: 30px; height: 30px; }
-
-  .whatsapp-tooltip {
-    position: absolute;
-    right: calc(100% + 10px);
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--gray-900);
-    color: #fff;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    white-space: nowrap;
-    padding: 0.35rem 0.75rem;
-    border-radius: 6px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .whatsapp-tooltip::after {
-    content: '';
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 5px solid transparent;
-    border-left-color: var(--gray-900);
-  }
-
-  .whatsapp-fab:hover .whatsapp-tooltip { opacity: 1; }
-
+  /* MOBILE NAV */
   @media (max-width: 768px) {
-    .nav-links,
-    .btn-nav { display: none; }
+    .nav-links, .btn-nav { display: none; }
     .hamburger { display: flex; }
     .footer-inner { flex-direction: column; text-align: center; }
     .footer-links { justify-content: center; }
-    .whatsapp-fab { bottom: 1.25rem; right: 1.25rem; }
   }
+
+  main { min-height: 60vh; }
 </style>
