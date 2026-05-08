@@ -1,6 +1,7 @@
 ---
 const contactItems = [
   { icon: '📧', text: 'projectmannager@kreatusitioweb.com', href: 'mailto:projectmannager@kreatusitioweb.com' },
+  { icon: '💬', text: '+52 229 873 5788 (WhatsApp)', href: 'https://wa.me/522298735788' },
   { icon: '⏰', text: 'Lun–Vie de 9:00 a 18:00 hrs', href: null },
   { icon: '🇲🇽', text: 'Toda la República Mexicana', href: null },
 ];
@@ -87,9 +88,10 @@ const contactItems = [
             <label for="plan">Plan de interés</label>
             <select id="plan" name="plan">
               <option value="">Selecciona un plan...</option>
-              <option value="starter">Plan Starter — $999.99</option>
-              <option value="pro">Plan Pro — $1,999.99 ⭐ (Recomendado)</option>
-              <option value="pro-plus">Plan Pro Plus — $3,499.99</option>
+              <option value="esencial">Plan Esencial — $999.99 + IVA</option>
+              <option value="profesional">Plan Profesional — $1,999.99 + IVA</option>
+              <option value="pro-plus">Plan Pro Plus — $3,499.99 + IVA ⭐ (Más vendido)</option>
+              <option value="ecommerce">Plan Ecommerce — $7,499.99 + IVA</option>
               <option value="personalizado">Cotización personalizada</option>
             </select>
           </div>
@@ -168,27 +170,28 @@ const contactItems = [
   }
 
   .section-label {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-size: 0.78rem;
     font-weight: 700;
-    color: var(--teal-500);
+    color: #1D9E75;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 0.75rem;
   }
 
   .contact-info h2 {
+    font-family: 'Instrument Serif', serif;
     font-size: clamp(1.75rem, 3vw, 2.25rem);
-    font-weight: 800;
-    color: var(--gray-900);
+    font-weight: 400;
+    color: #181917;
     letter-spacing: -0.5px;
-    line-height: 1.2;
+    line-height: 1.15;
     margin-bottom: 1rem;
   }
 
   .contact-info > p {
     font-size: 1rem;
-    color: var(--gray-600);
+    color: #4B5563;
     line-height: 1.75;
     margin-bottom: 2rem;
   }
@@ -205,22 +208,22 @@ const contactItems = [
     align-items: center;
     gap: 0.9rem;
     font-size: 0.9rem;
-    color: var(--gray-700, #374151);
+    color: #374151;
   }
 
   .contact-item a {
-    color: var(--gray-700, #374151);
+    color: #374151;
     text-decoration: none;
     transition: color 0.2s;
   }
 
-  .contact-item a:hover { color: var(--teal-500); }
+  .contact-item a:hover { color: #1D9E75; }
 
   .contact-icon {
     width: 36px;
     height: 36px;
     border-radius: 8px;
-    background: var(--teal-50);
+    background: #E6F7F2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -229,9 +232,9 @@ const contactItems = [
   }
 
   .contact-form-wrap {
-    background: var(--gray-50, #F9FAFB);
+    background: #F9FAFB;
     border-radius: 20px;
-    border: 1px solid var(--gray-200);
+    border: 1px solid #E5E7EB;
     padding: 2.25rem;
   }
 
@@ -251,7 +254,7 @@ const contactItems = [
   .form-group label {
     font-size: 0.82rem;
     font-weight: 600;
-    color: var(--gray-700, #374151);
+    color: #374151;
   }
 
   .form-group input,
@@ -259,10 +262,10 @@ const contactItems = [
   .form-group textarea {
     padding: 0.75rem 1rem;
     border-radius: 8px;
-    border: 1.5px solid var(--gray-200);
-    font-family: 'DM Sans', sans-serif;
+    border: 1.5px solid #E5E7EB;
+    font-family: 'Geist', sans-serif;
     font-size: 0.9rem;
-    color: var(--gray-800);
+    color: #1F2937;
     background: #fff;
     outline: none;
     transition: border-color 0.2s;
@@ -271,35 +274,35 @@ const contactItems = [
 
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--teal-400); }
+  .form-group textarea:focus { border-color: #1D9E75; box-shadow: 0 0 0 3px rgba(29,158,117,.12); }
 
   .form-group textarea { min-height: 100px; }
 
   .btn-submit {
     width: 100%;
     padding: 0.9rem;
-    background: var(--teal-400);
+    background: #1D9E75;
     color: #fff;
     border: none;
-    border-radius: 10px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    border-radius: 999px;
+    font-family: 'Geist', sans-serif;
     font-size: 0.95rem;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.15s;
   }
 
-  .btn-submit:hover:not(:disabled) { background: var(--teal-600); }
+  .btn-submit:hover:not(:disabled) { background: #0F6E56; transform: translateY(-1px); }
   .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; }
 
   .success-msg {
     display: none;
     text-align: center;
     padding: 2rem 1rem;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Geist', sans-serif;
     font-size: 1rem;
     font-weight: 600;
-    color: var(--teal-600);
+    color: #0F6E56;
     line-height: 1.6;
   }
 
