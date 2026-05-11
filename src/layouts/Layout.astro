@@ -12,11 +12,12 @@ const {
 const siteUrl = 'https://kreatusitioweb.com';
 
 const navLinks = [
-  { href: '#beneficios', label: 'Beneficios' },
-  { href: '#proceso',    label: 'Cómo funciona' },
-  { href: '#demo',       label: 'Demo' },
-  { href: '#precios',    label: 'Precios' },
-  { href: '#contacto',   label: 'Contacto' },
+  { href: '#beneficios',   label: 'Beneficios' },
+  { href: '#proceso',      label: 'Cómo funciona' },
+  { href: '#demo',         label: 'Demo' },
+  { href: '/kreatubot',    label: 'KreatuBot' },
+  { href: '#precios',      label: 'Precios' },
+  { href: '#contacto',     label: 'Contacto' },
 ];
 
 const jsonLd = {
@@ -47,6 +48,10 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content="diseño de página web, diseño de pagina web profesional, diseño de pagina web economico, crear sitio web, pagina web, sitio web, diseño web México" />
@@ -61,6 +66,13 @@ const jsonLd = {
     <meta property="og:locale"      content="es_MX" />
     <meta name="twitter:card"       content="summary_large_image" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "KreatuSitioWeb",
+      "url": "https://kreatusitioweb.com",
+      "logo": "https://kreatusitioweb.com/favicon-180.png"
+    }</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />

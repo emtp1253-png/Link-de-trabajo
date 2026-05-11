@@ -1,0 +1,579 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<Layout
+  title="KreatuBot — Automatización y Agentes de IA para tu Negocio | KreatuSitioWeb"
+  description="Automatiza tu atención al cliente, ventas y seguimiento de leads con KreatuBot. Agentes de IA para WhatsApp disponibles 24/7 para hacer crecer tu negocio."
+>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="kb-hero">
+  <div class="kb-hero__bg" aria-hidden="true">
+    <div class="kb-hero__grid"></div>
+    <div class="kb-hero__glow"></div>
+    <div class="kb-hero__glow kb-hero__glow--2"></div>
+  </div>
+
+  <div class="kt-shell kb-hero__inner">
+    <div class="kb-hero__copy">
+      <div class="kt-eyebrow">
+        <span class="kt-eyebrow__dot"></span>
+        <span>KreatuBot · Automatización con IA</span>
+        <span class="kt-eyebrow__sep">/</span>
+        <span class="kt-mono">servicio independiente</span>
+      </div>
+
+      <h1 class="kb-hero__title">
+        Tu negocio
+        <em class="kb-italic">trabajando</em><br/>
+        mientras tú<br/>
+        <span class="kb-underline">descansas.</span>
+      </h1>
+
+      <p class="kb-hero__lede">
+        KreatuBot es nuestro sistema de agentes de inteligencia artificial que atiende a tus clientes, genera ventas y da seguimiento a tus leads — <em>las 24 horas, los 7 días de la semana</em>, sin que tú tengas que estar al pendiente.
+      </p>
+
+      <div class="kb-hero__ctas">
+        <a href="#contacto" class="kt-btn kb-btn--primary kb-btn--lg">Quiero KreatuBot →</a>
+        <a href="#como-funciona" class="kt-btn kb-btn--ghost kb-btn--lg">¿Cómo funciona?</a>
+      </div>
+
+      <ul class="kb-hero__proof">
+        <li><strong>24/7</strong> disponible</li>
+        <li><strong>0</strong> leads perdidos</li>
+        <li><strong>IA</strong> entrenada en tu negocio</li>
+        <li><strong>WhatsApp</strong> integrado</li>
+      </ul>
+    </div>
+
+    <!-- Chat simulado -->
+    <div class="kb-chat-preview">
+      <div class="kb-chat__header">
+        <div class="kb-chat__avatar">
+          <span>KB</span>
+          <span class="kb-chat__status"></span>
+        </div>
+        <div class="kb-chat__info">
+          <strong>KreatuBot</strong>
+          <span>Agente de tu negocio · En línea</span>
+        </div>
+        <div class="kb-chat__badge kt-mono">IA</div>
+      </div>
+      <div class="kb-chat__body" id="chat-body">
+        <div class="kb-chat__msg kb-chat__msg--bot">
+          <p>¡Hola! 👋 Soy el asistente de <strong>Tu Negocio</strong>. ¿En qué te puedo ayudar hoy?</p>
+          <span class="kb-chat__time">Ahora mismo</span>
+        </div>
+      </div>
+      <div class="kb-chat__options" id="chat-opts">
+        <button class="kb-chat__opt" onclick="chatReply('precios')">💰 Ver precios</button>
+        <button class="kb-chat__opt" onclick="chatReply('cita')">📅 Agendar cita</button>
+        <button class="kb-chat__opt" onclick="chatReply('info')">ℹ️ Más información</button>
+      </div>
+      <div class="kb-chat__foot kt-mono">
+        <span class="kb-pulse"></span> Powered by KreatuBot
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ PROBLEMA / SOLUCIÓN ═══════════════════ -->
+<section class="kb-problem">
+  <div class="kt-shell">
+    <div class="kb-problem__grid">
+      <div class="kb-problem__col kb-problem__col--bad">
+        <div class="kb-problem__head kt-mono">// sin KreatuBot</div>
+        {[
+          "Clientes escriben a las 11pm y no reciben respuesta",
+          "Leads que no dan seguimiento se van con la competencia",
+          "Preguntas repetidas que consumen tiempo de tu equipo",
+          "Citas agendadas sin confirmar que se convierten en no-shows",
+          "Ventas perdidas por no contestar a tiempo",
+        ].map(p => (
+          <div class="kb-problem__item kb-problem__item--bad">
+            <span class="kb-problem__icon">✕</span>
+            <span>{p}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="kb-problem__divider">
+        <div class="kb-problem__vs">VS</div>
+      </div>
+
+      <div class="kb-problem__col kb-problem__col--good">
+        <div class="kb-problem__head kt-mono">// con KreatuBot</div>
+        {[
+          "Respuesta inmediata a cualquier hora, cualquier día",
+          "Seguimiento automático hasta que el lead convierte",
+          "El bot responde las FAQs, tú te enfocas en lo importante",
+          "Confirmaciones y recordatorios automáticos de citas",
+          "Nunca más un cliente sin atender por falta de tiempo",
+        ].map(p => (
+          <div class="kb-problem__item kb-problem__item--good">
+            <span class="kb-problem__icon">✓</span>
+            <span>{p}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ SERVICIOS ═══════════════════ -->
+<section class="kb-servicios" id="servicios">
+  <div class="kt-shell">
+    <div class="kt-section__head">
+      <div class="kt-eyebrow"><span class="kt-eyebrow__dot"></span><span class="kt-mono">01 / Qué hace KreatuBot</span></div>
+      <h2 class="kb-section__title">Tres agentes que trabajan <em class="kb-italic">por ti</em> sin parar.</h2>
+      <p class="kt-section__lede">Cada bot se entrena con la información de tu negocio: productos, precios, horarios, servicios y el tono con el que quieres comunicarte.</p>
+    </div>
+
+    <div class="kb-servicios__grid">
+
+      <!-- Bot 1: Atención al cliente -->
+      <article class="kb-card">
+        <div class="kb-card__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="kb-card__num kt-mono">01</div>
+        <h3>Agente de atención al cliente</h3>
+        <p>Responde preguntas frecuentes, da información sobre horarios, precios y servicios, y resuelve dudas al instante — en el tono de voz de tu marca.</p>
+        <ul class="kb-card__feats">
+          <li>Integrado a WhatsApp Business</li>
+          <li>Responde en segundos, 24/7</li>
+          <li>Maneja múltiples conversaciones a la vez</li>
+          <li>Escala a humano cuando lo necesita</li>
+        </ul>
+        <div class="kb-card__tag kt-mono">// customer service</div>
+      </article>
+
+      <!-- Bot 2: Ventas -->
+      <article class="kb-card kb-card--hi">
+        <div class="kb-card__ribbon kt-mono">★ Más solicitado</div>
+        <div class="kb-card__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="kb-card__num kt-mono">02</div>
+        <h3>Agente de ventas automatizado</h3>
+        <p>Califica leads, presenta tu oferta, resuelve objeciones y guía al cliente hasta cerrar la venta o agendar una llamada contigo — sin intervención humana.</p>
+        <ul class="kb-card__feats">
+          <li>Calificación automática de leads</li>
+          <li>Presenta productos y precios dinámicamente</li>
+          <li>Maneja objeciones frecuentes</li>
+          <li>Agenda citas directo en tu calendario</li>
+        </ul>
+        <div class="kb-card__tag kt-mono">// sales agent</div>
+      </article>
+
+      <!-- Bot 3: Follow-up -->
+      <article class="kb-card">
+        <div class="kb-card__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="kb-card__num kt-mono">03</div>
+        <h3>Seguimiento automático de leads</h3>
+        <p>Nunca más un prospecto olvidado. KreatuBot da seguimiento automático a cada lead según en qué parte del proceso esté — hasta que convierte o se descarta.</p>
+        <ul class="kb-card__feats">
+          <li>Secuencias de mensajes automatizadas</li>
+          <li>Recordatorios de citas y pagos</li>
+          <li>Reactivación de clientes inactivos</li>
+          <li>Reportes de conversión automáticos</li>
+        </ul>
+        <div class="kb-card__tag kt-mono">// lead nurturing</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ CÓMO FUNCIONA ═══════════════════ -->
+<section class="kb-como" id="como-funciona">
+  <div class="kt-shell">
+    <div class="kt-section__head">
+      <div class="kt-eyebrow"><span class="kt-eyebrow__dot"></span><span class="kt-mono">02 / Proceso</span></div>
+      <h2 class="kb-section__title">Listo en <em class="kb-italic">menos de una semana</em>.</h2>
+    </div>
+
+    <div class="kb-pasos">
+      <div class="kb-pasos__line"></div>
+      {[
+        { n:"01", icon:"🎙️", t:"Nos cuentas tu negocio",   b:"Una sesión de 45 minutos donde recopilamos todo: tus servicios, precios, objeciones frecuentes, el tono de tu marca y cómo quieres que hable tu bot." },
+        { n:"02", icon:"🧠", t:"Entrenamos a tu agente",   b:"Configuramos y entrenamos el bot con toda la información de tu negocio. Le enseñamos a hablar como tú, a manejar objeciones y a saber cuándo escalar." },
+        { n:"03", icon:"🔗", t:"Integramos con WhatsApp",  b:"Conectamos KreatuBot a tu WhatsApp Business o número de empresa. Lo probamos juntos antes de activarlo para asegurarnos de que todo funcione perfecto." },
+        { n:"04", icon:"🚀", t:"Activamos y monitoreamos", b:"Lo lanzamos y te damos acceso a un panel donde puedes ver todas las conversaciones. El primer mes lo ajustamos en tiempo real según cómo responden tus clientes." },
+      ].map(p => (
+        <div class="kb-paso">
+          <div class="kb-paso__node">{p.icon}</div>
+          <div class="kb-paso__num kt-mono">{p.n}</div>
+          <h3 class="kb-paso__title">{p.t}</h3>
+          <p class="kb-paso__body">{p.b}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ PRECIOS KREATUBOT ═══════════════════ -->
+<section class="kb-planes">
+  <div class="kt-shell">
+    <div class="kt-section__head">
+      <div class="kt-eyebrow"><span class="kt-eyebrow__dot"></span><span class="kt-mono">03 / Precios</span></div>
+      <h2 class="kb-section__title">Planes <em class="kb-italic">KreatuBot</em>.</h2>
+      <p class="kt-section__lede">KreatuBot es un servicio independiente. Puedes contratarlo solo o combinarlo con tu página web — tú decides.</p>
+    </div>
+
+    <div class="kb-planes__grid">
+
+      <div class="kb-plan">
+        <div class="kb-plan__head">
+          <span class="kb-plan__name">KreatuBot Starter</span>
+          <span class="kb-plan__price">$1,499<small>.99</small></span>
+          <span class="kb-plan__sub kt-mono">MXN + IVA · pago único + $349/mes</span>
+        </div>
+        <ul class="kb-plan__feats">
+          <li><span class="kb-check kb-check--bot">✓</span> <strong>Agente de atención al cliente</strong></li>
+          <li><span class="kb-check kb-check--bot">✓</span> Respuestas automáticas 24/7 por WhatsApp</li>
+          <li><span class="kb-check kb-check--bot">✓</span> FAQs entrenadas con tu negocio</li>
+          <li><span class="kb-check kb-check--bot">✓</span> Escalación a humano cuando se necesita</li>
+          <li><span class="kb-check">✓</span> Configuración e integración incluida</li>
+          <li><span class="kb-check">✓</span> Soporte 30 días</li>
+        </ul>
+        <a href="#contacto" class="kt-btn kb-plan__btn">Quiero KreatuBot Starter</a>
+      </div>
+
+      <div class="kb-plan kb-plan--hi">
+        <div class="kb-plan__ribbon kt-mono">★ Más solicitado</div>
+        <div class="kb-plan__head">
+          <span class="kb-plan__name">KreatuBot Pro</span>
+          <span class="kb-plan__price">$2,999<small>.99</small></span>
+          <span class="kb-plan__sub kt-mono">MXN + IVA · pago único + $499/mes</span>
+        </div>
+        <ul class="kb-plan__feats">
+          <li><span class="kb-check kb-check--bot">✓</span> <strong>3 agentes activos</strong> — atención, ventas y follow-up</li>
+          <li><span class="kb-check kb-check--bot">✓</span> Agente de ventas automatizado</li>
+          <li><span class="kb-check kb-check--bot">✓</span> Seguimiento automático de leads</li>
+          <li><span class="kb-check kb-check--bot">✓</span> Secuencias de mensajes personalizadas</li>
+          <li><span class="kb-check kb-check--bot">✓</span> Recordatorios de citas y pagos</li>
+          <li><span class="kb-check kb-check--bot">✓</span> Panel de conversaciones en tiempo real</li>
+          <li><span class="kb-check kb-check--bot">✓</span> Reportes mensuales de conversión</li>
+          <li><span class="kb-check">✓</span> Configuración e integración incluida</li>
+          <li><span class="kb-check">✓</span> Capacitación para tu equipo</li>
+          <li><span class="kb-check">✓</span> Soporte prioritario 60 días</li>
+        </ul>
+        <a href="#contacto" class="kt-btn kb-plan__btn kb-plan__btn--hi">Quiero KreatuBot Pro</a>
+      </div>
+
+    </div>
+
+    <div class="kb-planes__note kt-mono">
+      // ¿Ya tienes página web con nosotros? Pregunta por precio especial al combinar servicios.
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="kb-faq">
+  <div class="kt-shell kb-faq__shell">
+    <div class="kb-faq__intro">
+      <div class="kt-eyebrow"><span class="kt-eyebrow__dot"></span><span class="kt-mono">04 / FAQ</span></div>
+      <h2 class="kb-section__title">Lo que nos <em class="kb-italic">preguntan</em>.</h2>
+      <a href="#contacto" class="kt-btn kb-btn--ghost kb-btn--lg" style="margin-top:16px">Hablar con nosotros →</a>
+    </div>
+    <div class="kb-faq__list">
+      {[
+        { q:"¿El bot suena robótico?",                   a:"No. Lo entrenamos con el tono de tu negocio — puede ser formal, amigable o casual según tu marca. La mayoría de los clientes no notan que están hablando con un bot hasta que se lo dices." },
+        { q:"¿Funciona con mi WhatsApp actual?",          a:"Sí, se integra con WhatsApp Business API. Si no tienes cuenta Business, te ayudamos a configurarla. También funciona con números nuevos." },
+        { q:"¿Qué pasa si el cliente pregunta algo que el bot no sabe?", a:"KreatuBot tiene un flujo de escalación — cuando detecta una pregunta fuera de su alcance, avisa al equipo humano y transfiere la conversación de manera transparente." },
+        { q:"¿Cuánto tarda en aprender mi negocio?",     a:"La configuración inicial toma entre 3 y 5 días. El primer mes lo monitoreamos y afinamos en tiempo real según las conversaciones reales de tus clientes." },
+        { q:"¿Puedo ver las conversaciones?",             a:"Sí. Tienes acceso a un panel donde puedes leer todas las conversaciones, ver métricas y ajustar respuestas cuando quieras." },
+      ].map((it, i) => (
+        <button class="kb-faqItem" data-faq={i}>
+          <span class="kb-faqItem__num kt-mono">{String(i+1).padStart(2,"0")}</span>
+          <span class="kb-faqItem__q">{it.q}</span>
+          <span class="kb-faqItem__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="kb-faqItem__a">{it.a}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ CONTACTO ═══════════════════ -->
+<Contact />
+
+</Layout>
+
+
+<!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+<script>
+  // Chat demo simulado
+  const chatResponses: Record<string, { bot: string; follow?: string }> = {
+    precios: {
+      bot: "Claro 😊 Nuestros planes empiezan desde $999.99 MXN + IVA. El más popular es el Pro Plus que incluye página web + KreatuBot. ¿Te gustaría ver todos los detalles?",
+      follow: "También puedo agendar una videollamada sin compromiso con el equipo. ¿Te interesa?"
+    },
+    cita: {
+      bot: "¡Con gusto! 📅 Tenemos disponibilidad esta semana. ¿Prefieres mañana por la mañana o por la tarde?",
+      follow: "Solo dime tu nombre y correo y confirmo tu lugar ahora mismo."
+    },
+    info: {
+      bot: "KreatuBot es un agente de IA que atiende a tus clientes 24/7 en WhatsApp — responde preguntas, cierra ventas y da seguimiento a leads automáticamente.",
+      follow: "¿Quieres ver cómo se vería funcionando para tu negocio específico?"
+    }
+  };
+
+  function chatReply(type: string) {
+    const chatBody = document.getElementById('chat-body');
+    const chatOpts = document.getElementById('chat-opts');
+    if (!chatBody || !chatOpts) return;
+
+    const res = chatResponses[type];
+    if (!res) return;
+
+    // Ocultar opciones
+    chatOpts.style.display = 'none';
+
+    // Mensaje del usuario
+    const userMsg = document.createElement('div');
+    userMsg.className = 'kb-chat__msg kb-chat__msg--user';
+    userMsg.innerHTML = `<p>${type === 'precios' ? '💰 Ver precios' : type === 'cita' ? '📅 Agendar cita' : 'ℹ️ Más información'}</p>`;
+    chatBody.appendChild(userMsg);
+
+    // Respuesta del bot con delay
+    setTimeout(() => {
+      const typing = document.createElement('div');
+      typing.className = 'kb-chat__typing';
+      typing.innerHTML = '<span></span><span></span><span></span>';
+      chatBody.appendChild(typing);
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      setTimeout(() => {
+        typing.remove();
+        const botMsg = document.createElement('div');
+        botMsg.className = 'kb-chat__msg kb-chat__msg--bot';
+        botMsg.innerHTML = `<p>${res.bot}</p><span class="kb-chat__time">Ahora mismo</span>`;
+        chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        if (res.follow) {
+          setTimeout(() => {
+            const botMsg2 = document.createElement('div');
+            botMsg2.className = 'kb-chat__msg kb-chat__msg--bot';
+            botMsg2.innerHTML = `<p>${res.follow}</p><span class="kb-chat__time">Ahora mismo</span>`;
+            chatBody.appendChild(botMsg2);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Mostrar botón de reiniciar
+            const resetBtn = document.createElement('div');
+            resetBtn.className = 'kb-chat__options';
+            resetBtn.innerHTML = '<button class="kb-chat__opt" onclick="resetChat()">↩ Volver a empezar</button>';
+            chatBody.after(resetBtn);
+          }, 1200);
+        }
+      }, 1400);
+    }, 400);
+  }
+
+  function resetChat() {
+    const chatBody = document.getElementById('chat-body');
+    const chatOpts = document.getElementById('chat-opts');
+    if (!chatBody || !chatOpts) return;
+
+    // Eliminar mensajes extra
+    const extra = chatBody.querySelectorAll('.kb-chat__msg--user, .kb-chat__msg--bot:not(:first-child)');
+    extra.forEach(el => el.remove());
+
+    // Eliminar botón de reinicio
+    const resetBtn = chatOpts.nextElementSibling;
+    if (resetBtn && resetBtn.classList.contains('kb-chat__options')) resetBtn.remove();
+
+    // Restaurar opciones
+    chatOpts.style.display = 'flex';
+    chatBody.scrollTop = 0;
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.kb-faqItem').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.classList.contains('is-open');
+      document.querySelectorAll('.kb-faqItem').forEach(b => b.classList.remove('is-open'));
+      if (!isOpen) btn.classList.add('is-open');
+    });
+  });
+
+  // Hacer las funciones accesibles globalmente
+  (window as any).chatReply = chatReply;
+  (window as any).resetChat = resetChat;
+</script>
+
+
+<!-- ═══════════════════ ESTILOS ═══════════════════ -->
+<style>
+  /* ── Variables de KreatuBot ── */
+  :root {
+    --kb-dark:    #0a0f0d;
+    --kb-dark-2:  #111a15;
+    --kb-bot:     #00D4FF;
+    --kb-bot-dim: rgba(0,212,255,0.12);
+    --kb-green:   #1D9E75;
+    --kb-green-d: #0F6E56;
+    --kb-glow:    rgba(0,212,255,0.15);
+  }
+
+  /* ── HERO ── */
+  .kb-hero { position:relative; padding:80px 0 0; overflow:hidden; background:var(--kb-dark); }
+  .kb-hero__bg { position:absolute; inset:0; pointer-events:none; }
+  .kb-hero__grid { position:absolute; inset:0; background-image:linear-gradient(to right,rgba(0,212,255,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,212,255,.06) 1px,transparent 1px); background-size:56px 56px; mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black,transparent 80%); }
+  .kb-hero__glow { position:absolute; left:30%; top:-20%; width:900px; height:700px; background:radial-gradient(ellipse,rgba(0,212,255,.12),transparent 65%); filter:blur(60px); }
+  .kb-hero__glow--2 { left:60%; top:20%; background:radial-gradient(ellipse,rgba(29,158,117,.15),transparent 65%); }
+  .kb-hero__inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center; padding-bottom:80px; }
+  @media(max-width:1020px){ .kb-hero__inner { grid-template-columns:1fr; } }
+  .kb-hero__copy { max-width:580px; }
+
+  .kb-hero__title { font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(44px,6vw,84px); line-height:.97; letter-spacing:-.02em; margin:18px 0 22px; color:#fff; }
+  .kb-italic  { font-style:italic; color:var(--kb-bot); }
+  .kb-underline { background:linear-gradient(180deg,transparent 62%,rgba(0,212,255,.35) 62% 90%,transparent 90%); padding:0 .1em; }
+
+  .kb-hero__lede { font-size:17px; line-height:1.6; color:rgba(255,255,255,.7); margin:0 0 28px; }
+  .kb-hero__lede em { font-family:'Instrument Serif',serif; font-style:italic; color:var(--kb-bot); font-size:1.05em; }
+
+  .kb-hero__ctas { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:36px; }
+  .kb-btn--primary { background:var(--kb-bot); color:var(--kb-dark); font-weight:700; }
+  .kb-btn--primary:hover { background:#00bcdf; transform:translateY(-1px); }
+  .kb-btn--ghost { background:transparent; color:#fff; border-color:rgba(255,255,255,.25); }
+  .kb-btn--ghost:hover { background:rgba(255,255,255,.07); }
+  .kb-btn--lg { padding:14px 24px; font-size:15px; }
+
+  .kb-hero__proof { list-style:none; padding:0; display:flex; gap:28px; flex-wrap:wrap; }
+  .kb-hero__proof li { font-size:13px; color:rgba(255,255,255,.45); }
+  .kb-hero__proof strong { display:block; font-size:28px; color:#fff; line-height:1; margin-bottom:4px; font-weight:400; font-family:'Instrument Serif',serif; }
+
+  /* Chat preview */
+  .kb-chat-preview { background:#111a15; border:1px solid rgba(0,212,255,.2); border-radius:20px; overflow:hidden; box-shadow:0 0 60px rgba(0,212,255,.1), 0 30px 80px rgba(0,0,0,.5); }
+  .kb-chat__header { display:flex; align-items:center; gap:12px; padding:16px 20px; background:#0d1612; border-bottom:1px solid rgba(0,212,255,.1); }
+  .kb-chat__avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--kb-green),var(--kb-bot)); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#fff; position:relative; flex-shrink:0; }
+  .kb-chat__status { position:absolute; bottom:0; right:0; width:10px; height:10px; border-radius:50%; background:#00e676; border:2px solid #0d1612; }
+  .kb-chat__info { flex:1; }
+  .kb-chat__info strong { display:block; font-size:14px; color:#fff; }
+  .kb-chat__info span { font-size:12px; color:rgba(255,255,255,.45); }
+  .kb-chat__badge { background:var(--kb-bot-dim); color:var(--kb-bot); padding:3px 10px; border-radius:999px; font-size:11px; border:1px solid rgba(0,212,255,.3); }
+  .kb-chat__body { padding:20px; min-height:220px; max-height:300px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; }
+  .kb-chat__msg { max-width:85%; padding:12px 16px; border-radius:14px; font-size:14px; line-height:1.5; }
+  .kb-chat__msg--bot { background:#1a2e22; color:rgba(255,255,255,.9); align-self:flex-start; border-top-left-radius:4px; border:1px solid rgba(29,158,117,.2); }
+  .kb-chat__msg--user { background:var(--kb-green); color:#fff; align-self:flex-end; border-top-right-radius:4px; }
+  .kb-chat__msg p { margin:0; }
+  .kb-chat__time { display:block; font-size:11px; color:rgba(255,255,255,.35); margin-top:6px; font-family:'JetBrains Mono',monospace; }
+  .kb-chat__options { display:flex; flex-wrap:wrap; gap:8px; padding:12px 20px; border-top:1px solid rgba(0,212,255,.08); }
+  .kb-chat__opt { background:rgba(0,212,255,.08); border:1px solid rgba(0,212,255,.2); color:var(--kb-bot); padding:8px 14px; border-radius:999px; font-size:13px; cursor:pointer; transition:all .2s; font-family:'Geist',sans-serif; }
+  .kb-chat__opt:hover { background:rgba(0,212,255,.18); }
+  .kb-chat__foot { padding:10px 20px; font-size:11px; color:rgba(255,255,255,.25); display:flex; align-items:center; gap:6px; border-top:1px solid rgba(255,255,255,.04); }
+  .kb-pulse { width:6px; height:6px; border-radius:50%; background:var(--kb-bot); display:inline-block; animation:kb-pulse 1.6s infinite; }
+  @keyframes kb-pulse { 0%{box-shadow:0 0 0 0 rgba(0,212,255,.6)} 70%{box-shadow:0 0 0 8px transparent} 100%{box-shadow:0 0 0 0 transparent} }
+  .kb-chat__typing { display:flex; gap:5px; padding:8px 12px; align-self:flex-start; }
+  .kb-chat__typing span { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.3); animation:kb-typing .9s infinite; }
+  .kb-chat__typing span:nth-child(2){ animation-delay:.2s; }
+  .kb-chat__typing span:nth-child(3){ animation-delay:.4s; }
+  @keyframes kb-typing { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+
+  /* ── PROBLEMA / SOLUCIÓN ── */
+  .kb-problem { padding:80px 0; background:var(--kb-dark-2); border-top:1px solid rgba(0,212,255,.08); border-bottom:1px solid rgba(0,212,255,.08); }
+  .kb-problem__grid { display:grid; grid-template-columns:1fr auto 1fr; gap:32px; align-items:center; }
+  @media(max-width:860px){ .kb-problem__grid { grid-template-columns:1fr; } .kb-problem__divider { display:none; } }
+  .kb-problem__head { font-family:'JetBrains Mono',monospace; font-size:12px; color:rgba(255,255,255,.3); margin-bottom:20px; letter-spacing:.04em; }
+  .kb-problem__item { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,.05); font-size:14.5px; }
+  .kb-problem__item:last-child { border-bottom:0; }
+  .kb-problem__item--bad { color:rgba(255,255,255,.55); }
+  .kb-problem__item--good { color:rgba(255,255,255,.88); }
+  .kb-problem__icon { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; margin-top:1px; }
+  .kb-problem__item--bad .kb-problem__icon { background:rgba(255,80,80,.15); color:#ff5050; }
+  .kb-problem__item--good .kb-problem__icon { background:rgba(0,212,255,.12); color:var(--kb-bot); }
+  .kb-problem__divider { display:flex; align-items:center; justify-content:center; }
+  .kb-problem__vs { width:48px; height:48px; border-radius:50%; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); color:rgba(255,255,255,.4); font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+
+  /* ── SERVICIOS ── */
+  .kb-servicios { padding:120px 0; background:var(--kb-dark); }
+  .kb-section__title { font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(30px,4vw,52px); line-height:1.05; letter-spacing:-.02em; margin:12px 0 16px; color:#fff; }
+  .kb-servicios__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media(max-width:1020px){ .kb-servicios__grid { grid-template-columns:1fr; } }
+  .kb-card { background:#111a15; border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:32px 28px; position:relative; overflow:hidden; display:flex; flex-direction:column; gap:14px; transition:border-color .25s, box-shadow .25s, transform .25s; }
+  .kb-card:hover { border-color:rgba(0,212,255,.3); box-shadow:0 0 40px rgba(0,212,255,.07); transform:translateY(-3px); }
+  .kb-card--hi { border-color:rgba(0,212,255,.25); background:linear-gradient(160deg,#111a15,#0d1f18); box-shadow:0 0 60px rgba(0,212,255,.08); }
+  .kb-card__ribbon { position:absolute; top:-14px; left:24px; background:var(--kb-bot); color:var(--kb-dark); padding:5px 14px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:.04em; }
+  .kb-card__icon { width:52px; height:52px; border-radius:14px; background:var(--kb-bot-dim); border:1px solid rgba(0,212,255,.2); color:var(--kb-bot); display:flex; align-items:center; justify-content:center; }
+  .kb-card__num { font-family:'JetBrains Mono',monospace; font-size:12px; color:rgba(255,255,255,.25); }
+  .kb-card h3 { font-family:'Instrument Serif',serif; font-weight:400; font-size:26px; color:#fff; margin:0; line-height:1.1; }
+  .kb-card p { font-size:14.5px; color:rgba(255,255,255,.6); margin:0; line-height:1.6; }
+  .kb-card__feats { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .kb-card__feats li { font-size:13.5px; color:rgba(255,255,255,.75); display:flex; align-items:center; gap:8px; }
+  .kb-card__feats li::before { content:"✓"; color:var(--kb-bot); font-weight:700; flex-shrink:0; }
+  .kb-card__tag { font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(0,212,255,.4); margin-top:auto; }
+
+  /* ── CÓMO FUNCIONA ── */
+  .kb-como { padding:120px 0; background:var(--kb-dark-2); border-top:1px solid rgba(255,255,255,.04); }
+  .kb-pasos { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; position:relative; padding-top:70px; }
+  .kb-pasos__line { position:absolute; top:90px; left:0; right:0; height:1px; background:linear-gradient(to right,transparent,rgba(0,212,255,.2) 8%,rgba(0,212,255,.2) 92%,transparent); }
+  .kb-paso { position:relative; }
+  .kb-paso__node { position:absolute; top:-56px; left:0; width:44px; height:44px; border-radius:50%; background:var(--kb-bot-dim); border:1px solid rgba(0,212,255,.35); color:var(--kb-bot); display:flex; align-items:center; justify-content:center; font-size:20px; box-shadow:0 0 0 6px var(--kb-dark-2),0 0 0 7px rgba(0,212,255,.1); }
+  .kb-paso__num { font-family:'JetBrains Mono',monospace; font-size:12px; color:rgba(0,212,255,.4); margin-bottom:10px; }
+  .kb-paso__title { font-family:'Instrument Serif',serif; font-weight:400; font-size:24px; color:#fff; margin:0 0 10px; }
+  .kb-paso__body { font-size:14px; color:rgba(255,255,255,.55); margin:0; line-height:1.6; }
+  @media(max-width:1020px){ .kb-pasos { grid-template-columns:repeat(2,1fr); row-gap:60px; } .kb-pasos__line { display:none; } }
+  @media(max-width:560px){ .kb-pasos { grid-template-columns:1fr; } }
+
+  /* ── PLANES ── */
+  .kb-planes { padding:120px 0; background:var(--kb-dark); border-top:1px solid rgba(255,255,255,.04); }
+  .kb-planes__grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media(max-width:860px){ .kb-planes__grid { grid-template-columns:1fr; } }
+  .kb-plan { background:#111a15; border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:32px 28px; display:flex; flex-direction:column; gap:20px; transition:transform .25s; }
+  .kb-plan:hover { transform:translateY(-2px); }
+  .kb-plan--hi { border-color:rgba(0,212,255,.25); background:linear-gradient(160deg,#0d1f18,#111a15); box-shadow:0 20px 60px rgba(0,0,0,.4); position:relative; }
+  .kb-plan__ribbon { position:absolute; top:-14px; left:24px; background:var(--kb-bot); color:var(--kb-dark); padding:5px 14px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:.04em; }
+  .kb-plan__head { display:flex; flex-direction:column; gap:6px; }
+  .kb-plan__name { font-family:'Instrument Serif',serif; font-size:28px; font-weight:400; color:#fff; }
+  .kb-plan__price { font-family:'Instrument Serif',serif; font-size:56px; color:#fff; line-height:1; }
+  .kb-plan__price small { font-size:22px; color:rgba(255,255,255,.5); }
+  .kb-plan__sub { color:rgba(255,255,255,.35); }
+  .kb-plan__feats { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .kb-plan__feats li { font-size:14px; color:rgba(255,255,255,.7); display:flex; align-items:flex-start; gap:10px; }
+  .kb-check { color:var(--kb-green); font-weight:700; flex-shrink:0; }
+  .kb-check--bot { color:var(--kb-bot); }
+  .kb-plan__btn { display:block; text-align:center; padding:14px; border-radius:999px; border:1px solid rgba(255,255,255,.2); color:#fff; text-decoration:none; font-family:'Geist',sans-serif; font-weight:600; font-size:15px; transition:all .2s; }
+  .kb-plan__btn:hover { background:rgba(255,255,255,.07); }
+  .kb-plan__btn--hi { background:var(--kb-bot); color:var(--kb-dark); border-color:var(--kb-bot); }
+  .kb-plan__btn--hi:hover { background:#00bcdf; }
+  .kb-planes__note { text-align:center; margin-top:32px; font-family:'JetBrains Mono',monospace; font-size:12px; color:rgba(255,255,255,.25); }
+
+  /* ── FAQ ── */
+  .kb-faq { padding:120px 0; background:var(--kb-dark-2); border-top:1px solid rgba(255,255,255,.04); }
+  .kb-faq__shell { display:grid; grid-template-columns:1fr 1.4fr; gap:60px; align-items:start; }
+  @media(max-width:1020px){ .kb-faq__shell { grid-template-columns:1fr; gap:40px; } }
+  .kb-faq__intro { position:sticky; top:100px; }
+  .kb-faq__list { display:flex; flex-direction:column; }
+  .kb-faqItem { display:grid; grid-template-columns:40px 1fr 24px; gap:14px; align-items:start; background:transparent; border:0; border-top:1px solid rgba(255,255,255,.06); padding:22px 0; text-align:left; width:100%; cursor:pointer; }
+  .kb-faqItem:last-child { border-bottom:1px solid rgba(255,255,255,.06); }
+  .kb-faqItem__num { color:rgba(255,255,255,.2); padding-top:4px; }
+  .kb-faqItem__q { font-family:'Instrument Serif',serif; font-size:20px; color:#fff; font-weight:400; line-height:1.2; }
+  .kb-faqItem__icon { color:rgba(255,255,255,.3); transition:transform .2s; padding-top:4px; }
+  .kb-faqItem.is-open .kb-faqItem__icon { transform:rotate(180deg); color:var(--kb-bot); }
+  .kb-faqItem__a { grid-column:2; font-size:14.5px; color:rgba(255,255,255,.55); line-height:1.6; max-height:0; overflow:hidden; opacity:0; transition:max-height .3s ease,opacity .25s,margin-top .3s; margin-top:0; }
+  .kb-faqItem.is-open .kb-faqItem__a { max-height:200px; opacity:1; margin-top:10px; }
+
+  /* Eyebrow en modo oscuro */
+  .kb-hero .kt-eyebrow, .kb-servicios .kt-eyebrow, .kb-como .kt-eyebrow,
+  .kb-planes .kt-eyebrow, .kb-faq .kt-eyebrow { color:rgba(255,255,255,.4); }
+  .kb-hero .kt-eyebrow__sep { color:rgba(255,255,255,.15); }
+  .kb-hero .kt-section__lede, .kb-servicios .kt-section__lede,
+  .kb-planes .kt-section__lede { color:rgba(255,255,255,.55); }
+</style>
