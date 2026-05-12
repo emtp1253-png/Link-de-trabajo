@@ -319,18 +319,21 @@ import Contact from '../components/Contact.astro';
 <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
 <script>
   // Chat demo simulado
-  const chatResponses: Record<string, { bot: string; follow?: string }> = {
+  const chatData: Record<string, { label: string; bot1: string; bot2: string }> = {
     precios: {
-      bot: "Claro 😊 Nuestros planes empiezan desde $999.99 MXN + IVA. El más popular es el Pro Plus que incluye página web + KreatuBot. ¿Te gustaría ver todos los detalles?",
-      follow: "También puedo agendar una videollamada sin compromiso con el equipo. ¿Te interesa?"
+      label: "💰 Ver precios",
+      bot1: "¡Claro! 😊 KreatuBot tiene dos planes independientes:\n\n⚡ <strong>KreatuBot Starter — $1,499.99 + IVA</strong>\nAgente de atención al cliente 24/7 por WhatsApp, responde FAQs y escala a humano cuando lo necesita. Mantenimiento desde $349/mes.\n\n🚀 <strong>KreatuBot Pro — $2,999.99 + IVA</strong>\n3 agentes activos: atención, ventas y seguimiento de leads. Panel de conversaciones, reportes mensuales y capacitación incluida. Desde $499/mes.",
+      bot2: "¿Te gustaría que Victor Rubio te explique cuál se adapta mejor a tu negocio? 👇"
     },
     cita: {
-      bot: "¡Con gusto! 📅 Tenemos disponibilidad esta semana. ¿Prefieres mañana por la mañana o por la tarde?",
-      follow: "Solo dime tu nombre y correo y confirmo tu lugar ahora mismo."
+      label: "📅 Agendar cita",
+      bot1: "¡Con gusto! 📅 Para agendar una videollamada sin compromiso de 20 minutos con Victor Rubio, solo necesito que nos contactes directamente — él se adapta a tu horario.",
+      bot2: "En la llamada te mostramos exactamente cómo quedaría KreatuBot funcionando para <em>tu</em> negocio específico. 👇"
     },
     info: {
-      bot: "KreatuBot es un agente de IA que atiende a tus clientes 24/7 en WhatsApp — responde preguntas, cierra ventas y da seguimiento a leads automáticamente.",
-      follow: "¿Quieres ver cómo se vería funcionando para tu negocio específico?"
+      label: "ℹ️ Más información",
+      bot1: "KreatuBot es un sistema de agentes de IA que trabaja por ti las 24 horas:\n\n🤖 <strong>Agente de atención</strong> — responde preguntas y resuelve dudas al instante\n💼 <strong>Agente de ventas</strong> — califica leads y guía al cliente hasta cerrar\n📊 <strong>Seguimiento de leads</strong> — nadie se queda sin respuesta, nunca",
+      bot2: "Se integra a tu WhatsApp Business y lo entrenamos con la información de tu negocio. ¿Hablamos? 👇"
     }
   };
 
@@ -339,51 +342,69 @@ import Contact from '../components/Contact.astro';
     const chatOpts = document.getElementById('chat-opts');
     if (!chatBody || !chatOpts) return;
 
-    const res = chatResponses[type];
+    const res = chatData[type];
     if (!res) return;
 
-    // Ocultar opciones
     chatOpts.style.display = 'none';
 
     // Mensaje del usuario
     const userMsg = document.createElement('div');
     userMsg.className = 'kb-chat__msg kb-chat__msg--user';
-    userMsg.innerHTML = `<p>${type === 'precios' ? '💰 Ver precios' : type === 'cita' ? '📅 Agendar cita' : 'ℹ️ Más información'}</p>`;
+    userMsg.innerHTML = `<p>${res.label}</p>`;
     chatBody.appendChild(userMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
 
-    // Respuesta del bot con delay
+    // Typing 1
     setTimeout(() => {
-      const typing = document.createElement('div');
-      typing.className = 'kb-chat__typing';
-      typing.innerHTML = '<span></span><span></span><span></span>';
-      chatBody.appendChild(typing);
+      const t1 = document.createElement('div');
+      t1.className = 'kb-chat__typing';
+      t1.innerHTML = '<span></span><span></span><span></span>';
+      chatBody.appendChild(t1);
       chatBody.scrollTop = chatBody.scrollHeight;
 
       setTimeout(() => {
-        typing.remove();
-        const botMsg = document.createElement('div');
-        botMsg.className = 'kb-chat__msg kb-chat__msg--bot';
-        botMsg.innerHTML = `<p>${res.bot}</p><span class="kb-chat__time">Ahora mismo</span>`;
-        chatBody.appendChild(botMsg);
+        t1.remove();
+        const b1 = document.createElement('div');
+        b1.className = 'kb-chat__msg kb-chat__msg--bot';
+        b1.innerHTML = `<p>${res.bot1.replace(/\n/g, '<br/>')}</p><span class="kb-chat__time">Ahora mismo</span>`;
+        chatBody.appendChild(b1);
         chatBody.scrollTop = chatBody.scrollHeight;
 
-        if (res.follow) {
+        // Typing 2
+        setTimeout(() => {
+          const t2 = document.createElement('div');
+          t2.className = 'kb-chat__typing';
+          t2.innerHTML = '<span></span><span></span><span></span>';
+          chatBody.appendChild(t2);
+          chatBody.scrollTop = chatBody.scrollHeight;
+
           setTimeout(() => {
-            const botMsg2 = document.createElement('div');
-            botMsg2.className = 'kb-chat__msg kb-chat__msg--bot';
-            botMsg2.innerHTML = `<p>${res.follow}</p><span class="kb-chat__time">Ahora mismo</span>`;
-            chatBody.appendChild(botMsg2);
+            t2.remove();
+            const b2 = document.createElement('div');
+            b2.className = 'kb-chat__msg kb-chat__msg--bot';
+            b2.innerHTML = `<p>${res.bot2}</p><span class="kb-chat__time">Ahora mismo</span>`;
+            chatBody.appendChild(b2);
             chatBody.scrollTop = chatBody.scrollHeight;
 
-            // Mostrar botón de reiniciar
-            const resetBtn = document.createElement('div');
-            resetBtn.className = 'kb-chat__options';
-            resetBtn.innerHTML = '<button class="kb-chat__opt" onclick="resetChat()">↩ Volver a empezar</button>';
-            chatBody.after(resetBtn);
+            // Botones de acción
+            const actions = document.createElement('div');
+            actions.className = 'kb-chat__options';
+            actions.innerHTML = `
+              <a href="#contacto" class="kb-chat__opt kb-chat__opt--cta" onclick="smoothContact(event)">✉️ Contactar a Victor Rubio</a>
+              <button class="kb-chat__opt" onclick="resetChat()">↩ Volver</button>
+            `;
+            chatBody.after(actions);
+            chatBody.scrollTop = chatBody.scrollHeight;
           }, 1200);
-        }
+        }, 800);
       }, 1400);
     }, 400);
+  }
+
+  function smoothContact(e: Event) {
+    e.preventDefault();
+    const contact = document.getElementById('contacto');
+    if (contact) contact.scrollIntoView({ behavior: 'smooth' });
   }
 
   function resetChat() {
@@ -391,15 +412,11 @@ import Contact from '../components/Contact.astro';
     const chatOpts = document.getElementById('chat-opts');
     if (!chatBody || !chatOpts) return;
 
-    // Eliminar mensajes extra
-    const extra = chatBody.querySelectorAll('.kb-chat__msg--user, .kb-chat__msg--bot:not(:first-child)');
-    extra.forEach(el => el.remove());
+    chatBody.querySelectorAll('.kb-chat__msg--user, .kb-chat__msg--bot:not(:first-child), .kb-chat__typing').forEach(el => el.remove());
 
-    // Eliminar botón de reinicio
-    const resetBtn = chatOpts.nextElementSibling;
-    if (resetBtn && resetBtn.classList.contains('kb-chat__options')) resetBtn.remove();
+    const extra = chatOpts.nextElementSibling;
+    if (extra && extra.classList.contains('kb-chat__options')) extra.remove();
 
-    // Restaurar opciones
     chatOpts.style.display = 'flex';
     chatBody.scrollTop = 0;
   }
@@ -433,16 +450,16 @@ import Contact from '../components/Contact.astro';
   }
 
   /* ── HERO ── */
-  .kb-hero { position:relative; padding:80px 0 0; overflow:hidden; background:var(--kb-dark); }
+  .kb-hero { position:relative; padding:100px 0 0; overflow:hidden; background:var(--kb-dark); }
   .kb-hero__bg { position:absolute; inset:0; pointer-events:none; }
   .kb-hero__grid { position:absolute; inset:0; background-image:linear-gradient(to right,rgba(0,212,255,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,212,255,.06) 1px,transparent 1px); background-size:56px 56px; mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black,transparent 80%); }
   .kb-hero__glow { position:absolute; left:30%; top:-20%; width:900px; height:700px; background:radial-gradient(ellipse,rgba(0,212,255,.12),transparent 65%); filter:blur(60px); }
   .kb-hero__glow--2 { left:60%; top:20%; background:radial-gradient(ellipse,rgba(29,158,117,.15),transparent 65%); }
-  .kb-hero__inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center; padding-bottom:80px; }
+  .kb-hero__inner { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:start; padding-top:40px; padding-bottom:100px; }
   @media(max-width:1020px){ .kb-hero__inner { grid-template-columns:1fr; } }
   .kb-hero__copy { max-width:580px; }
 
-  .kb-hero__title { font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(44px,6vw,84px); line-height:.97; letter-spacing:-.02em; margin:18px 0 22px; color:#fff; }
+  .kb-hero__title { font-family:'Instrument Serif',serif; font-weight:400; font-size:clamp(36px,5vw,72px); line-height:1; letter-spacing:-.02em; margin:18px 0 22px; color:#fff; }
   .kb-italic  { font-style:italic; color:var(--kb-bot); }
   .kb-underline { background:linear-gradient(180deg,transparent 62%,rgba(0,212,255,.35) 62% 90%,transparent 90%); padding:0 .1em; }
 
@@ -478,6 +495,8 @@ import Contact from '../components/Contact.astro';
   .kb-chat__options { display:flex; flex-wrap:wrap; gap:8px; padding:12px 20px; border-top:1px solid rgba(0,212,255,.08); }
   .kb-chat__opt { background:rgba(0,212,255,.08); border:1px solid rgba(0,212,255,.2); color:var(--kb-bot); padding:8px 14px; border-radius:999px; font-size:13px; cursor:pointer; transition:all .2s; font-family:'Geist',sans-serif; }
   .kb-chat__opt:hover { background:rgba(0,212,255,.18); }
+  .kb-chat__opt--cta { background:var(--kb-bot) !important; color:var(--kb-dark) !important; font-weight:700 !important; border-color:var(--kb-bot) !important; text-decoration:none; }
+  .kb-chat__opt--cta:hover { background:#00bcdf !important; }
   .kb-chat__foot { padding:10px 20px; font-size:11px; color:rgba(255,255,255,.25); display:flex; align-items:center; gap:6px; border-top:1px solid rgba(255,255,255,.04); }
   .kb-pulse { width:6px; height:6px; border-radius:50%; background:var(--kb-bot); display:inline-block; animation:kb-pulse 1.6s infinite; }
   @keyframes kb-pulse { 0%{box-shadow:0 0 0 0 rgba(0,212,255,.6)} 70%{box-shadow:0 0 0 8px transparent} 100%{box-shadow:0 0 0 0 transparent} }
